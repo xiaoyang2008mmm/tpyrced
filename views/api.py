@@ -1,6 +1,7 @@
-#!/usr/bin/python2.6
 # -*- coding: utf-8 -*- 
 import tornado.web
+from models.db  import *
+
 class BaseHandler(tornado.web.RequestHandler):
     @property
     def db(self):
@@ -12,6 +13,9 @@ class WenYuanAdd_handler(BaseHandler):
     def post(self, *args, **kwargs):
 	request_dict = self.request.arguments
 	print request_dict
+	
+	q =TpyrcedClerk.insert(client_name="wqwdqwqw")
+	q.execute()
 
 
 
