@@ -15,3 +15,21 @@ class WenYuanAdd_handler(BaseHandler):
 
 
 
+class JingJiaAdd_handler(BaseHandler):
+    """获取竞价录入的信息并且入库"""
+
+    def post(self, *args, **kwargs):
+	request_dict = self.request.arguments
+	print request_dict
+
+
+
+class CaiWuAdd_handler(BaseHandler):
+    """获取财务录入的信息并且入库"""
+
+    def post(self, *args, **kwargs):
+	request_dict = self.request.arguments
+	print request_dict
+
+
+
