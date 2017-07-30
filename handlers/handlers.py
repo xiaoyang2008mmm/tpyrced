@@ -11,7 +11,8 @@ HANDLERS =[(r"/" ,		Index_Handler),
 	   ##信息录入接口
 	   (r"/api/wenyuan/add/", 	WenYuanAdd_handler ),
 	   (r"/api/jingjia/add/",	JingJiaAdd_handler ),
-	   (r"/api/caiwu/add/", 	CaiWuAdd_handler ),
+	   (r"/api/caiwuqianyue/add/", 	CaiWuAdd_handler ),
+	   (r"/api/caiwuticheng/add/", 	CaiWuAdd_handler ),
 
 
 	   #请求返回页面
