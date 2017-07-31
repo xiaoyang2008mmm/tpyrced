@@ -10,7 +10,7 @@ class wenyuan_handler(BaseHandler):
     """返回文员html页面"""
 
     def get(self, *args, **kwargs):
-        self.render("wenyuan.html")
+        self.render("employee_a.html")
 
 
 
