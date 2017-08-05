@@ -1,24 +1,25 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>无标题文档</title>
-<script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
-</head>
-<style>
-body{text-align:center;}
-a{display:block;text-decoration:none;font-size:30px;margin:20px;color:#fff;}
-</style>
-<body>
-<a href="system_a.html" target="showiframe">系统资料</a>
-<a href="system_a.html" target="showiframe">系统联系人</a>
-</body>
-</html>
-<script type="text/javascript">
-    $ (function (){
-        $ ('a').click (function ()
-        {
-			$ (this).css ('color', '#00144c').siblings ('a').css ('color', '#fff');
-        });
-    });
-</script>
+     {% extends "base.html" %}
+     {% block body %}
+
+   <div class="systemframeset01">
+
+     <ul id="systemleft">
+
+        <li><a>系统资料</a></li>
+
+        <li><a>系统联系人</a></li>
+
+    </ul>
+
+    </div>
+
+    <div class="systemframeset02">
+
+       <div>{% include system_a.html %}</div>
+
+       <div style="display:none;">{% include system_b.html %}</div>
+
+    </div>
+
+{% end %}
+

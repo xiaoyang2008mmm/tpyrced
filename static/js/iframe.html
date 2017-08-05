@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>安居乐业管理系统</title>
+
+<script type="text/javascript" src="/static/js/jquery-1.8.0.min.js"></script>
+
+<script type="text/javascript" src="/static/js/anjuiframe.js"></script>
+
+<link href="/static/css/style.css" rel="stylesheet" type="text/css"> 
+
+</head>
+
+<body>
+
+   <div class="title">安居乐业管理系统</div>
+
+   <div class="nav"> 
+
+     <ul>
+
+       <li>客户管理</a></li>
+
+      <!--  <li><a href="employee_a.html" target="showiframe">员工门户</a></li>
+
+       <li><a href="sale_a.html" target="showiframe">销售管理</a></li>
+
+       <li><a href="system_a.html" target="showiframe">系统管理</a></li> -->
+
+     </ul>
+
+   </div>
+
+    <div class="frameset01">
+
+       <div id="left01"></div> 
+       <div style="display:none;">{% include employeeleft.html %} </div>
+
+       <div style="display:none;">{% include saleleft.html %} </div>
+
+       <div style="display:none;">{% include systemleft.html %} </div> 
+
+    </div>
+  
+
+    <div class="frameset02">
+
+       {% include customer_b.html %}
+
+    </div>
+
+</body>
+
+</html>
+<script type="text/javascript">
+ $ (function (){
+
+        $ ('.nav ul li').click (function ()
+
+          $('#left').load(customerleft.html);
+
+        });
+
+    });
+ 
+ </script>

@@ -1,0 +1,125 @@
+
+/*登录样式开始  start*/
+
+   #userlogin .p1{font-size:60px;font-family:黑体;}
+
+   #userlogin .p2{font-size:24px;}
+
+   #userlogin .p1 ,#userlogin .p2{display:block;width:470px;text-align:center;color:#fff;margin:5px;}
+
+   #userlogin #login{position:fixed;width:470px;height:450px;z-index:1;left:50%;margin-left:-235px;top:50%;margin-top:-225px;}
+
+   #userlogin  #login #loginbg{width:470px;height:300px;margin-top:40px;}
+
+   #loginbg .img{width:470px;height:300px;background:#fff;opacity:0.5;border-radius:25px;}
+
+   #loginbg .password{width:380px;height:200px;position:fixed;left:50%;margin-left:-190px;top:50%;margin-top:-60px;}
+
+   #userlogin  #loginbg .password span{display:block;padding:12px 0;width:380px;}
+
+   #userlogin  #loginbg .password span img{vertical-align:middle}
+
+   #userlogin  #loginbg .password .span1{border-bottom:#000 solid 1px;}
+
+   #userlogin  #loginbg .password .span2 input{width:20px;padding:0;margin:0;}
+
+   #userlogin input{width:250px;height:35px;background:transparent;border:solid 2px #fff;margin:5px 30px;}
+
+/*登录样式结束  end*/
+
+
+
+/*系统主框架样式开始*/
+
+.nav{width:1450px;height:70px;background:#fff;margin-bottom:10px;float:left;}
+
+.title{width:350px;height:70px;color:#00144c;font-size:40px;position:relative;left:10px;top:10px;display:inline-block;float:left;font-family:黑体;}
+
+.nav ul{list-style-type:none;}
+
+.nav ul li{display:block;float:left;width:120px;height:65px;text-align:center;font-size:1.5rem;line-height:65px;}
+
+.nav ul li a{text-decoration:none;color:#000;cursor:pointer;font-family:黑体;}
+
+/*系统主框架样式结束*/
+
+
+
+/*框架左侧样式开始*/
+
+.frameset{width:98%;height:830px;position:absolute;top:90px;left:10px;border:1px #000 solid;}
+
+.customerframeset01,.employeeframeset01,.saleframeset01,.systemframeset01
+ {width:15.6%;height:830px;position:absolute;top:90px;left:10px;background:url(/static/img/leftbanner.jpg);border:1px #000 solid;border-right:0;cursor:pointer;}
+
+.customerframeset02,.employeeframeset02,.saleframeset02,.systemframeset02
+ {width:82.4%;height:830px;position:absolute;top:90px;left:16.7%;margin-left:-10px;border:1px #000 solid;border-left:0;}
+
+#employeeleft,#customerleft,#saleleft,#systemleft{list-style-type:none;margin:200px 0 0 -45px;text-align:center;}
+
+#employeeleft li a,#customerleft li a,#saleleft li a,#systemleft li a
+  {display:block;text-decoration:none;font-size:30px;margin:20px 10%;color:#fff;}
+
+/*框架左侧样式结束*/
+
+
+
+/*框架右侧——customer_a.html  start*/
+
+ #customerform {width:800px;height:800px;text-align:center;position:relative;left:50%;margin-left:-400px;}
+
+ #customerform form{width:800px;height:550px;background:#e2ecf5;}
+
+ #customerform table{text-align:center;width:750px;height:30px;margin:25px;}
+
+ #customerform .tableone{text-align:center;width:375px;height:30px;margin:25px;}
+
+ #customerform table tr td{border:#a0a0a0 solid 1px;height:30px;background:#fff;border-spacing: 10px;}
+
+ #customerform table tr td:nth-child(odd){width:170px;}
+
+ #customerform table tr td:nth-child(even){width:200px;}
+
+ #customerform table tr td input[type="text"]{width:200px;height:30px;}
+
+ #customerform table tr td select{width:203px;height:30px;}
+
+ #customerform form button,#customerform form input[type="button"]{width:60px;color:#fff;height:30px;margin-top:30px;font-size:18px;font-family: 黑体}
+
+ #customerform form textarea{width:360px;height:295px;}
+
+/*框架右侧——customer_a.html  end*/
+
+
+
+/*框架右侧——customer_b.html  start*/
+
+#customerinfo{background:#a6c5e1;width:100%;height:30px;position:relative;top:10px;left:0;}
+
+#customerinfo .cusinfoleft{position:absolute;left:10px;}
+
+#customerinfo .cusinfoleft span,#customerinfo .cusinforight span{line-height: 30px;padding:0 15px;}
+
+#customerinfo .cusinforight{position:absolute;right:10px;}
+
+#customerinfo .rightline{border-right:solid 1px #000}
+
+#customerframe{text-align:center;}
+
+#customerinfo  span,#customerframe h1{color:#00144c;font-family: 黑体;cursor:pointer;}
+
+#customerframe .cusform{background:#a6c5e1;width:100%;height:30px;top:10px;left:0;}
+
+#customerframe table{width:80%;height:auto;color:#fefefe;}
+
+#customerframe table select{background:transparent;width:100%;padding:4.5px 0;border:solid 2px #4e5d6a;border-left:0px;}
+
+#customerframe table input{background:transparent;width:100%;height:25px;border:solid 2px #4e5d6a;border-left:0px;}
+
+#customerframe table td:nth-child(odd){width:11%;background:#00144c;}
+
+#customerframe table td:nth-child(even){width:10%;padding-right:8px;}
+
+#customerframe table button{background:#00144c;color:#fff;border:1px;padding:5px 18px;border-radius:5px;}
+
+/*框架右侧——customer_b.html  end*/

@@ -18,6 +18,7 @@ class TpyrcedClerk(BaseModel):
     key_words = CharField(null=True)
     save_time = BigIntegerField(null=True)
     subscribe = CharField(null=True)
+    remark_text = CharField(null=True)
     tel_where = CharField(null=True)
     tl_area = CharField(null=True)
 

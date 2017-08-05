@@ -1,0 +1,49 @@
+     {% extends "base.html" %}
+     {% block body %}
+
+<div id="customerinfo">
+   <div class="cusinfoleft">
+     <span class="rightline">删除</span>
+     <span onclick=openwin()>增加</span>
+   </div>
+   <div class="cusinforight">
+     <span class="rightline">页面设置</span>
+     <span class="rightline">导出Excel</span>
+     <span>导出Word</span>
+   </div>
+</div>
+<div id="customerframe">
+   <h1>客户资料</h1>
+   <div class="cusform">
+      <table align="center" cellspacing="0" cellpadding="0">
+         <tr>
+            <td>客户姓名</td>
+            <td><input type="text"></td>
+            <td>客户电话</td>
+            <td><input type="text"></td>
+            <td>电话来源</td>
+            <td>
+                <select>
+                    <option selected value="请选择">请选择</option>
+                    <option value="进线01">进线01</option>
+                    <option value="进线02">进线02</option>
+                    <option value="套电01">套电01</option>
+                    <option value="套电02">套电02</option>
+                </select>
+            </td>
+            <td>电话所属区域</td>
+            <td>
+               <select>
+                    <option selected value="请选择">请选择</option>
+                    <option value="唐山">唐山</option>
+                    <option value="秦皇岛">秦皇岛</option>
+                    <option value="葫芦岛">葫芦岛</option>
+                    <option value="廊坊">廊坊</option>
+                </select>
+            </td>
+            <td style="background:transparent;"><button type="button" value="查询">查询</button></td>
+         </tr>
+      </table>
+   </div>
+</div>
+  {% end %}

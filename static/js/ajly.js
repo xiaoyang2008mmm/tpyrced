@@ -1,36 +1,45 @@
 $(document).ready(function() {
 
-    /////文员添加
-    var save_time = 'save_time';
-    var client_tel = 'client_tel';
-    var client_name = 'client_name';
-    var is_send = 'is_send';
-    var is_valid = 'is_valid';
-    var key_words = 'key_words';
-    var tel_where = 'tel_where';
-    var tl_area = 'tl_area';
-    var invite = 'invite';
-    var subscribe = 'subscribe';
+    $("#wenyuan_save").click(function() {
+        /////文员添加
+        var save_time = (Date.parse(new Date())) / 1000;
+        var client_tel = $('#client_tel').val();
+        var client_name = $('#c_name').val();;
+        var is_send = $('#is_send').val();
+        var is_valid = $('#is_valid').val();
+        var key_words = $('#key_words').val();
+        var tel_where = $('#tel_where option:selected').val();
+        var tl_area = $('#tl_area option:selected').val();
+        var invite = $('#invite').val();
+        var subscribe = $('#subscribe').val();
+        var remark_text = $('#remark_text').val();
 
-    var wenyuan_obj = {};
+        var wenyuan_obj = {};
 
-    wenyuan_obj.save_time = save_time;
-    wenyuan_obj.client_tel = client_tel;
-    wenyuan_obj.client_name = client_name;
-    wenyuan_obj.is_send = is_send;
-    wenyuan_obj.is_valid = is_valid;
-    wenyuan_obj.key_words = key_words;
-    wenyuan_obj.tel_where = tel_where;
-    wenyuan_obj.tl_area = tl_area;
-    wenyuan_obj.invite = invite;
-    wenyuan_obj.subscribe = subscribe;
+        wenyuan_obj.save_time = save_time;
+        wenyuan_obj.client_tel = client_tel;
+        wenyuan_obj.client_name = client_name;
+        wenyuan_obj.is_send = is_send;
+        wenyuan_obj.is_valid = is_valid;
+        wenyuan_obj.key_words = key_words;
+        wenyuan_obj.tel_where = tel_where;
+        wenyuan_obj.tl_area = tl_area;
+        wenyuan_obj.invite = invite;
+        wenyuan_obj.subscribe = subscribe;
+        wenyuan_obj.remark_text = remark_text;
+	
+	var error_msg = "客户电话  和 发给销售人员   两项为必填项目!!!"  ;	
+	(client_tel == "" && is_send == "") ? alert(error_msg) : (
+        $.post("/api/wenyuan/add/", wenyuan_obj,
+        function(data) {
+            alert(data);
 
-    $.post("/api/wenyuan/add/", wenyuan_obj,
-    function(data) {
-        alert(data);
+        })
+	)
+        });
 
-    })
-    /////竞价添加
+
+    ////竞价添加
     var area = 'area';
     var area_cost = 'area_cost';
     var jingjia_number = 'jingjia_number';

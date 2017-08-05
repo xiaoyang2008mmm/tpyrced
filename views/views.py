@@ -8,6 +8,16 @@ class BaseHandler(tornado.web.RequestHandler):
 class Index_Handler(BaseHandler):
 
     def get(self,*args,**kwargs):
-        self.render('index.html') 
+        self.render('base.html') 
 
+
+class Iframe_Handler(BaseHandler):
+
+    def get(self,*args,**kwargs):
+        self.render('iframe.html') 
+
+class test_handler(BaseHandler):
+
+    def get(self,*args,**kwargs):
+        self.render('employeeleft.html')
 
