@@ -14,7 +14,6 @@ class Index_Handler(BaseHandler):
 class Iframe_Handler(BaseHandler):
 
     def get(self,page):                                              
-        print self.get_current_user()
 	db = MySQLdb.connect("localhost","root","zkeys","tpyrced" )
 	cursor = db.cursor()
 	sql = "SELECT * FROM tpyrced_clerk"

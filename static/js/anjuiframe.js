@@ -114,6 +114,25 @@ function openwin() {
 //
 function delete_data() {
 
+
+
+var $ids = [];   
+    var $chkBoxes = $('#tab_form').find('input:checked');   
+    if ($chkBoxes.length == 0) {         
+      alert('请至少选择一个数据集');
+      return false;
+    }
+
+
+  $($chkBoxes).each(function () { 
+      	$ids.push( $(this).attr('data-id') );  
+    });
+
+//var $ids_str = $ids.join(',');    
+ //       console.log($ids_str);
+        alert($ids);
+
+
 	var client_telphone = '123456789' ;
 
         var msg = "确定要删除吗?";

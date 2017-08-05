@@ -1,6 +1,6 @@
 <div id="customerinfo">
    <div class="cusinfoleft">
-     <span class="rightline">删除</span>
+     <span class="rightline" onclick=delete_data()>删除</span>
      <span class="rightline" onclick=openwin()>增加</span>
      <span onclick=openalter()>修改</span>
    </div>
@@ -56,9 +56,10 @@
 </thead>
 <tbody style="background:#00144c;">
 {%for i in shuju%}
-<tr class="cus_tab">
-<td><input type="checkbox" name="checkbox"></td>
-<td>  {{i[0]}} </td>
+<tr class="cus_tab" id="get_id">
+<td>
+<input type="checkbox" data-id="{{i[0]}}" >
+</td>
 <td>  {{i[1]}} </td>
 <td>  {{i[2]}} </td>
 <td>  {{i[3]}} </td>
@@ -79,20 +80,6 @@
    #number li{float:left;margin-left:10px;border:1px #000 solid;width:50px;height:25px;line-height: 25px;}
    #number li a{text-decoration: none;}
 </style>
-<script type="text/javascript src="/static/js/jquery-1.8.0.min.js"></script>
-<script type="text/javascript">
-    $(function(){
-      $('input:checkbox').click(function(){
-        var element=$(this).parent().siblings('td');
-        var cname=element.eq(1).children("input[type='text']").val();
-        var ctel=element.eq(2).children("input[type='text']").val();
-        var cvail=element.eq(3).children("select option:selected").val();
-        var csend=element.eq(4).children("input[type='text']").val();
-        var carea=element.eq(5).children("select option:selected").val();
-      });
-    });
-
-</script>
 
 
 
