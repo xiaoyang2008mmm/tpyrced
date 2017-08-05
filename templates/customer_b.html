@@ -44,6 +44,7 @@
    </div>
 
 <table id="tab_form" align="center">
+<thead>
 <tr >
    <td style="background:#00144c;"></td>
    <td style="background:#00144c;">客户姓名</td>
@@ -52,22 +53,26 @@
    <td style="background:#00144c;">发给销售人员</td>
    <td style="background:#00144c;">电话属区域</td>
 </tr>
-{%for i in all_clerk%}
+</thead>
+<tbody>
+{%for i in shuju%}
 <tr class="cus_tab">
 <td><input type="checkbox"></td>
-<td>  {{i.client_name}} </td>
-<td>	{{i.client_tel}}	</td>
-<td>  {{i.is_valid}}   </td>
-<td>	{{i.is_send}}	</td>
-<td>  {{i.tl_area}}   </td>
+<td>  {{i[0]}} </td>
+<td>  {{i[1]}} </td>
+<td>  {{i[2]}} </td>
+<td>  {{i[3]}} </td>
+<td>  {{i[4]}} </td>
+<td>  {{i[5]}} </td>
 </tr>
 {%end%}
+</tbody>
 </table>
+<ul class="fy">
+    {% raw yem %}
+</ul>
+
+
+
 </div>
 
-<style>
-  #tab_form{}
-  #tab_form .cus_tab td:nth-child(odd){background:#fefefe;}
-  #tab_form .cus_tab td:nth-child(even){background:#f00;}
-  #tab_form tr td{width:100px;}
-</style>

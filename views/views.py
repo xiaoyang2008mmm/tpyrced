@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*- 
 from models.db  import *
 import tornado.web
+import fenye
+import MySQLdb
 class BaseHandler(tornado.web.RequestHandler):
     @property
     def db(self):
@@ -13,11 +15,24 @@ class Index_Handler(BaseHandler):
 
 class Iframe_Handler(BaseHandler):
 
-    def get(self,*args,**kwargs):
 
-	all_clerk = TpyrcedClerk.select()
-	_dict = {"all_clerk" : all_clerk}
-        self.render('iframe.html', **_dict) 
+
+    def get(self,page):                                              #get()方法，接收get方式请求
+	db = MySQLdb.connect("localhost","root","zkeys","tpyrced" )
+	cursor = db.cursor()
+	sql = "SELECT * FROM tpyrced_clerk"
+	cursor.execute(sql)
+	SHUJU  = cursor.fetchall()
+
+        fen_ye = fenye.fen_ye_lei(page,SHUJU,10,11,5,'/iframe/')       #执行分页对象
+
+        if fen_ye.dang_qian_ye > fen_ye.zong_ye_ma:             #判断分页对象里的当前页码如果大于总页码
+            zfchdqy = str(fen_ye.zong_ye_ma)                    #将总页码转换成字符串
+            self.redirect("/iframe/" + zfchdqy)                  #跳转到总页码
+        else:
+            self.render("iframe.html",dqy=fen_ye.dang_qian_ye,shuju=fen_ye.shu_ju_fan_wei(),yem=fen_ye.xian_shi_ye_ma())
+
+
 
 class test_handler(BaseHandler):
 
