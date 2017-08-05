@@ -1,16 +1,14 @@
 # -*- coding: utf-8 -*- 
 from models.db  import *
-import tornado.web
 import fenye
 import MySQLdb
-class BaseHandler(tornado.web.RequestHandler):
-    @property
-    def db(self):
-       return self.application.db
+from base  import *
 class Index_Handler(BaseHandler):
 
     def get(self,*args,**kwargs):
-        self.render('base.html') 
+        current_user=self.get_current_user()
+        self.render("base.html",current_user=current_user)
+
 
 
 class Iframe_Handler(BaseHandler):

@@ -92,15 +92,10 @@ $(function() {
 });
 
 $(function() {
-
     $('#systemleft li a').click(function()
-
     {
-
         $(this).css('color', '#00144c').siblings('a').css('color', '#fff');
-
     });
-
 });
 // 左侧框架js  end
 
@@ -131,3 +126,9 @@ function delete_data() {
         }
 
 }
+
+
+
+
+
+

@@ -15,6 +15,7 @@ class Application(tornado.web.Application):
 	settings = {                                                        
        	    "static_path": STATIC_PATH ,
      	    "template_path": TEMPLATE_PATH,
+	    "login_url": "/login/",
             "debug": True,                                                      
      	    "cookie_secret": "61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o/Vo=",                          
 	    #"xsrf_cookies":True,                                                  

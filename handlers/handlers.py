@@ -2,6 +2,7 @@
 from views.views import *
 from views.api import *
 from views.worker import *
+from views.auth import *
 import os.path
 
 STATIC_PATH   = os.path.join(os.path.dirname(__file__), "../static")
@@ -26,5 +27,8 @@ HANDLERS =[(r"/" ,				Index_Handler),
 
 	   (r"/test/", 		test_handler ),
 		
+	    ###用户登录
+           (r"/login/",                 Login_Handler),
+           (r"/logout/",                Logout_Handler),
 
 	]
