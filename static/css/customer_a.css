@@ -1,0 +1,25 @@
+/*框架右侧——customer_a.html  start*/
+
+ #customerform {width:800px;height:800px;text-align:center;position:relative;left:50%;margin-left:-400px;}
+
+ #customerform form{width:800px;height:550px;background:#e2ecf5;}
+
+ #customerform table{text-align:center;width:750px;height:30px;margin:25px;}
+
+ #customerform .tableone{text-align:center;width:375px;height:30px;margin:25px;}
+
+ #customerform table tr td{border:#a0a0a0 solid 1px;height:30px;background:#fff;border-spacing: 10px;}
+
+ #customerform table tr td:nth-child(odd){width:170px;}
+
+ #customerform table tr td:nth-child(even){width:200px;}
+
+ #customerform table tr td input[type="text"]{width:200px;height:30px;}
+
+ #customerform table tr td select{width:203px;height:30px;}
+
+ #customerform form button,#customerform form input[type="button"]{width:60px;color:#fff;height:30px;margin-top:30px;font-size:18px;font-family: 黑体}
+
+ #customerform form textarea{width:360px;height:295px;}
+
+/*框架右侧——customer_a.html  end*/

@@ -31,7 +31,7 @@
 
 /*系统主框架样式开始*/
 
-.nav{width:1450px;height:70px;background:#fff;margin-bottom:10px;float:left;}
+.nav{width:60%;height:70px;background:#fff;margin-bottom:10px;float:left;}
 
 .title{width:350px;height:70px;color:#00144c;font-size:40px;position:relative;left:10px;top:10px;display:inline-block;float:left;font-family:黑体;}
 
@@ -50,10 +50,10 @@
 .frameset{width:98%;height:830px;position:absolute;top:90px;left:10px;border:1px #000 solid;}
 
 .customerframeset01,.employeeframeset01,.saleframeset01,.systemframeset01
- {width:15.6%;height:830px;position:absolute;top:90px;left:10px;background:url(/static/img/leftbanner.jpg);border:1px #000 solid;border-right:0;cursor:pointer;}
+ {width:15.6%;height:830px;position:absolute;top:0px;left:10px;background:url(/static/img/leftbanner.jpg);border:1px #000 solid;border-right:0;cursor:pointer;}
 
 .customerframeset02,.employeeframeset02,.saleframeset02,.systemframeset02
- {width:82.4%;height:830px;position:absolute;top:90px;left:16.7%;margin-left:-10px;border:1px #000 solid;border-left:0;}
+ {width:82.4%;height:830px;position:absolute;top:0px;left:16.7%;margin-left:-10px;border:1px #000 solid;border-left:0;}
 
 #employeeleft,#customerleft,#saleleft,#systemleft{list-style-type:none;margin:200px 0 0 -45px;text-align:center;}
 
