@@ -106,6 +106,11 @@ function openwin() {
 }
 
 
+function openalter(){
+  window.open ("/customer_alter/","客户资料-修改", "height=700, width=850, top=200, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
+}
+
+
 
 // 弹出窗口  end
 //

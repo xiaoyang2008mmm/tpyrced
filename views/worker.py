@@ -10,6 +10,11 @@ class wenyuan_handler(BaseHandler):
         self.render("customer_a.html")
 
 
+class customer_alter_handler(BaseHandler):
+    """返回文员html页面"""
+
+    def get(self, *args, **kwargs):
+        self.render("customer_alter.html")
 
 
 class jingjia_handler(BaseHandler):
