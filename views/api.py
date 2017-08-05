@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*- 
 import tornado.web
 from models.db  import *
+from base import *
 
-class BaseHandler(tornado.web.RequestHandler):
-    @property
-    def db(self):
-       return self.application.db
 
 class WenYuanAdd_handler(BaseHandler):
     """获取文员录入的信息并且入库"""

@@ -1,10 +1,7 @@
 #!/usr/bin/python2.6
 # -*- coding: utf-8 -*- 
 import tornado.web
-class BaseHandler(tornado.web.RequestHandler):
-    @property
-    def db(self):
-       return self.application.db
+from  base  import *
 
 class wenyuan_handler(BaseHandler):
     """返回文员html页面"""

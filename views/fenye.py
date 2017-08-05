@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 #coding:utf-8
 
 #封装分页类模块

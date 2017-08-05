@@ -1,4 +1,5 @@
 // 主页导航js   start
+
 $(function() {
 
     $('.nav ul li').click(function()
@@ -103,6 +104,9 @@ $(function() {
 function openwin() {
     window.open("/wenyuan/", "客户资料", "height=700, width=850, top=200, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
 }
+
+
+
 // 弹出窗口  end
 //
 

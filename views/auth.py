@@ -1,12 +1,7 @@
 # -*- coding: utf-8 -*- 
 import tornado.web
 from models.db  import *
-
-class BaseHandler(tornado.web.RequestHandler):
-    @property
-    def db(self):
-       return self.application.db
-
+from  base  import  *
 
 class Login_Handler(BaseHandler):
     """登录验证"""
@@ -17,7 +12,7 @@ class Login_Handler(BaseHandler):
         password = self.get_argument("login_password").encode("utf-8")
 	if  name =="admin":
 	    if password == "admin":
-		self.set_secure_cookie("user", name)
+		self.set_cookie("anju_user", name)
 		self.write("ok")
 	    else:
 	        self.write("密码不对!!!")
@@ -27,8 +22,9 @@ class Login_Handler(BaseHandler):
 class Logout_Handler(BaseHandler):
     """退出"""
     def get(self):
-        self.set_secure_cookie("user"," ")
-        self.clear_cookie("user")
+        self.set_cookie("anju_user","")
+        self.clear_cookie("anju_user")
+	self.clear_all_cookies()
         self.redirect('/login/', permanent=True)
 
 

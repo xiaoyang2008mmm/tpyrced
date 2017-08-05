@@ -1,0 +1,80 @@
+<style>
+ #customerform01 {width:800px;height:500px;text-align:center;position:relative;left:50%;margin-left:-400px;}
+
+ #customerform01 form{width:800px;height:350px;background:#e2ecf5;}
+
+ #customerform01 table{text-align:center;width:750px;height:30px;margin:25px;}
+
+ #customerform01 .tableone{text-align:center;width:375px;height:30px;margin:25px;}
+
+ #customerform01 table tr td{border:#a0a0a0 solid 1px;height:30px;background:#fff;border-spacing: 10px;}
+
+ #customerform01 table tr td{width:170px;}
+
+ #customerform01 table tr td input[type="text"]{width:170px;height:30px;}
+
+ #customerform01 table tr td select{width:170px;height:30px;}
+
+ #customerform01 form button,#customerform form input[type="button"]{width:60px;color:#fff;height:30px;margin-top:30px;font-size:18px;font-family: 黑体}
+ #getcheck ul{list-style-type:none;}
+ #getcheck ul li >ul{margin-left:20px;text-align:center;width:80px;}
+ #getcheck ul li >ul li{width:80px;height:30px;margin-top:5px;text-align:center;line-height:30px;background:#fff;}
+</style>
+<div id="customerform01">
+  <img src="/static/img/customer.png">
+  <form>
+    <table id="talbe" width="600">
+      <table cellpadding="0" cellspacing="0" class="table01">
+        <tr>
+          <td style="width:150px"><input type="text" /></td>
+          <td style="width:150px;">
+            <select>
+               <option>请选择</option>
+               <option>客户姓名</option>
+               <option>客户电话</option>
+               <option>发给销售人员</option>
+               <option>是否有效</option>
+               <option>关键词</option><option>电话来源</option>
+               <option>电话属区域</option><option>约访</option>
+            </select>
+          <td style="width:300px;" id="getcheck">
+              <ul>
+                <li>请选择
+                   <ul style="display:none;position:absolute;top:150px;">
+                      <li>文本框</li>
+                      <li>下拉列表框</li>
+                   </ul>
+                </li>
+              </ul>
+          </td>
+          <td id="getselect">
+             <span> <input type="text"/></span>
+             <span style="display:none;"> <select>
+                 <option>请选择所属区域</option>
+             </select></span>
+          </td>
+        </tr>
+      </table>
+    <button type="button" value="保存" style="background:url(/static/img/closebtn.png);"   id="wenyuan_save">保存</button>
+    <input type="button" name="close" value="关闭" style="background:url(/static/img/closebtn.png);" /></form>
+</div>
+<script src="/static/js/jquery-1.8.0.min.js"></script>
+<script type="text/javascript">
+        $(function(){
+           $('#getcheck ul li').click(function(){
+              $('#getcheck ul li>ul').css('display','block')
+           })
+           $('#getcheck ul li>ul li').hover(function(){
+              $(this).css('cursor','pointer');
+           })
+           $('#getcheck ul li>ul li').click(function(){
+              var ind=$(this).index();
+              $('#getselect span').eq(ind).css('display','block');
+              $('#getselect span').eq(ind).siblings().css('display','none');
+              $('#getcheck ul li>ul').css('display','none');
+           })
+        });
+       function onclick=openalter(){
+      window.open ("customer_alter.html","客户资料-修改", "height=700, width=850, top=200, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
+    }
+    </script>
