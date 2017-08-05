@@ -12,7 +12,6 @@ class WenYuanAdd_handler(BaseHandler):
 
     def post(self, *args, **kwargs):
 	request_dict = self.request.arguments
-	print request_dict
 
 	save_time  = request_dict['save_time'][0]
 	client_tel =request_dict['client_tel'][0]
@@ -34,6 +33,19 @@ class WenYuanAdd_handler(BaseHandler):
 	except:
 
 	    self.write("电话号码在数据库中已经有记录,请联系管理员!!!")
+
+class WenYuandelete_handler(BaseHandler):
+    """删除文员录入的数据"""
+
+    def post(self, *args, **kwargs):
+	request_dict = self.request.arguments
+	client_telphone  = request_dict['client_telphone'][0]
+	print request_dict
+
+	st = TpyrcedClerk.get(client_tel = client_telphone)
+	st.delete_instance()
+
+	self.write("删除成功!!!")
 
 
 

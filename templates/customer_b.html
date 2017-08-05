@@ -45,7 +45,7 @@
 
 <table id="tab_form" align="center">
 <thead>
-<tr >
+<tr>
    <td style="background:#00144c;"></td>
    <td style="background:#00144c;">客户姓名</td>
    <td style="background:#00144c;">客户电话</td>
@@ -54,10 +54,10 @@
    <td style="background:#00144c;">电话属区域</td>
 </tr>
 </thead>
-<tbody>
+<tbody style="background:#00144c;">
 {%for i in shuju%}
 <tr class="cus_tab">
-<td><input type="checkbox"></td>
+<td><input type="checkbox" name="checkbox"></td>
 <td>  {{i[0]}} </td>
 <td>  {{i[1]}} </td>
 <td>  {{i[2]}} </td>
@@ -72,11 +72,14 @@
     {% raw yem %}
 </ul>
 
+</div>
+
 <style>
    #number{list-style-type:none;float:right;margin-right:10%;}
    #number li{float:left;margin-left:10px;border:1px #000 solid;width:50px;height:25px;line-height: 25px;}
    #number li a{text-decoration: none;}
 </style>
 
-</div>
+
+
 
