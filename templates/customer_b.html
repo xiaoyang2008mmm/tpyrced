@@ -1,12 +1,12 @@
 <div id="customerinfo">
    <div class="cusinfoleft">
      <span class="rightline">删除</span>
-     <span onclick=openwin()>增加</span>
+     <span class="rightline" onclick=openwin()>增加</span>
+     <span>修改</span>
    </div>
    <div class="cusinforight">
-     <span class="rightline">页面设置</span>
      <span class="rightline">导出Excel</span>
-     <span>导出Word</span>
+     <span>导入Excel</span>
    </div>
 </div>
 <div id="customerframe">
@@ -68,11 +68,15 @@
 {%end%}
 </tbody>
 </table>
-<ul class="fy">
+<ul class="fy" id="number">
     {% raw yem %}
 </ul>
 
-
+<style>
+   #number{list-style-type:none;float:right;margin-right:10%;}
+   #number li{float:left;margin-left:10px;border:1px #000 solid;width:50px;height:25px;line-height: 25px;}
+   #number li a{text-decoration: none;}
+</style>
 
 </div>
 
