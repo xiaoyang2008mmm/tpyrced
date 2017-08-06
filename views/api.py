@@ -37,10 +37,15 @@ class WenYuandelete_handler(BaseHandler):
     def post(self, *args, **kwargs):
 	request_dict = self.request.arguments
 	client_telphone  = request_dict['client_telphone'][0]
-	print request_dict
 
-	st = TpyrcedClerk.get(client_tel = client_telphone)
-	st.delete_instance()
+
+	if ',' not in (client_telphone) :
+	        st = TpyrcedClerk.get(id = int(client_telphone))
+	        st.delete_instance()
+	else:
+	    for cid in (client_telphone).split(","):
+	        st = TpyrcedClerk.get(id = int(cid))
+	        st.delete_instance()
 
 	self.write("删除成功!!!")
 
