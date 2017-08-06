@@ -105,22 +105,38 @@ function openwin() {
     window.open("/wenyuan/", "客户资料", "height=700, width=850, top=200, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
 }
 
-
-function openalter(){
-  window.open ("/customer_alter/","客户资料-修改", "height=700, width=850, top=200, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
+function  get_cli_id(){
+    var $chkBoxes = $('#tab_form').find('input:checked');   
+    if ($chkBoxes.length == 0) {         
+      alert('请至少选择一个数据集');
+      return false;
+    }
+ var ids_id=  $($chkBoxes).attr('data-id') ;  
+ return ids_id;
 }
 
 
+function openalter(){
+	var id_data = get_cli_id()
+  if (id_data){
+  window.open ("/customer_alter/?client_id=" + id_data,"客户资料-修改", "height=700, width=850, top=200, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
+    }
+}
+
+
+function export_excel(){
+$('#tab_form').tableExport({ type: 'excel', separator: ';', escape: 'false' });
+}
 
 // 弹出窗口  end
 //
 
 // 删除文员录入数据
 //
-function delete_data() {
+//
 
 
-
+function  get_id(){
 var $ids = [];   
     var $chkBoxes = $('#tab_form').find('input:checked');   
     if ($chkBoxes.length == 0) {         
@@ -128,22 +144,30 @@ var $ids = [];
       return false;
     }
 
-
   $($chkBoxes).each(function () { 
       	$ids.push( $(this).attr('data-id') );  
     });
 
-//var $ids_str = $ids.join(',');    
- //       console.log($ids_str);
-        alert($ids);
+var $ids_str = $ids.join(',');    
+        return $ids_str;
+}
 
 
-	var client_telphone = '123456789' ;
+
+
+
+function delete_data() {
+
+
+	var id_data = get_id()
+
+
+	if (id_data){
 
         var msg = "确定要删除吗?";
         if (confirm(msg) == true) {
             $.post("/api/wenyuan/delete/", {
-                client_telphone: client_telphone,
+                client_telphone: id_data,
             },
             function(data) {
                 alert(data);
@@ -152,11 +176,6 @@ var $ids = [];
         } else {
             return false;
         }
+        }
 
 }
-
-
-
-
-
-

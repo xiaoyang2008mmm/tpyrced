@@ -19,7 +19,7 @@ HANDLERS =[(r"/" ,				Index_Handler),
 
 	   #请求返回页面
 	   (r"/wenyuan/", 	wenyuan_handler ),
-	   (r"/customer_alter/", customer_alter_handler ),
+	   (r"/customer_alter/(.*)", customer_alter_handler ),
 	   (r"/jingjia/", 	jingjia_handler ),
 	   (r"/caiwu/", 	caiwu_handler ),
 	   #文员
