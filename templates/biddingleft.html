@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="bidframeset">
+  <div class="biddingframeset01">
+      <ul id="biddingleft">
+        <li><a style="color:#000">竞价表</a></li>
+        <li><a style="color:#000">竞价</a></li>
+      </ul>
+    </div>
+    <div class="biddingframeset02">
+       <div>{% include bidding_b.html %}</div>
+       <div style="display:none;">{% include bidding_b.html %}</div>
+
+    </div>
+</div>
+{% end %}

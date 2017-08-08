@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block body %}
+  <div class="finframeset">
+    <div class="financeframeset01">
+      <ul id="financeleft">
+        <li><a style="color:#000">财务表</a></li>
+        <li><a style="color:#000">财务</a></li>
+      </ul>
+    </div>
+    <div class="financeframeset02">
+       <div>{% include finance_b.html %}</div>
+       <div style="display:none;">{% include finance_c.html %}</div>
+
+    </div>
+  </div>
+{% end %}

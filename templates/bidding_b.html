@@ -1,0 +1,59 @@
+
+<div id="biddinginfo">
+   <div class="cusinfoleft">
+     <span class="rightline" onclick=delete_data()>删除</span>
+     <span class="rightline" onclick=openbid()>增加</span>
+     <span onclick=openbidalter()>修改</span>
+   </div>
+   <div class="cusinforight">
+     <span class="rightline" onclick=export_excel()>导出Excel</span>
+     <span>导入Excel</span>
+   </div>
+</div>
+<div id="biddingframe">
+  <h1>竞价资料</h1>
+     <div class="cusform">
+        <table align="center" cellspacing="0" cellpadding="0" id="table">
+          <tr>
+            <td>区域</td>
+            <td><input type="text"></td>
+            <td>各区域消费情况</td>
+            <td><input type="text"></td>
+            <td>竞价套电数</td>
+            <td><input type="text"></td>
+            <td style="background:transparent;"><button type="button" value="查询">查询</button></td>
+          </tr>
+       </table>
+     </div>
+
+<table id="tab_form" align="center">
+<thead>
+<tr>
+   <td style="background:#00144c;"></td>
+   <td style="background:#00144c;">区域</td>
+   <td style="background:#00144c;">各区域消费情况</td>
+   <td style="background:#00144c;">竞价套电数</td>
+</tr>
+</thead>
+<tbody style="background:#00144c;">
+<tr class="cus_tab" id="get_id">
+<td>
+<input type="checkbox">
+</td>
+<td>  xxxxxxxxxxxx </td>
+<td>  xxxxxxxxxxxx </td>
+<td>  xxxxxxxxxxxx </td>
+</tr
+</tbody>
+</table>
+<ul class="fy" id="number">
+</ul>
+
+</div>
+
+<style>
+   #number{list-style-type:none;float:right;margin-right:10%;}
+   #number li{float:left;margin-left:10px;border:1px #000 solid;width:50px;height:25px;line-height: 25px;}
+   #number li a{text-decoration: none;}
+</style>
+

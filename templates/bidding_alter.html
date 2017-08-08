@@ -1,0 +1,31 @@
+<style>
+ #biddingform01 {width:800px;height:500px;text-align:center;position:relative;left:50%;margin-left:-400px;}
+ #biddingform01 form{width:800px;height:350px;background:#e2ecf5;}
+ #biddingform01 table{text-align:center;width:750px;height:30px;margin:25px;}
+ #biddingform01 .tableone{text-align:center;width:375px;height:30px;margin:25px;}
+ #biddingform01 table tr td{border:#a0a0a0 solid 1px;height:30px;background:#fff;border-spacing: 10px;}
+ #biddingform01 table tr td{width:200px;}
+ #biddingform01 table input[type="text"],#biddingform01 table select{width:200px;height:30px;}
+ #biddingform01 button,#biddingform01 input[type="button"]{width:60px;height:30px;color:#fff;font-size:16px}
+</style>
+<div id="biddingform01">
+  <img src="/static/img/bidding.png">
+  <form>
+    <table id="talbe" width="600">
+      <table cellpadding="0" cellspacing="0" class="table01">
+        <tr>
+          <td style="width:150px"><input type="text" /></td>
+          <td style="width:150px;">
+            <select>
+               <option>请选择</option>
+               <option>区域</option>
+               <option>各区域消费情况</option>
+               <option>竞价套电数</option>
+            </select>
+          </td>
+          <td><input type="text"/></td>
+        </tr>
+      </table>
+    <button type="button" value="保存" style="background:url(/static/img/closebtn.png);"   id="wenyuan_save">保存</button>
+    <input type="button" name="close" value="关闭" style="background:url(/static/img/closebtn.png);" /></form>
+</div>

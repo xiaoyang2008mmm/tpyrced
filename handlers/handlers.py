@@ -32,4 +32,13 @@ HANDLERS =[(r"/" ,				Index_Handler),
            (r"/login/",                 Login_Handler),
            (r"/logout/",                Logout_Handler),
 
+
+       (r"/customerleft/(?P<page>\d*)",	customerleft_handler),
+       (r"/employeeleft/",	employeeleft_handler),
+       (r"/saleleft/",		saleleft_handler),
+       (r"/financeleft/",	financeleft_handler),
+       (r"/biddingleft/",	biddingleft_handler),
+       (r"/systemleft/"  ,	systemleft_handler),
+
+
 	]

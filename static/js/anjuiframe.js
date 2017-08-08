@@ -11,7 +11,7 @@ $(function() {
         $(this).css('background', '#a6c5e1').siblings('li').css('background', '#fff');
         $(this).children('a').css('color', '#fff');
         $(this).siblings('li').children('a').css('color', '#000');
-        $('.frameset').children('div').eq(ind).css('display', 'inline-block').siblings('div').css('display', 'none');
+        // $('.frameset').children('div').eq(ind).css('display', 'inline-block').siblings('div').css('display', 'none');
         // $ ('.frameset02').children('div').eq(ind).css('display', 'inline-block').siblings('div').css('display','none');
     });
 
@@ -105,6 +105,14 @@ function openwin() {
     window.open("/wenyuan/", "客户资料", "height=700, width=850, top=200, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
 }
 
+function openbid() {
+    window.open("/jingjia/", "竞价表", "height=450, width=850, top=350, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
+}
+
+function openfin() {
+    window.open("/caiwu/", "财务表", "height=700, width=850, top=200, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
+}
+
 function  get_cli_id(){
     var $chkBoxes = $('#tab_form').find('input:checked');   
     if ($chkBoxes.length == 0) {         
@@ -123,10 +131,26 @@ function openalter(){
     }
 }
 
+function openbidalter(){
+    var id_data = get_cli_id()
+  if (id_data){
+  window.open ("/bidding_alter/?client_id=" + id_data,"竞价表-修改", "height=450, width=850, top=350, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
+    }
+}
+
+function openfinalter(){
+    var id_data = get_cli_id()
+  if (id_data){
+  window.open ("/finance_alter/?client_id=" + id_data,"财务表-修改", "height=450, width=850, top=350, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
+    }
+}
+
 
 function export_excel(){
 $('#tab_form').tableExport({ type: 'excel', separator: ';', escape: 'false' });
 }
+
+
 
 // 弹出窗口  end
 //

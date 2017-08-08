@@ -1,0 +1,73 @@
+<style>
+/*框架右侧——finance_a.html  start*/
+
+ #financeform {width:800px;height:750px;text-align:center;position:relative;left:50%;margin-left:-400px;}
+ #financeform form{width:800px;height:600px;background:#e2ecf5;}
+ #financeform table{text-align:center;width:750px;height:30px;margin:25px;border-collapse:separate; border-spacing:0px 20px}
+ #financeform table td{border:#a0a0a0 solid 1px;height:30px;background:#fff;border-spacing: 10px;width:25%;}
+ #financeform form input[type="text"]{width:220px;height:30px;}
+ #financeform button{width:60px;height:30px;color:#fff;font-size:16px}
+
+/*框架右侧——finance_a.html  end*/
+
+</style>
+<div id="financeform">
+  <img src="images/finance.png">
+  <form>
+    <table id="table"  cellpadding="0" cellspacing="0">
+       <tr>
+          <td>团队名称</td>
+          <td><input type="text"/></td>
+          <td>序号</td>
+          <td><input type="text"/></td>           
+       </tr>
+       <tr>
+          <td>排卡日期</td>
+          <td><input type="text"/></td>
+          <td>认购日期</td>
+          <td><input type="text"/></td>           
+       </tr>
+       <tr>
+          <td>客户姓名</td>
+          <td><input type="text" /></td>
+          <td>项目名称</td>
+          <td><input type="text" /></td>           
+       </tr>
+       <tr>
+          <td>成交状态</td>
+          <td><input type="text" /></td>
+          <td>结佣标准</td>
+          <td><input type="text" /></td>           
+       </tr>
+       <tr>
+          <td>优惠</td>
+          <td><input type="text" /></td> 
+          <td>实际发生额</td>
+          <td><input type="text" /></td>        
+       </tr>
+       <tr>
+          <td>成交主任</td>
+          <td><input type="text" /></td>
+          <td>比例</td>
+          <td><input type="text" /></td>         
+       </tr>
+       <tr>
+          <td>分单主任</td>
+          <td><input type="text" /></td>
+          <td>比例</td>
+          <td><input type="text" /></td>         
+       </tr>
+       <tr>
+          <td>成交来源</td>
+          <td><input type="text" /></td>
+          <td>备注</td>
+          <td><input type="text" /></td>         
+       </tr>
+    </table>
+    <button type="reset" value="重置" style="background:url(/static/img/closebtn.png);">重置</button>
+    <button type="button" value="保存" style="background:url(static/img/closebtn.png);"   id="wenyuan_save">保存</button>
+    <input type="button" name="close" value="关闭" style="background:url(static/img/closebtn.png);width:60px;height:30px;color:#fff;font-size:16px"" /></form>
+</div>
+</div>
+
+<script type="text/javascript" src="/static/js/jquery-1.8.0.min.js"></script>

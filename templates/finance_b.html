@@ -1,0 +1,63 @@
+
+<div id="financeinfo">
+   <div class="cusinfoleft">
+     <span class="rightline" onclick=delete_data()>删除</span>
+     <span class="rightline" onclick=openfin()>增加</span>
+     <span onclick=openfinalter()>修改</span>
+   </div>
+   <div class="cusinforight">
+     <span class="rightline" onclick=export_excel()>导出Excel</span>
+     <span>导入Excel</span>
+   </div>
+</div>
+<div id="financeframe">
+   <h1>财务资料</h1>
+   <div class="cusform">
+     <table align="center" cellspacing="0" cellpadding="0" id="table">
+         <tr>
+            <td>排卡日期</td>
+            <td><input type="text"></td>
+            <td>认购日期</td>
+            <td><input type="text"></td>
+            <td>客户姓名</td>
+            <td><input type="text"></td>
+            <td>项目名称</td>
+            <td><input type="text"></td>
+            <td style="background:transparent;"><button type="button" value="查询">查询</button></td>
+         </tr>
+      </table>
+   </div>
+
+<table id="tab_form" align="center">
+<thead>
+<tr>
+   <td style="background:#00144c;"></td>
+   <td style="background:#00144c;">排卡日期</td>
+   <td style="background:#00144c;">认购日期</td>
+   <td style="background:#00144c;">客户姓名</td>
+   <td style="background:#00144c;">项目名称</td>
+</tr>
+</thead>
+<tbody style="background:#00144c;">
+<tr class="cus_tab" id="get_id">
+<td>
+<input type="checkbox" >
+</td>
+<td>  我的钱无多群无多群 </td>
+<td>  我的钱无多群无多群 </td>
+<td>  我的钱无多群无多群 </td>
+<td>  我的钱无多群无多群 </td>
+</tr>
+</tbody>
+</table>
+<ul class="fy" id="number">
+</ul>
+
+</div>
+
+<style>
+   #number{list-style-type:none;float:right;margin-right:10%;}
+   #number li{float:left;margin-left:10px;border:1px #000 solid;width:50px;height:25px;line-height: 25px;}
+   #number li a{text-decoration: none;}
+</style>
+
