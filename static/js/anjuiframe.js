@@ -106,11 +106,11 @@ function openwin() {
 }
 
 function openbid() {
-    window.open("/jingjia/", "竞价表", "height=450, width=850, top=350, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
+    window.open("/biddingleft/add/", "竞价表", "height=450, width=850, top=350, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
 }
 
 function openfin() {
-    window.open("/caiwu/", "财务表", "height=700, width=850, top=200, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
+    window.open("/caiwu/add/", "财务表", "height=700, width=850, top=200, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
 }
 
 function  get_cli_id(){
@@ -132,16 +132,12 @@ function openalter(){
 }
 
 function openbidalter(){
-    var id_data = get_cli_id()
-  if (id_data){
-  window.open ("/bidding_alter/?client_id=" + id_data,"竞价表-修改", "height=450, width=850, top=350, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
+  window.open ("/biddingleft/modify/,"竞价表-修改", "height=450, width=850, top=350, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
     }
 }
 
 function openfinalter(){
-    var id_data = get_cli_id()
-  if (id_data){
-  window.open ("/finance_alter/?client_id=" + id_data,"财务表-修改", "height=450, width=850, top=350, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
+  window.open ("/caiwu/modify/,"财务表-修改", "height=450, width=850, top=350, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
     }
 }
 

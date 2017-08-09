@@ -22,6 +22,8 @@ HANDLERS =[(r"/" ,				Index_Handler),
 	   (r"/customer_alter/(.*)", customer_alter_handler ),
 	   (r"/jingjia/", 	jingjia_handler ),
 	   (r"/caiwu/", 	caiwu_handler ),
+	   (r"/caiwu/add/", 	caiwu_add_handler ),
+	   (r"/caiwu/modify/", 	caiwu_modify_handler ),
 	   #文员
  
 
@@ -38,6 +40,8 @@ HANDLERS =[(r"/" ,				Index_Handler),
        (r"/saleleft/",		saleleft_handler),
        (r"/financeleft/",	financeleft_handler),
        (r"/biddingleft/",	biddingleft_handler),
+       (r"/biddingleft/add/",		biddingleft_add_handler),
+       (r"/biddingleft/modify/",	biddingleft_modify_handler),
        (r"/systemleft/"  ,	systemleft_handler),
 
 

@@ -78,3 +78,24 @@ class systemleft_handler(BaseHandler):
     def get(self, *args, **kwargs):
         self.render("systemleft.html")
 
+class caiwu_add_handler(BaseHandler):
+
+    def get(self, *args, **kwargs):
+        self.render("finance_a.html.html")
+
+class caiwu_modify_handler(BaseHandler):
+
+    def get(self, *args, **kwargs):
+        self.render("finance_alter.html.html")
+
+
+
+
+class biddingleft_add_handler(BaseHandler):
+
+    def get(self, *args, **kwargs):
+        self.render("bidding_a.html.html")
+class biddingleft_modify_handler(BaseHandler):
+
+    def get(self, *args, **kwargs):
+        self.render("bidding_alter.html")
