@@ -81,12 +81,12 @@ class systemleft_handler(BaseHandler):
 class caiwu_add_handler(BaseHandler):
 
     def get(self, *args, **kwargs):
-        self.render("finance_a.html.html")
+        self.render("finance_a.html")
 
 class caiwu_modify_handler(BaseHandler):
 
     def get(self, *args, **kwargs):
-        self.render("finance_alter.html.html")
+        self.render("finance_alter.html")
 
 
 

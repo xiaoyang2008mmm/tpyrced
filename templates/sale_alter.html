@@ -1,0 +1,32 @@
+<style>
+ #saleform01 {width:800px;height:500px;text-align:center;position:relative;left:50%;margin-left:-400px;}
+ #saleform01 form{width:800px;height:350px;background:#e2ecf5;}
+ #saleform01 table{text-align:center;width:750px;height:30px;margin:25px;}
+ #saleform01 .tableone{text-align:center;width:375px;height:30px;margin:25px;}
+ #saleform01 table tr td{border:#a0a0a0 solid 1px;height:30px;background:#fff;border-spacing: 10px;}
+ #saleform01 table tr td{width:200px;}
+ #saleform01 table input[type="text"],#saleform01 table select{width:200px;height:30px;}
+ #saleform01 button,#saleform01 input[type="button"]{width:60px;height:30px;color:#fff;font-size:16px}
+</style>
+<div id="saleform01">
+  <img src="/static/img/sale.png">
+  <form>
+    <table id="talbe" width="600">
+      <table cellpadding="0" cellspacing="0" class="table01">
+        <tr>
+          <td style="width:150px"><input type="text" /></td>
+          <td style="width:150px;">
+            <select>
+               <option>请选择</option>
+               <option>区域</option>
+               <option>团队</option>
+               <option>组</option>
+               <option>人</option>
+            </select>
+          </td>
+          <td><input type="text"/></td>
+        </tr>
+      </table>
+    <button type="button" value="保存" style="background:url(/static/img/closebtn.png);"   id="wenyuan_save">保存</button>
+    <input type="button" name="close" value="关闭" style="background:url(/static/img/closebtn.png);" /></form>
+</div>

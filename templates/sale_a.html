@@ -1,9 +1,42 @@
+<style>
+/*框架右侧——sale_a.html  start*/
 
+ #saleform {width:800px;height:400px;text-align:center;position:relative;left:50%;margin-left:-400px;}
+ #saleform form{width:800px;height:350px;background:#e2ecf5;}
+ #saleform table{position:relative;left:20%;text-align:center;width:450px;height:30px;margin:25px;border-collapse:separate; border-spacing:0px 20px}
+ #saleform table td{border:#a0a0a0 solid 1px;height:30px;background:#fff;border-spacing: 10px;width:50%;}
+ #saleform form input[type="text"]{width:220px;height:30px;}
+ #saleform button{width:60px;height:30px;color:#fff;font-size:16px}
 
-<div id="form">
+/*框架右侧——sale_a.html  end*/
 
-sale销售
-
+</style>
+<div id="saleform">
+  <img src="/static/img/sale.png">
+  <form>
+    <table id="table"  cellpadding="0" cellspacing="0">
+       <tr>
+          <td>区域</td>
+          <td><input type="text"/></td>         
+       </tr>
+       <tr>
+          <td>团队</td>
+          <td><input type="text"/></td>         
+       </tr>
+       <tr>
+          <td>组</td>
+          <td><input type="text"/></td>         
+       </tr>
+       <tr>
+          <td>个人</td>
+          <td><input type="text"/></td>         
+       </tr>
+    </table>
+    <button type="reset" value="重置" style="background:url(/static/img/closebtn.png);">重置</button>
+    <button type="button" value="保存" style="background:url(static/img/closebtn.png);"   id="wenyuan_save">保存</button>
+    <input type="button" name="close" value="关闭" style="background:url(static/img/closebtn.png);width:60px;height:30px;color:#fff;font-size:16px"" /></form>
 </div>
+</div>
+<script type="text/javascript" src="/static/js/jquery-1.8.0.min.js"></script>
 
 

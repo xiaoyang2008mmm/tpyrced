@@ -1,7 +1,62 @@
 
+<div id="saleinfo">
+   <div class="cusinfoleft">
+     <span class="rightline" onclick=delete_data()>删除</span>
+     <span class="rightline" onclick=opensale()>增加</span>
+     <span onclick=opensalealter()>修改</span>
+   </div>
+   <div class="cusinforight">
+     <span class="rightline" onclick=export_excel()>导出Excel</span>
+     <span>导入Excel</span>
+   </div>
+</div>
+<div id="saleframe">
+  <h1>销售资料</h1>
+     <div class="cusform">
+      <table align="center" cellspacing="0" cellpadding="0" id="table">
+         <tr>
+            <td>区域</td>
+            <td><input type="text"></td>
+            <td>团队</td>
+            <td><input type="text"></td>
+            <td>组</td>
+            <td><input type="text"></td>
+            <td>个人</td>
+            <td><input type="text"></td>
+            <td style="background:transparent;"><button type="button" value="查询">查询</button></td>
+         </tr>
+      </table>
+   </div>
 
-<div>
-
-sale销售b
+<table id="tab_form" align="center">
+<thead>
+<tr>
+   <td style="background:#00144c;"></td>
+   <td style="background:#00144c;">区域</td>
+   <td style="background:#00144c;">团队</td>
+   <td style="background:#00144c;">组</td>
+   <td style="background:#00144c;">个人</td>
+</tr>
+</thead>
+<tbody style="background:#00144c;">
+<tr class="cus_tab" id="get_id">
+<td>
+<input type="checkbox">
+</td>
+<td>  xxxxxxxxxxxx </td>
+<td>  xxxxxxxxxxxx </td>
+<td>  xxxxxxxxxxxx </td>
+</tr
+</tbody>
+</table>
+<ul class="fy" id="number">
+</ul>
 
 </div>
+
+<style>
+   #number{list-style-type:none;float:right;margin-right:10%;}
+   #number li{float:left;margin-left:10px;border:1px #000 solid;width:50px;height:25px;line-height: 25px;}
+   #number li a{text-decoration: none;}
+</style>
+

@@ -37,7 +37,7 @@
 
 .nav ul{list-style-type:none;}
 
-.nav ul li{display:block;float:left;width:120px;height:65px;text-align:center;font-size:1.5rem;line-height:65px;}
+.nav ul li{display:block;float:left;width:150px;height:65px;text-align:center;font-size:1.5rem;line-height:65px;}
 
 .nav ul li a{text-decoration:none;color:#000;cursor:pointer;font-family:黑体;}
 
@@ -92,35 +92,47 @@
 
 
 
-/*框架右侧——customer_b.html bidding_b.html finance_b.html start*/
+/*框架右侧——customer_b.html bidding_b.html finance_b.html sale_b.html start*/
 
-#customerinfo,#biddinginfo,#financeinfo{background:#a6c5e1;width:100%;height:30px;position:relative;top:10px;left:0;}
+#customerinfo,#biddinginfo,#financeinfo,#saleinfo{background:#a6c5e1;width:100%;height:30px;position:relative;top:10px;left:0;}
 
-#customerinfo .cusinfoleft,#biddinginfo .cusinfoleft,#financeinfo .cusinfoleft{position:absolute;left:10px;}
+#customerinfo .cusinfoleft,#biddinginfo .cusinfoleft,#financeinfo .cusinfoleft,#saleinfo .cusinfoleft{position:absolute;left:10px;}
 
 #customerinfo .cusinfoleft span,#customerinfo .cusinforight span,#biddinginfo .cusinfoleft span,#biddinginfo .cusinforight span
-,#financeinfo .cusinfoleft span,#financeinfo .cusinforight span{line-height: 30px;padding:0 15px;}
+,#financeinfo .cusinfoleft span,#financeinfo .cusinforight span,#saleinfo .cusinfoleft span,#saleinfo .cusinforight span{line-height: 30px;padding:0 15px;}
 
-#customerinfo .cusinforight,#biddinginfo .cusinforight,#financeinfo .cusinforight{position:absolute;right:10px;}
+#customerinfo .cusinforight,#biddinginfo .cusinforight,#financeinfo .cusinforight,#saleinfo .cusinforight{position:absolute;right:10px;}
 
-#customerinfo .rightline,#biddinginfo .rightline,#financeinfo .rightline{border-right:solid 1px #000}
+#customerinfo .rightline,#biddinginfo .rightline,#financeinfo .rightline,#saleinfo .rightline{border-right:solid 1px #000}
 
-#customerframe,#biddingframe,#financeframe{text-align:center;}
+#customerframe,#biddingframe,#financeframe,#saleframe{text-align:center;}
 
-#customerinfo  span,#customerframe h1,#biddinginfo  span,#biddingframe h1,#financeinfo  span,#financeframe h1{color:#00144c;font-family: 黑体;cursor:pointer;}
+#customerinfo  span,#customerframe h1,#biddinginfo  span,#biddingframe h1,#financeinfo  span,#financeframe h1
+,#saleinfo  span,#saleframe h1{color:#00144c;font-family: 黑体;cursor:pointer;}
 
-#customerframe .cusform,#biddingframe .cusform,#financeframe .cusform{background:#a6c5e1;width:100%;height:30px;top:10px;left:0;}
+#customerframe .cusform,#biddingframe .cusform,#financeframe .cusform,#saleframe .cusform{background:#a6c5e1;width:100%;height:30px;top:10px;left:0;}
 
-#customerframe table,#biddingframe table,#financeframe table{width:80%;height:auto;color:#fefefe;}
+#customerframe table,#biddingframe table,#financeframe table,#saleframe table{width:80%;height:auto;color:#fefefe;}
 
-#customerframe table select,#biddingframe table select,#financeframe table select{background:transparent;width:100%;padding:4.5px 0;border:solid 2px #4e5d6a;border-left:0px;}
+#customerframe table select,#biddingframe table select,#financeframe table select,#saleframe table select{background:transparent;width:100%;padding:4.5px 0;border:solid 2px #4e5d6a;border-left:0px;}
 
-#customerframe table input,#biddingframe table input,#financeframe table input{background:transparent;width:100%;height:25px;border:solid 2px #4e5d6a;border-left:0px;}
+#customerframe table input,#biddingframe table input,#financeframe table input,#saleframe table input{background:transparent;width:100%;height:25px;border:solid 2px #4e5d6a;border-left:0px;}
 
-#customerframe table td:nth-child(odd),#biddingframe table td:nth-child(odd),#financeframe table td:nth-child(odd){width:11%;background:#00144c;}
+#customerframe table td:nth-child(odd),#biddingframe table td:nth-child(odd),#financeframe table td:nth-child(odd),#saleframe table td:nth-child(odd){width:11%;background:#00144c;}
 
-#customerframe table td:nth-child(even),#biddingframe table td:nth-child(even),#financeframe table td:nth-child(even){width:10%;padding-right:8px;}
+#customerframe table td:nth-child(even),#biddingframe table td:nth-child(even),#financeframe table td:nth-child(even)#saleframe table td:nth-child(even){width:10%;padding-right:8px;}
 
-#customerframe table button,#biddingframe table button,#financeframe table button{background:#00144c;color:#fff;border:1px;padding:5px 18px;border-radius:5px;}
+#customerframe table button,#biddingframe table button,#financeframe table button,#saleframe table button{background:#00144c;color:#fff;border:1px;padding:5px 18px;border-radius:5px;}
 
 /*框架右侧——customer_b.html bidding_b.html finance_b.html end*/
+
+/*框架右侧——sale_b1.html start*/
+ #saleform {width:78%;height:auto;text-align:center;position:relative;left:10%;background:#e2ecf5;}
+ #saleform form{width:100%;height:auto;}
+ #saleform table{position:relative;left:13%;text-align:center;width:70%;height:30px;margin:25px;border-collapse:separate; border-spacing:0px 10px}
+ #saleform table td{border:#a0a0a0 solid 1px;height:30px;background:#fff;border-spacing: 10px;}
+ #saleform table input[type='checkbox']{margin:8px 12px;font-size:10px;}
+ #saleform table .a{width:20%}
+ #saleform hr{margin:30px 0px;}
+ #saleform button{width:60px;height:30px;color:#fff;font-size:16px}
+ /*框架右侧——sale_b1.html end*/

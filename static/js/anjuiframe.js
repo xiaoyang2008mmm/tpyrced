@@ -51,6 +51,24 @@ $(function() {
         $('.systemframeset02').children('div').eq(ind).css('display', 'block').siblings('div').css('display', 'none');
 
     });
+    $('#biddingleft li').click(function()
+
+    {
+
+        var ind = $(this).index();
+        $('.biddingframeset01').children('div').eq(ind).css('display', 'block').siblings('div').css('display', 'none');
+        $('.biddingframeset02').children('div').eq(ind).css('display', 'block').siblings('div').css('display', 'none');
+
+    });
+    $('#financeleft li').click(function()
+
+    {
+
+        var ind = $(this).index();
+        $('.financeframeset01').children('div').eq(ind).css('display', 'block').siblings('div').css('display', 'none');
+        $('.financeframeset02').children('div').eq(ind).css('display', 'block').siblings('div').css('display', 'none');
+
+    });
 
 });
 // 主页导航js  end
@@ -98,6 +116,20 @@ $(function() {
         $(this).css('color', '#00144c').siblings('a').css('color', '#fff');
     });
 });
+
+$(function() {
+    $('#biddingleft li a').click(function()
+    {
+        $(this).css('color', '#00144c').siblings('a').css('color', '#fff');
+    });
+});
+
+$(function() {
+    $('#financeleft li a').click(function()
+    {
+        $(this).css('color', '#00144c').siblings('a').css('color', '#fff');
+    });
+});
 // 左侧框架js  end
 
 // 弹出窗口  start
@@ -111,6 +143,9 @@ function openbid() {
 
 function openfin() {
     window.open("/caiwu/add/", "财务表", "height=700, width=850, top=200, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
+}
+function opensale() {
+    window.open("/sale/add/", "销售资料", "height=700, width=850, top=200, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
 }
 
 function  get_cli_id(){
@@ -132,13 +167,14 @@ function openalter(){
 }
 
 function openbidalter(){
-  window.open ("/biddingleft/modify/,"竞价表-修改", "height=450, width=850, top=350, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
-    }
+  window.open ("/biddingleft/modify/","竞价表-修改", "height=450, width=850, top=350, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
 }
 
 function openfinalter(){
-  window.open ("/caiwu/modify/,"财务表-修改", "height=450, width=850, top=350, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
-    }
+  window.open ("/caiwu/modify/","财务表-修改", "height=450, width=850, top=350, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
+}
+function opensalealter(){
+  window.open ("/sale/modify/","销售资料-修改", "height=450, width=850, top=350, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
 }
 
 
