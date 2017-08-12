@@ -86,13 +86,37 @@ class systemleft_handler(BaseHandler):
 
 
 class caiwu_modify_handler(BaseHandler):
+    def get(self, *args, **kwargs):
+        self.render("finance_alter.html")
+
+
+
+
+class wenyuan_modify_handler(BaseHandler):
 
     def post(self, *args, **kwargs):
         request_dict = self.request.arguments
         db_key  = request_dict['db_key'][0]
-	db_id  = request_dict['db_id'][0]
+	db_id  = int(request_dict['db_id'][0])
 	cus_val = request_dict['cus_val'][0]
-	try:
-	    TpyrcedClerk.update(db_key=cus_val).where(TpyrcedClerk.id == db_id).execute()
-	except:
-	    pass
+
+	if db_key == "client_tel":
+	    TpyrcedClerk.update(client_tel=cus_val).where(TpyrcedClerk.id == db_id).execute()
+	if db_key == "client_name":
+	    TpyrcedClerk.update(client_name=cus_val).where(TpyrcedClerk.id == db_id).execute()
+	if db_key == "is_send":
+	    TpyrcedClerk.update(is_send=cus_val).where(TpyrcedClerk.id == db_id).execute()
+	if db_key == "is_valid":
+	    TpyrcedClerk.update(is_valid=cus_val).where(TpyrcedClerk.id == db_id).execute()
+	if db_key == "key_words":
+	    TpyrcedClerk.update(key_words=cus_val).where(TpyrcedClerk.id == db_id).execute()
+	if db_key == "tel_where":
+	    TpyrcedClerk.update(tel_where=cus_val).where(TpyrcedClerk.id == db_id).execute()
+	if db_key == "tl_area":
+	    TpyrcedClerk.update(tl_area=cus_val).where(TpyrcedClerk.id == db_id).execute()
+	if db_key == "invite":
+	    TpyrcedClerk.update(invite=cus_val).where(TpyrcedClerk.id == db_id).execute()
+	if db_key == "subscribe":
+	    TpyrcedClerk.update(subscribe=cus_val).where(TpyrcedClerk.id == db_id).execute()
+	if db_key == "remark_text":
+	    TpyrcedClerk.update(remark_text=cus_val).where(TpyrcedClerk.id == db_id).execute()

@@ -70,3 +70,23 @@ class biddingleft_modify_handler(BaseHandler):
 
     def get(self, *args, **kwargs):
         self.render("bidding_alter.html")
+class saleadd_handler(BaseHandler):
+
+    def get(self, *args, **kwargs):
+        self.render("sale_a.html")
+    def post(self, *args, **kwargs):
+        request_dict = self.request.arguments
+
+        save_tim  =request_dict['save_time'][0]
+        re_area  = request_dict['re_area'][0]
+        re_team  = request_dict['re_team'][0]
+        re_group  =request_dict['re_group'][0]
+        re_peop  =request_dict['re_peop'][0]
+
+      	q =TpyrcedSaleadd.insert(save_time= save_time ,re_area = re_area,re_team = re_team,re_group = re_group,re_peop = re_peop )
+        q.execute()
+        self.write("数据写入成功!!")
+class salemodify_handler(BaseHandler):
+
+    def get(self, *args, **kwargs):
+        self.render("sale_alter.html")

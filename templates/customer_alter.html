@@ -111,13 +111,13 @@
       var cus_val;
       cus_val=$('#getselect span').eq(ind-1).children().val();
 
-        var db_key = $("#getselect02 option:selected").text();
+        var db_key = $("#getselect02 option:selected").attr("value");
         var db_id= getUrlParam('client_id') ;
         console.log(db_key,db_id,cus_val) ;
     	if (cus_val == "") {
       	    alert("请填写要修改的数据");
     	} else {
-    	    $.post("/caiwu/modify/", {
+    	    $.post("/wenyuan/modify/", {
         	db_key: db_key, 
         	db_id: db_id,
         	cus_val: cus_val
