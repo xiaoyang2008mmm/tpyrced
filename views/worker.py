@@ -131,26 +131,12 @@ class wenyuan_modify_handler(BaseHandler):
 	db_id  = int(request_dict['db_id'][0])
 	cus_val = request_dict['cus_val'][0]
 
-	if db_key == "client_tel":
-	    TpyrcedClerk.update(client_tel=cus_val).where(TpyrcedClerk.id == db_id).execute()
-	if db_key == "client_name":
-	    TpyrcedClerk.update(client_name=cus_val).where(TpyrcedClerk.id == db_id).execute()
-	if db_key == "is_send":
-	    TpyrcedClerk.update(is_send=cus_val).where(TpyrcedClerk.id == db_id).execute()
-	if db_key == "is_valid":
-	    TpyrcedClerk.update(is_valid=cus_val).where(TpyrcedClerk.id == db_id).execute()
-	if db_key == "key_words":
-	    TpyrcedClerk.update(key_words=cus_val).where(TpyrcedClerk.id == db_id).execute()
-	if db_key == "tel_where":
-	    TpyrcedClerk.update(tel_where=cus_val).where(TpyrcedClerk.id == db_id).execute()
-	if db_key == "tl_area":
-	    TpyrcedClerk.update(tl_area=cus_val).where(TpyrcedClerk.id == db_id).execute()
-	if db_key == "invite":
-	    TpyrcedClerk.update(invite=cus_val).where(TpyrcedClerk.id == db_id).execute()
-	if db_key == "subscribe":
-	    TpyrcedClerk.update(subscribe=cus_val).where(TpyrcedClerk.id == db_id).execute()
-	if db_key == "remark_text":
-	    TpyrcedClerk.update(remark_text=cus_val).where(TpyrcedClerk.id == db_id).execute()
+	dd ={db_key:cus_val}
+	try:
+	    TpyrcedClerk.update(**dd).where(TpyrcedClerk.id == db_id).execute()
+	    self.write("数据录入成功!!!!!!")
+	except:
+	    self.write("数据写入失败,请联系管理员!!!!!")
 class biddingleftdelete_handler(BaseHandler):
 
     def post(self, *args, **kwargs):
