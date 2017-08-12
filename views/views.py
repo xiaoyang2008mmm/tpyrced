@@ -14,11 +14,7 @@ class Index_Handler(BaseHandler):
 class Iframe_Handler(BaseHandler):
 
     def get(self,page):                                              
-	db = MySQLdb.connect("localhost","root","zkeys","tpyrced" )
-	cursor = db.cursor()
-	sql = "SELECT * FROM tpyrced_clerk"
-	cursor.execute(sql)
-	SHUJU  = cursor.fetchall()
+	SHUJU  = TpyrcedClerk.select()
 
         fen_ye = fenye.fen_ye_lei(page,SHUJU,10,11,5,'/iframe/')       #执行分页对象
 

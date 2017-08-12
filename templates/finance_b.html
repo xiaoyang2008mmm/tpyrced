@@ -42,13 +42,13 @@
 {%for i in shuju%}
 <tr class="cus_tab" id="get_f_id">
 <td>
-<input type="checkbox" data-id="{{i[0]}}" >
+<input type="checkbox" data-id="{{i.id}}" >
 </td>
-<td>  {{i[1]}} </td>
-<td>  {{i[2]}} </td>
-<td>  {{i[3]}} </td>
-<td>  {{i[4]}} </td>
-<td>  {{i[5]}} </td>
+<td>  {{i.team_name}} </td>
+<td>  {{i.ord_num}} </td>
+<td>  {{i.tran_status}} </td>
+<td>  {{i.act_amount}} </td>
+<td>  {{i.inve_prop}} </td>
 </tr>
 {%end%}
 </tbody>

@@ -39,22 +39,6 @@ class caiwu_handler(BaseHandler):
         self.render("caiwu.html")
 
 
-class customerleft_handler(BaseHandler):
-
-    def get(self,page):
-        db = MySQLdb.connect("localhost","root","zkeys","tpyrced" )
-        cursor = db.cursor()
-        sql = "SELECT * FROM tpyrced_clerk"
-        cursor.execute(sql)
-        SHUJU  = cursor.fetchall()
-
-        fen_ye = fenye.fen_ye_lei(page,SHUJU,10,11,5,'/customerleft/')       #执行分页对象
-
-        if fen_ye.dang_qian_ye > fen_ye.zong_ye_ma:             #判断分页对象里的当前页码如果大于总页码
-            zfchdqy = str(fen_ye.zong_ye_ma)                    #将总页码转换成字符串
-            self.redirect("/customerleft/" + zfchdqy)                  #跳转到总页码
-        else:
-            self.render("customerleft.html",dqy=fen_ye.dang_qian_ye,shuju=fen_ye.shu_ju_fan_wei(),yem=fen_ye.xian_shi_ye_ma())
 
 
 class employeeleft_handler(BaseHandler):
@@ -71,11 +55,7 @@ class saleleft_handler(BaseHandler):
 class financeleft_handler(BaseHandler):
 
     def get(self,page):
-        db = MySQLdb.connect("localhost","root","zkeys","tpyrced" )
-        cursor = db.cursor()
-        sql = "SELECT * FROM tpyrced_finadd"
-        cursor.execute(sql)
-        SHUJU  = cursor.fetchall()
+        SHUJU  = TpyrcedFinadd.select()
 
         fen_ye = fenye.fen_ye_lei(page,SHUJU,10,11,5,'/financeleft/')       #执行分页对象
 
@@ -91,11 +71,7 @@ class biddingleft_handler(BaseHandler):
 
     def get(self, page):
 
-        db = MySQLdb.connect("localhost","root","zkeys","tpyrced" )
-        cursor = db.cursor()
-        sql = "SELECT * FROM tpyrced_bidadd"
-        cursor.execute(sql)
-        SHUJU  = cursor.fetchall()
+        SHUJU  = TpyrcedBidadd.select()
 
         fen_ye = fenye.fen_ye_lei(page,SHUJU,10,11,5,'/biddingleft/')       #执行分页对象
 

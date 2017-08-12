@@ -18,7 +18,6 @@ HANDLERS =[(r"/" ,				Index_Handler),
 	   (r"/wenyuan/", 		wenyuan_handler ),
 	   (r"/wenyuan/modify/",	wenyuan_modify_handler ),
 	   (r"/customer_alter/(.*)", 	customer_alter_handler ),
-       	   (r"/customerleft/(?P<page>\d*)",		customerleft_handler),
 	######财务URL路由
 	   (r"/caiwu/", 			caiwu_handler ),
 	   (r"/caiwu/add/", 	caiwu_add_handler ),

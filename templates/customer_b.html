@@ -59,13 +59,13 @@
 {%for i in shuju%}
 <tr class="cus_tab" id="get_id">
 <td>
-<input type="checkbox" data-id="{{i[0]}}" >
+<input type="checkbox" data-id="{{i.id}}" >
 </td>
-<td>  {{i[1]}} </td>
-<td>  {{i[2]}} </td>
-<td>  {{i[3]}} </td>
-<td>  {{i[4]}} </td>
-<td>  {{i[5]}} </td>
+<td>  {{i.client_tel}} </td>
+<td>  {{i.client_name}} </td>
+<td>  {{i.is_send}} </td>
+<td>  {{i.is_valid}} </td>
+<td>  {{i.key_words}} </td>
 </tr>
 {%end%}
 </tbody>

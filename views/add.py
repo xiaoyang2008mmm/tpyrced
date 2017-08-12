@@ -70,6 +70,11 @@ class biddingleft_modify_handler(BaseHandler):
 
     def get(self, *args, **kwargs):
         self.render("bidding_alter.html")
+    def post(self, *args, **kwargs):
+        request_dict = self.request.arguments
+	print request_dict
+
+
 class saleadd_handler(BaseHandler):
 
     def get(self, *args, **kwargs):

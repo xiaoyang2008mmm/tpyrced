@@ -39,11 +39,11 @@
 {%for i in shuju%}
 <tr class="cus_tab" id="get_bid">
 <td>
-<input type="checkbox" data-id="{{i[0]}}" >
+<input type="checkbox" data-id="{{i.id}}" >
 </td>
-<td>  {{i[2]}} </td>
-<td>  {{i[3]}} </td>
-<td>  {{i[4]}} </td>
+<td>  {{i.area_main}} </td>
+<td>  {{i.area_cons}} </td>
+<td>  {{i.bid_elec}} </td>
 </tr>
 {%end%}
 </tbody>
