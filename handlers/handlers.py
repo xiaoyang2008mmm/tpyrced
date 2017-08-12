@@ -3,6 +3,7 @@ from views.views import *
 from views.api import *
 from views.worker import *
 from views.auth import *
+from views.add import *
 import os.path
 
 STATIC_PATH   = os.path.join(os.path.dirname(__file__), "../static")

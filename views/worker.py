@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*- 
 import tornado.web
 from  base  import *
+from models.db  import *
 import fenye
 import MySQLdb
 
@@ -16,7 +17,10 @@ class customer_alter_handler(BaseHandler):
     """返回文员html页面"""
 
     def get(self, *args, **kwargs):
-        self.render("customer_alter.html")
+        client_id = int(self.request.arguments['client_id'][0])
+	st2 = TpyrcedClerk.get(TpyrcedClerk.id == client_id)
+	__dict = {"st2":st2}
+        self.render("customer_alter.html",**__dict)
 
 
 class jingjia_handler(BaseHandler):
@@ -78,24 +82,3 @@ class systemleft_handler(BaseHandler):
     def get(self, *args, **kwargs):
         self.render("systemleft.html")
 
-class caiwu_add_handler(BaseHandler):
-
-    def get(self, *args, **kwargs):
-        self.render("finance_a.html")
-
-class caiwu_modify_handler(BaseHandler):
-
-    def get(self, *args, **kwargs):
-        self.render("finance_alter.html")
-
-
-
-
-class biddingleft_add_handler(BaseHandler):
-
-    def get(self, *args, **kwargs):
-        self.render("bidding_a.html.html")
-class biddingleft_modify_handler(BaseHandler):
-
-    def get(self, *args, **kwargs):
-        self.render("bidding_alter.html")

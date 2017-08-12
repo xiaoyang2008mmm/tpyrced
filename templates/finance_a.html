@@ -12,62 +12,116 @@
 
 </style>
 <div id="financeform">
-  <img src="static/img/finance.png">
+  <img src="/static/img/finance.png">
   <form>
     <table id="table"  cellpadding="0" cellspacing="0">
        <tr>
           <td>团队名称</td>
-          <td><input type="text"/></td>
+          <td><input type="text" id='team_name'/></td>
           <td>序号</td>
-          <td><input type="text"/></td>           
+          <td><input type="text" id='ord_num'/></td>           
        </tr>
        <tr>
           <td>排卡日期</td>
-          <td><input type="text"/></td>
+          <td><input type="text" id='card_date'/></td>
           <td>认购日期</td>
-          <td><input type="text"/></td>           
+          <td><input type="text" id='sub_date'/></td>           
        </tr>
        <tr>
           <td>客户姓名</td>
-          <td><input type="text" /></td>
+          <td><input type="text" id='cus_name'/></td>
           <td>项目名称</td>
-          <td><input type="text" /></td>           
+          <td><input type="text" id='pro_name'/></td>           
        </tr>
        <tr>
           <td>成交状态</td>
-          <td><input type="text" /></td>
+          <td><input type="text" id='tran_status'/></td>
           <td>结佣标准</td>
-          <td><input type="text" /></td>           
+          <td><input type="text" id='com_stand'/></td>           
        </tr>
        <tr>
           <td>优惠</td>
-          <td><input type="text" /></td> 
+          <td><input type="text" id='fav_able'/></td> 
           <td>实际发生额</td>
-          <td><input type="text" /></td>        
+          <td><input type="text" id='act_amount'/></td>        
        </tr>
        <tr>
           <td>成交主任</td>
-          <td><input type="text" /></td>
+          <td><input type="text" id='tran_dire'/></td>
           <td>比例</td>
-          <td><input type="text" /></td>         
+          <td><input type="text" id='prop_tion'/></td>         
        </tr>
        <tr>
           <td>分单主任</td>
-          <td><input type="text" /></td>
+          <td><input type="text" id='sep_dire'/></td>
           <td>比例</td>
-          <td><input type="text" /></td>         
+          <td><input type="text" id='inve_prop'/></td>         
        </tr>
        <tr>
           <td>成交来源</td>
-          <td><input type="text" /></td>
+          <td><input type="text" id='source_tran'/></td>
           <td>备注</td>
-          <td><input type="text" /></td>         
+          <td><input type="text" id='com_form'/></td>         
        </tr>
     </table>
     <button type="reset" value="重置" style="background:url(/static/img/closebtn.png);">重置</button>
-    <button type="button" value="保存" style="background:url(static/img/closebtn.png);"   id="wenyuan_save">保存</button>
-    <input type="button" name="close" value="关闭" style="background:url(static/img/closebtn.png);width:60px;height:30px;color:#fff;font-size:16px"" /></form>
+    <button type="button" value="保存" style="background:url(/static/img/closebtn.png);"   id="finance_save">保存</button>
+    <a href="javascript:window.opener=null;window.open('','_self');window.close();"><input type="button" name="close" value="关闭" style="background:url(/static/img/closebtn.png);width:60px;height:30px;color:#fff;font-size:16px"" /></a></form>
 </div>
 </div>
 
 <script type="text/javascript" src="/static/js/jquery-1.8.0.min.js"></script>
+<script>
+
+    $("#finance_save").click(function() {
+        /////财务添加
+        var save_time = (Date.parse(new Date())) / 1000;
+        var team_name = $('#team_name').val();
+        var ord_num = $('#ord_num').val();
+        var card_date = $('#card_date').val();
+        var sub_date = $('#sub_date').val();
+        var cus_name = $('#cus_name').val();
+        var pro_name = $('#pro_name').val();
+        var tran_status = $('#tran_status').val();
+        var com_stand = $('#com_stand').val();
+        var fav_able = $('#fav_able').val();
+        var act_amount = $('#act_amount').val();
+        var tran_dire = $('#tran_dire').val();
+        var prop_tion = $('#prop_tion').val();
+        var sep_dire = $('#sep_dire').val();
+        var inve_prop = $('#inve_prop').val();
+        var source_tran = $('#source_tran').val();
+        var com_form = $('#com_form').val();
+
+
+        var finance_obj = {};
+
+        finance_obj.save_time = save_time;
+        finance_obj.team_name = team_name;
+        finance_obj.ord_num = ord_num;
+        finance_obj.card_date = card_date;
+        finance_obj.sub_date = sub_date;
+        finance_obj.cus_name = cus_name;
+        finance_obj.pro_name = pro_name;
+        finance_obj.tran_status = tran_status;
+        finance_obj.com_stand = com_stand;
+        finance_obj.fav_able = fav_able;
+        finance_obj.act_amount = act_amount;
+        finance_obj.tran_dire = tran_dire;
+        finance_obj.prop_tion = prop_tion;
+        finance_obj.sep_dire = sep_dire;
+        finance_obj.inve_prop = inve_prop;
+        finance_obj.source_tran = source_tran;
+        finance_obj.com_form = com_form;
+
+        var error_msg = "团队名称  和 序号   两项为必填项目!!!"  ;
+        (team_name == "" && ord_num == "") ? alert(error_msg) : (
+        $.post("/caiwu/add/", finance_obj,
+        function(data) {
+            alert(data);
+
+        })
+        )
+        });
+
+</script>

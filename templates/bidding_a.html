@@ -17,22 +17,49 @@
     <table id="table"  cellpadding="0" cellspacing="0">
        <tr>
           <td>区域</td>
-          <td><input type="text"/></td>         
+          <td><input type="text" id='area_main'/></td>         
        </tr>
        <tr>
           <td>各区域消费情况</td>
-          <td><input type="text"/></td>         
+          <td><input type="text" id='area_cons'/></td>         
        </tr>
        <tr>
           <td>竞价套电数</td>
-          <td><input type="text"/></td>         
+          <td><input type="text" id='bid_elec'/></td>         
        </tr>
     </table>
     <button type="reset" value="重置" style="background:url(/static/img/closebtn.png);">重置</button>
-    <button type="button" value="保存" style="background:url(static/img/closebtn.png);"   id="wenyuan_save">保存</button>
-    <input type="button" name="close" value="关闭" style="background:url(static/img/closebtn.png);width:60px;height:30px;color:#fff;font-size:16px"" /></form>
+    <button type="button" value="保存" style="background:url(/static/img/closebtn.png);"   id="bidding_save">保存</button>
+    <a href="javascript:window.opener=null;window.open('','_self');window.close();"><input type="button" name="close" value="关闭" style="background:url(/static/img/closebtn.png);width:60px;height:30px;color:#fff;font-size:16px"" /></a></form>
 </div>
 </div>
 <script type="text/javascript" src="/static/js/jquery-1.8.0.min.js"></script>
+<script>
 
+    $("#bidding_save").click(function() {
+        /////竞价添加
+        var save_time = (Date.parse(new Date())) / 1000;
+        var area_main = $('#area_main').val();
+        var area_cons = $('#area_cons').val();;
+        var bid_elec = $('#bid_elec').val();
+
+        var bidding_obj = {};
+
+        bidding_obj.save_time = save_time;
+        bidding_obj.area_main = area_main;
+        bidding_obj.area_cons = area_cons;
+        bidding_obj.bid_elec = bid_elec;
+
+        var error_msg = "区域  和 各区域消费情况   两项为必填项目!!!"  ;
+        (area_main == "" && area_cons == "") ? alert(error_msg) : (
+        $.post("/biddingleft/add/", bidding_obj,
+        function(data) {
+            alert(data);
+
+        })
+        )
+        });
+
+
+</script>
 

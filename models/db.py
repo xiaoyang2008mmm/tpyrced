@@ -9,6 +9,15 @@ class BaseModel(Model):
     class Meta:
         database = database
 
+class TpyrcedBidadd(BaseModel):
+    area_cons = IntegerField(null=True)
+    area_main = CharField(null=True)
+    bid_elec = IntegerField(null=True)
+    save_time = BigIntegerField(null=True)
+
+    class Meta:
+        db_table = 'tpyrced_bidadd'
+
 class TpyrcedClerk(BaseModel):
     client_name = CharField(null=True)
     client_tel = CharField(null=True, unique=True)
@@ -16,14 +25,36 @@ class TpyrcedClerk(BaseModel):
     is_send = CharField(null=True)
     is_valid = CharField(null=True)
     key_words = CharField(null=True)
+    remark_text = CharField(null=True)
     save_time = BigIntegerField(null=True)
     subscribe = CharField(null=True)
-    remark_text = CharField(null=True)
     tel_where = CharField(null=True)
     tl_area = CharField(null=True)
 
     class Meta:
         db_table = 'tpyrced_clerk'
+
+class TpyrcedFinadd(BaseModel):
+    act_amount = CharField(null=True)
+    card_date = CharField(null=True)
+    com_form = CharField(null=True)
+    com_stand = CharField(null=True)
+    cus_name = CharField(null=True)
+    fav_able = CharField(null=True)
+    inve_prop = CharField(null=True)
+    ord_num = CharField(null=True)
+    pro_name = CharField(null=True)
+    prop_tion = CharField(null=True)
+    save_time = BigIntegerField(null=True)
+    sep_dire = CharField(null=True)
+    source_tran = CharField(null=True)
+    sub_date = CharField(null=True)
+    team_name = CharField(null=True)
+    tran_dire = CharField(null=True)
+    tran_status = CharField(null=True)
+
+    class Meta:
+        db_table = 'tpyrced_finadd'
 
 class TpyrcedFinanceQianyue(BaseModel):
     beizhu = CharField(null=True)
@@ -69,6 +100,16 @@ class TpyrcedFinanceTicheng(BaseModel):
     class Meta:
         db_table = 'tpyrced_finance_ticheng'
         primary_key = False
+
+class TpyrcedSaleadd(BaseModel):
+    re_area = CharField(null=True)
+    re_group = CharField(null=True)
+    re_peop = CharField(null=True)
+    re_team = CharField(null=True)
+    save_time = BigIntegerField(null=True)
+
+    class Meta:
+        db_table = 'tpyrced_saleadd'
 
 class TpyrcedVie(BaseModel):
     area = CharField(null=True)
