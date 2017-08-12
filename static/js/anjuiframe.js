@@ -271,3 +271,40 @@ function d_finance_data() {
         }
 
 }
+////竞价数据删除
+//
+function  get_bid(){
+var $ids = [];
+    var $chkBoxes = $('#tab_bid_form').find('input:checked');
+    if ($chkBoxes.length == 0) {
+      alert('请至少选择一个数据集');
+      return false;
+    }
+
+  $($chkBoxes).each(function () {
+        $ids.push( $(this).attr('data-id') );
+    });
+
+var $ids_str = $ids.join(',');
+        return $ids_str;
+}
+
+
+function delbid_data() {
+        var id_data = get_bid()
+        if (id_data){
+        var msg = "确定要删除吗?";
+        if (confirm(msg) == true) {
+            $.post("/api/biddingleft/delete/", {
+                pro_name: id_data,
+            },
+            function(data) {
+                alert(data);
+            });
+            location.href = '/biddingleft/';
+        } else {
+            return false;
+        }
+        }
+
+}

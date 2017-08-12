@@ -148,3 +148,20 @@ class wenyuan_modify_handler(BaseHandler):
 	    TpyrcedClerk.update(subscribe=cus_val).where(TpyrcedClerk.id == db_id).execute()
 	if db_key == "remark_text":
 	    TpyrcedClerk.update(remark_text=cus_val).where(TpyrcedClerk.id == db_id).execute()
+class biddingleftdelete_handler(BaseHandler):
+
+    def post(self, *args, **kwargs):
+        request_dict = self.request.arguments
+        bid = request_dict['pro_name'][0]
+
+
+        if isinstance(bid,int):
+                st = TpyrcedBidadd.get(id = int(bid))
+                st.delete_instance()
+        else:
+            for cid in (bid).split(","):
+                st = TpyrcedBidadd.get(id = int(cid))
+                st.delete_instance()
+
+        self.write("删除成功!!!")
+

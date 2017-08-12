@@ -1,7 +1,7 @@
 
 <div id="biddinginfo">
    <div class="cusinfoleft">
-     <span class="rightline" onclick=delete_data()>删除</span>
+     <span class="rightline" onclick=delbid_data()>删除</span>
      <span class="rightline" onclick=openbid()>增加</span>
      <span onclick=openbidalter()>修改</span>
    </div>
@@ -26,7 +26,7 @@
        </table>
      </div>
 
-<table id="tab_form" align="center">
+<table id="tab_bid_form" align="center">
 <thead>
 <tr>
    <td style="background:#00144c;"></td>
@@ -37,7 +37,7 @@
 </thead>
 <tbody style="background:#00144c;">
 {%for i in shuju%}
-<tr class="cus_tab" id="get_id">
+<tr class="cus_tab" id="get_bid">
 <td>
 <input type="checkbox" data-id="{{i[0]}}" >
 </td>
