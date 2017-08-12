@@ -40,7 +40,7 @@
 		<option value="subscribe">认购</option>
 		<option value="remark_text">备注</option>
             </select>
-          <td style="width:300px;" id="getcheck">
+          <td style="width:300px;display:none;" id="getcheck">
               <select id="getcheck01" disabled="true">
                 <option>请选择</option>
                 <option>文本框</option>
@@ -49,32 +49,35 @@
                 <option>下拉列表框</option>
                 <option>文本框</option><option>下拉列表框</option>
                 <option>下拉列表框</option><option>文本框</option>
+                <option>文本框</option><option>文本框</option>
              </select>
           </td>
           <td id="getselect">
-             <span class='cus_value'> <input type="text"/></span>
-             <span style="display:none;" class='cus_value'> <input type="text"/></span>
-             <span style="display:none;" class='cus_value'> <input type="text"/></span>
-             <span style="display:none;" class='cus_value01'> <select>
+             <span> <input type="text" /></span>
+             <span style="display:none;"> <input type="text"/></span>
+             <span style="display:none;"> <input type="text"/></span>
+             <span style="display:none;" data-support='cus_select'> <select>
                  <option>是否有效</option>
                  <option>是否有效1111</option>
                  <option>是否有效2222</option>
                  <option>是否有效3333</option>
              </select></span>
-             <span style="display:none;" class='cus_value'> <input type="text"/></span>
-             <span style="display:none;" class='cus_value01'> <select>
+             <span style="display:none;"> <input type="text"/></span>
+             <span style="display:none;" data-support='cus_select'> <select>
                  <option>电话来源</option>
                  <option>电话来源1111</option>
                  <option>电话来2源22222</option>
                  <option>电话来源33333</option>
              </select></span>
-             <span style="display:none;" class='cus_value01'> <select>
+             <span style="display:none;" data-support='cus_select'> <select>
                  <option>请选择所属区域</option>
                  <option>请选择所属区域111111</option>
                  <option>请选择所属区域222222</option>
                  <option>请选择所属区域333333</option>
              </select></span>
-             <span style="display:none;" class='cus_value'> <input type="text"/></span>
+             <span style="display:none;"> <input type="text"/></span>
+             <span style="display:none;"> <input type="text"/></span>
+             <span style="display:none;"> <input type="text"/></span>
           </td>
         </tr>
       </table>
@@ -90,13 +93,10 @@
           $('#getcheck01 option').eq(ind).attr('selected','selected'); 
           $('#getselect span').eq(ind-1).css('display','block');
           $('#getselect span').eq(ind-1).siblings().css('display','none');
-          if('.cus_value'){
-            cus_val=$('#getselect .cus_value input').eq(ind-1).val();
-          }
-          if('.cus_value01'){
-            cus_val=$('#getselect .cus_value01 select option:selected').eq(ind-1).val();
-          }
-      });
+
+
+	   });
+
 
     function getUrlParam(name) {
       var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); 
@@ -106,6 +106,11 @@
 
 
     $("#caiwu_save").click(function() {
+
+      var ind=$('option:selected', '#getselect02').index();
+      var cus_val;
+      cus_val=$('#getselect span').eq(ind-1).children().val();
+
         var db_key = $("#getselect02 option:selected").text();
         var db_id= getUrlParam('client_id') ;
         console.log(db_key,db_id,cus_val) ;
