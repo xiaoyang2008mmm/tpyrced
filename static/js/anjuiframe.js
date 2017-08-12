@@ -213,13 +213,8 @@ var $ids_str = $ids.join(',');
 
 
 function delete_data() {
-
-
 	var id_data = get_id()
-
-
 	if (id_data){
-
         var msg = "确定要删除吗?";
         if (confirm(msg) == true) {
             $.post("/api/wenyuan/delete/", {
@@ -229,6 +224,47 @@ function delete_data() {
                 alert(data);
             });
             location.href = '/iframe/';
+        } else {
+            return false;
+        }
+        }
+
+}
+
+
+
+
+////财务数据删除
+//
+function  get_f_id(){
+var $ids = [];
+    var $chkBoxes = $('#tab_ff_form').find('input:checked');
+    if ($chkBoxes.length == 0) {
+      alert('请至少选择一个数据集');
+      return false;
+    }
+
+  $($chkBoxes).each(function () {
+        $ids.push( $(this).attr('data-id') );
+    });
+
+var $ids_str = $ids.join(',');
+        return $ids_str;
+}
+
+
+function d_finance_data() {
+        var id_data = get_f_id()
+        if (id_data){
+        var msg = "确定要删除吗?";
+        if (confirm(msg) == true) {
+            $.post("/api/caiwu/delete/", {
+                pro_name: id_data,
+            },
+            function(data) {
+                alert(data);
+            });
+            location.href = '/financeleft/';
         } else {
             return false;
         }

@@ -50,6 +50,30 @@ class WenYuandelete_handler(BaseHandler):
 	self.write("删除成功!!!")
 
 
+class Caiwudelete_handler(BaseHandler):
+    """删除财务录入的数据"""
+
+    def post(self, *args, **kwargs):
+	request_dict = self.request.arguments
+	pro_name = request_dict['pro_name'][0]
+	print pro_name
+
+
+	if isinstance(pro_name,int):
+	        st = TpyrcedFinadd.get(id = int(pro_name))
+	        st.delete_instance()
+	else:
+	    for cid in (pro_name).split(","):
+	        st = TpyrcedFinadd.get(id = int(cid))
+	        st.delete_instance()
+
+	self.write("删除成功!!!")
+
+
+
+class JingJiaAdd_handler(BaseHandler):
+    """获取竞价录入的信息并且入库"""
+
 
 class JingJiaAdd_handler(BaseHandler):
     """获取竞价录入的信息并且入库"""

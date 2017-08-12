@@ -1,7 +1,7 @@
 
 <div id="financeinfo">
    <div class="cusinfoleft">
-     <span class="rightline" onclick=delete_data()>删除</span>
+     <span class="rightline" onclick=d_finance_data()>删除</span>
      <span class="rightline" onclick=openfin()>增加</span>
      <span onclick=openfinalter()>修改</span>
    </div>
@@ -28,7 +28,7 @@
       </table>
    </div>
 
-<table id="tab_form" align="center">
+<table id="tab_ff_form" align="center">
 <thead>
 <tr>
    <td style="background:#00144c;"></td>
@@ -39,19 +39,24 @@
 </tr>
 </thead>
 <tbody style="background:#00144c;">
-<tr class="cus_tab" id="get_id">
+{%for i in shuju%}
+<tr class="cus_tab" id="get_f_id">
 <td>
-<input type="checkbox" >
+<input type="checkbox" data-id="{{i[0]}}" >
 </td>
-<td>  我的钱无多群无多群 </td>
-<td>  我的钱无多群无多群 </td>
-<td>  我的钱无多群无多群 </td>
-<td>  我的钱无多群无多群 </td>
+<td>  {{i[1]}} </td>
+<td>  {{i[2]}} </td>
+<td>  {{i[3]}} </td>
+<td>  {{i[4]}} </td>
+<td>  {{i[5]}} </td>
 </tr>
+{%end%}
 </tbody>
 </table>
 <ul class="fy" id="number">
+    {% raw yem %}
 </ul>
+
 
 </div>
 
