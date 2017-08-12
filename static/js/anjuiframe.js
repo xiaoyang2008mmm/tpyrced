@@ -166,13 +166,50 @@ function openalter(){
     }
 }
 
-function openbidalter(){
-  window.open ("/biddingleft/modify/","竞价表-修改", "height=450, width=850, top=350, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
+
+
+
+function  get_bli_id(){
+    var $chkBoxes = $('#tab_bid_form').find('input:checked');
+    if ($chkBoxes.length == 0) {
+      alert('请至少选择一个数据集');
+      return false;
+    }
+ var ids_id=  $($chkBoxes).attr('data-id') ;
+ return ids_id;
 }
 
-function openfinalter(){
-  window.open ("/caiwu/modify/","财务表-修改", "height=450, width=850, top=350, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
+
+function openbidalter(){
+        var id_data = get_bli_id()
+  if (id_data){
+  window.open ("/biddingleft/modify/?b_id=" + id_data,"客户资料-修改", "height=700, width=850, top=200, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
+    }
 }
+
+
+
+function  get_fin_id(){
+    var $chkBoxes = $('#tab_ff_form').find('input:checked');
+    if ($chkBoxes.length == 0) {
+      alert('请至少选择一个数据集');
+      return false;
+    }
+ var ids_id=  $($chkBoxes).attr('data-id') ;
+ return ids_id;
+}
+
+
+
+function openfinalter(){
+        var id_data = get_fin_id()
+  if (id_data){
+  window.open ("/caiwu/modify/?fid=" + id_data,"财务表-修改", "height=450, width=850, top=350, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
+    }
+}
+
+
+
 function opensalealter(){
   window.open ("/sale/modify/","销售资料-修改", "height=450, width=850, top=350, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
 }

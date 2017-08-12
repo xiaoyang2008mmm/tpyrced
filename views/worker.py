@@ -118,6 +118,9 @@ class caiwu_modify_handler(BaseHandler):
         self.render("finance_alter.html")
 
 
+    def post(self, *args, **kwargs):
+        request_dict = self.request.arguments
+	print request_dict
 
 
 class wenyuan_modify_handler(BaseHandler):
