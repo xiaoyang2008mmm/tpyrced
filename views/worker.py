@@ -82,3 +82,17 @@ class systemleft_handler(BaseHandler):
     def get(self, *args, **kwargs):
         self.render("systemleft.html")
 
+
+
+
+class caiwu_modify_handler(BaseHandler):
+
+    def post(self, *args, **kwargs):
+        request_dict = self.request.arguments
+        db_key  = request_dict['db_key'][0]
+	db_id  = request_dict['db_id'][0]
+	cus_val = request_dict['cus_val'][0]
+	try:
+	    TpyrcedClerk.update(db_key=cus_val).where(TpyrcedClerk.id == db_id).execute()
+	except:
+	    pass

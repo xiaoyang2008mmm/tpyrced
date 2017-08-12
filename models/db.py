@@ -10,9 +10,9 @@ class BaseModel(Model):
         database = database
 
 class TpyrcedBidadd(BaseModel):
-    area_cons = IntegerField(null=True)
+    area_cons = CharField(null=True)
     area_main = CharField(null=True)
-    bid_elec = IntegerField(null=True)
+    bid_elec = CharField(null=True)
     save_time = BigIntegerField(null=True)
 
     class Meta:

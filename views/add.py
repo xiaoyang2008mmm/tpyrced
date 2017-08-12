@@ -46,12 +46,6 @@ class caiwu_add_handler(BaseHandler):
 
 
 
-class caiwu_modify_handler(BaseHandler):
-
-    def get(self, *args, **kwargs):
-        self.render("finance_alter.html")
-
-
 
 
 class biddingleft_add_handler(BaseHandler):
@@ -60,7 +54,17 @@ class biddingleft_add_handler(BaseHandler):
         self.render("bidding_a.html")
     def post(self, *args, **kwargs):
         request_dict = self.request.arguments
+       
 	print request_dict
+        save_time  =request_dict['save_time'][0]
+        area_main  = request_dict['area_main'][0]
+        area_cons  = request_dict['area_cons'][0]
+        bid_elec  =request_dict['bid_elec'][0]
+
+      	q =TpyrcedBidadd.insert(save_time= save_time ,area_main = area_main,area_cons = area_cons,bid_elec = bid_elec )
+        q.execute()
+        self.write("数据写入成功!!")
+
 
 class biddingleft_modify_handler(BaseHandler):
 
