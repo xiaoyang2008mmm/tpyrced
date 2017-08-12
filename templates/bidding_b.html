@@ -36,17 +36,20 @@
 </tr>
 </thead>
 <tbody style="background:#00144c;">
+{%for i in shuju%}
 <tr class="cus_tab" id="get_id">
 <td>
-<input type="checkbox">
+<input type="checkbox" data-id="{{i[0]}}" >
 </td>
-<td>  xxxxxxxxxxxx </td>
-<td>  xxxxxxxxxxxx </td>
-<td>  xxxxxxxxxxxx </td>
-</tr
+<td>  {{i[2]}} </td>
+<td>  {{i[3]}} </td>
+<td>  {{i[4]}} </td>
+</tr>
+{%end%}
 </tbody>
 </table>
 <ul class="fy" id="number">
+    {% raw yem %}
 </ul>
 
 </div>
