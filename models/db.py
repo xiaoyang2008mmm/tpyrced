@@ -111,6 +111,14 @@ class TpyrcedSaleadd(BaseModel):
     class Meta:
         db_table = 'tpyrced_saleadd'
 
+class TpyrcedUser(BaseModel):
+    password = CharField(null=True)
+    save_time = BigIntegerField(null=True)
+    user = CharField(null=True)
+
+    class Meta:
+        db_table = 'tpyrced_user'
+
 class TpyrcedVie(BaseModel):
     area = CharField(null=True)
     area_cost = CharField(null=True)

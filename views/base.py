@@ -12,14 +12,48 @@ class BaseHandler(tornado.web.RequestHandler):
             return user_cookie
         return None
 
-    def admin(self):
-	return ['adminaas']
+    def privilege_check(self,user):
+	urllist = self.get_urllist(self.get_role(user))
+	return   urllist
 
     def get_template_namespace(self):
         namespace = {}
         namespace = super(BaseHandler,self).get_template_namespace()
         uimethods={
-            "admiisssn": self.admin
+            "privilege_check": self.privilege_check
         }
         namespace.update(uimethods)
         return namespace
+
+
+    def get_role(self,user):
+	checkout_role = {
+             'admin'  : ['zhongyi.chen','fukai.liu'],
+	     'system' : ['system'],
+	     'caiwu'  : ['caiwu'],
+	     'sale'  : ['sale'],
+	     'wenyuan' : ['wenyuan']
+	}
+
+	for r in checkout_role:
+	    if user in  checkout_role[r]:
+	         return r 
+
+
+
+    def get_urllist(self,role):
+        admin_path  = [   ('/iframe/','客户管理'),
+                          ('/employeeleft/','员工管理'),
+                          ('/saleleft/','销售情况查询'),
+                          ('/financeleft/','财务管理'),
+                          ('/biddingleft/','竞价管理'),
+                          ('/systemleft/','系统管理') ]
+	filter_url = {
+             'admin'  : admin_path,
+	     'system' : [('/systemleft/','系统管理')],
+	     'caiwu'  : [('/financeleft/','财务管理')],
+	     'sale'  : [('/saleleft/','销售情况查询')],
+	     'wenyuan' : [('/iframe/','客户管理'),('/employeeleft/','员工管理')]
+	}
+
+	return filter_url[role]

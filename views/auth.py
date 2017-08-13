@@ -10,8 +10,8 @@ class Login_Handler(BaseHandler):
     def post(self):
         name = self.get_argument("login_username").encode("utf-8")
         password = self.get_argument("login_password").encode("utf-8")
-	if  name =="admin":
-	    if password == "admin":
+	if  name =="system":
+	    if password == "system":
 		self.set_cookie("anju_user", name)
 		self.write("ok")
 	    else:

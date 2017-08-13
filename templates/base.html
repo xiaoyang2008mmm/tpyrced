@@ -17,12 +17,10 @@
     <div class="title">安居乐业管理系统</div>
      <div class="nav"> 
      <ul>
-       <li><a href="/iframe/">客户管理</a></li>
-       <li><a href="/employeeleft/">员工管理</a></li>
-       <li><a href="/saleleft/">销售情况查询</a></li>
-       <li><a href="/financeleft/">财务管理</a></li>
-       <li><a href="/biddingleft/">竞价管理</a></li>
-       <li><a href="/systemleft/">系统管理</a></li>
+	{% set data =privilege_check(current_user) %}
+	{% for url in data%}
+		<li><a href="{{url[0]}}">{{url[1]}}</a></li>
+	{%end%}
      </ul>
    </div>
 

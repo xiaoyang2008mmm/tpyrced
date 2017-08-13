@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*- 
 from models.db  import *
 import fenye
-import MySQLdb
+from models.db  import *
 from base  import *
 class Index_Handler(BaseHandler):
 
