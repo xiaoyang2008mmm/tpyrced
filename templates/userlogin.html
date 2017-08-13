@@ -57,7 +57,7 @@
        if  (username == "" && password == "") { alert("请输入用户名或者密码!!!") } else{ 
         $.post("/login/", login_obj,
         function(data) {
-	    (data == "ok" ) ? location.href = '/' : alert(data)
+	    data ? location.href = data : alert(data)
 
         })
 	}
