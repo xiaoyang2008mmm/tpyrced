@@ -2,6 +2,7 @@
 import tornado.web
 from models.db  import *
 from  base  import  *
+import base64
 
 class Login_Handler(BaseHandler):
     """登录验证"""
@@ -10,21 +11,22 @@ class Login_Handler(BaseHandler):
     def post(self):
         name = self.get_argument("login_username").encode("utf-8")
         password = self.get_argument("login_password").encode("utf-8")
-	try:
-	    get_user = TpyrcedUser.get(TpyrcedUser.user == name)
-	    if  get_user:
-	    	get_pwd = TpyrcedUser.get(TpyrcedUser.password == password)
-	        if get_pwd:
-		    url_index = (self.privilege_check(name)[0])[0]
-		    self.set_cookie("anju_user", name)
-		    self.write(url_index)
-	        else:
-	            self.write("密码不对!!!")
-	    else:
-	        self.write("用户名不对!!!")
-	except:
-	    self.write("没有此用户!!!")
-	
+        get_user = TpyrcedUser.get(TpyrcedUser.user == name)
+
+        if  get_user:
+            get_pwd = TpyrcedUser.select(TpyrcedUser.password).where(TpyrcedUser.user == name)
+
+	    if password == get_pwd or password == base64.decodestring(get_pwd):
+
+        	url_index = (self.privilege_check(name)[0])[0]
+
+        	self.set_cookie("anju_user", name)
+        	self.write(url_index)
+            else:
+                self.write("密码不对!!!")
+        else:
+            self.write("用户名不对!!!")
+    
 
 class Logout_Handler(BaseHandler):
     """退出"""
@@ -35,3 +37,14 @@ class Logout_Handler(BaseHandler):
         self.redirect('/login/', permanent=True)
 
 
+class Adduser_Handler(BaseHandler):
+    """添加用户"""
+    def post(self):
+        name = self.get_argument("user").encode("utf-8")
+        password = self.get_argument("pwd").encode("utf-8")
+        role = self.get_argument("role").encode("utf-8")
+	base_passwd = base64.encodestring(password)
+
+	TpyrcedUser.create(user=name , password=base_passwd ,role = role)
+	print  name,base_passwd,role
+	self.write("用户添加完成！！")

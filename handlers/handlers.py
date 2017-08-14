@@ -42,6 +42,7 @@ HANDLERS =[(r"/" ,				Index_Handler),
 	###用户认证登录
            (r"/login/",                 Login_Handler),
            (r"/logout/",                Logout_Handler),
+           (r"/adduser/",               Adduser_Handler),
 
 	######用工管理路由
 

@@ -4,6 +4,42 @@
 
 system系统
 
+姓名<input type="text" id="add_user">
+密码<input type="password" id="add_passwd">
+角色<select id="add_role">  
+
+
+	<option>请选择</option>
+	<option>请选择</option>
+	<option>请选择</option>
+	<option>请选择</option>
+</select>
+
+<input type="button" id="add_btn"  value="提交" />
+
+
 </div>
 
 
+
+<script>
+$('#add_btn').click(function() {
+    var user = $("#add_user").val();
+    var pwd = $("#add_passwd").val();
+    var role = $('#add_role  option:selected').val();
+
+    if (user && pwd) {
+        $.post("/adduser/", {
+            user: user,
+            pwd: pwd,
+            role: role
+        },
+        function(data) {
+            alert(data);
+        });
+
+    }
+
+});
+
+</script>

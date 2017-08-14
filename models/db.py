@@ -113,6 +113,7 @@ class TpyrcedSaleadd(BaseModel):
 
 class TpyrcedUser(BaseModel):
     password = CharField(null=True)
+    role = CharField(null=True)
     save_time = BigIntegerField(null=True)
     user = CharField(null=True)
 

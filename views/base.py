@@ -39,6 +39,7 @@ class BaseHandler(tornado.web.RequestHandler):
 	    if user in  checkout_role[r]:
 	         return r 
 
+	return 'admin'
 
 
     def get_urllist(self,role):

@@ -345,3 +345,6 @@ function delbid_data() {
         }
 
 }
+
+
+
