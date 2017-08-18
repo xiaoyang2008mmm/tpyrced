@@ -84,7 +84,9 @@ class biddingleft_handler(BaseHandler):
 class systemleft_handler(BaseHandler):
 
     def get(self, *args, **kwargs):
-        self.render("systemleft.html")
+	role = TpyrcedSysRole.select()
+	__dict = {'role':role}
+        self.render("systemleft.html",**__dict)
 
 
 

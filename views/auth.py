@@ -48,3 +48,15 @@ class Adduser_Handler(BaseHandler):
 	TpyrcedUser.create(user=name , password=base_passwd ,role = role)
 	print  name,base_passwd,role
 	self.write("用户添加完成！！")
+
+
+
+
+
+class Addrole_Handler(BaseHandler):
+    """添加角色"""
+
+    def post(self):
+        role = self.get_argument("role").encode("utf-8")
+	TpyrcedSysRole.create(role = role)
+	self.write("角色添加完成！！")

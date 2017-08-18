@@ -43,6 +43,7 @@ HANDLERS =[(r"/" ,				Index_Handler),
            (r"/login/",                 Login_Handler),
            (r"/logout/",                Logout_Handler),
            (r"/adduser/",               Adduser_Handler),
+           (r"/addrole/",               Addrole_Handler),
 
 	######用工管理路由
 

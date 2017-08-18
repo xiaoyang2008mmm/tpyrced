@@ -6,19 +6,21 @@ system系统
 
 姓名<input type="text" id="add_user">
 密码<input type="password" id="add_passwd">
-角色<select id="add_role">  
-
-
-	<option>请选择</option>
-	<option>请选择</option>
-	<option>请选择</option>
-	<option>请选择</option>
+角色<select id="sel_role">  
+{%for r in role%}
+	<option>{{r.role}}</option>
+{%end%}
 </select>
 
 <input type="button" id="add_btn"  value="提交" />
 
+</br>
+</br>
+</br>
+角色<input type="text" id="add_role">    <input type="button" id="role_btn"  value="提交" />
 
-</div>
+
+
 
 
 
@@ -26,7 +28,7 @@ system系统
 $('#add_btn').click(function() {
     var user = $("#add_user").val();
     var pwd = $("#add_passwd").val();
-    var role = $('#add_role  option:selected').val();
+    var role = $('#sel_role  option:selected').val();
 
     if (user && pwd) {
         $.post("/adduser/", {
@@ -42,4 +44,16 @@ $('#add_btn').click(function() {
 
 });
 
+$('#role_btn').click(function() {
+    var role = $("#add_role").val();
+    if (role) {
+        $.post("/addrole/", {
+            role: role
+        },
+        function(data) {
+            alert(data);
+        });
+
+    }else{alert('请填写角色名字!!!');}
+});
 </script>
