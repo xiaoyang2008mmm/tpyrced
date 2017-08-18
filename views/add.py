@@ -12,7 +12,6 @@ class caiwu_add_handler(BaseHandler):
 
     def get(self, *args, **kwargs):
         self.render("finance_a.html")
-
     def post(self, *args, **kwargs):
         request_dict = self.request.arguments
 
@@ -95,3 +94,51 @@ class salemodify_handler(BaseHandler):
 
     def get(self, *args, **kwargs):
         self.render("sale_alter.html")
+
+class caiwu_modify_handler(BaseHandler):
+
+    def post(self, *args, **kwargs):
+        request_dict = self.request.arguments
+        db_key  = request_dict['db_key'][0]
+        db_id  = int(request_dict['db_id'][0])
+        fin_val = request_dict['fin_val'][0]
+
+        dd ={db_key:fin_val}
+        try:
+            TpyrcedClerk.update(**dd).where(TpyrcedClerk.id == db_id).execute()
+            self.write("数据录入成功!!!!!!")
+        except:
+            self.write("数据写入失败,请联系管理员!!!!!")
+
+class biddingleft_modify_handler(BaseHandler):
+
+ 
+    def post(self, *args, **kwargs):
+        request_dict = self.request.arguments
+        db_key  = request_dict['db_key'][0]
+        db_id  = int(request_dict['db_id'][0])
+        bid_val = request_dict['bid_val'][0]
+
+        dd ={db_key:bid_val}
+        try:
+            TpyrcedClerk.update(**dd).where(TpyrcedClerk.id == db_id).execute()
+            self.write("数据录入成功!!!!!!")
+        except:
+            self.write("数据写入失败,请联系管理员!!!!!")
+
+class salemodify_handler(BaseHandler):
+        
+    def get(self, *args, **kwargs):
+        self.render("sale_alter.html")
+    def post(self, *args, **kwargs):
+        request_dict = self.request.arguments
+        db_key  = request_dict['db_key'][0] 
+        db_id  = int(request_dict['db_id'][0])
+        sale_val = request_dict['sale_val'][0]
+
+        dd ={db_key:sale_val} 
+        try:
+            TpyrcedClerk.update(**dd).where(TpyrcedClerk.id == db_id).execute()
+            self.write("数据录入成功!!!!!!")
+        except:
+            self.write("数据写入失败,请联系管理员!!!!!")

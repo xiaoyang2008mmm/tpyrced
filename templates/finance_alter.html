@@ -42,17 +42,18 @@
       var fin_val=$('#fin_input').val();
       var db_key = $("#fin_select option:selected").attr("value");
       var db_id = getUrlParam('fid');
+      console.log(db_key,db_id,fin_val);
       if (fin_val == "") {
             alert("请填写要修改的数据");
       } else {
           $.post("/caiwu/modify/", {
+	          db_key: db_key,
             db_id: db_id,
-	    db_key: db_key,
             fin_val: fin_val
           },
           function(data) {
-          alert(data);
-        })
+            alert(data);
+          })
       }
  })
 </script>

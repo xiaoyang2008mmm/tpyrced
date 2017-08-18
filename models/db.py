@@ -111,6 +111,30 @@ class TpyrcedSaleadd(BaseModel):
     class Meta:
         db_table = 'tpyrced_saleadd'
 
+class TpyrcedSysRole(BaseModel):
+    role = CharField(null=True)
+    save_time = BigIntegerField(null=True)
+
+    class Meta:
+        db_table = 'tpyrced_sys_role'
+
+class TpyrcedUrl(BaseModel):
+    desc = CharField(null=True)
+    save_time = BigIntegerField(null=True)
+    url = CharField(null=True)
+
+    class Meta:
+        db_table = 'tpyrced_url'
+
+class TpyrcedUrlRoleUser(BaseModel):
+    role = IntegerField(db_column='role_id', null=True)
+    save_time = BigIntegerField(null=True)
+    url = IntegerField(db_column='url_id', null=True)
+    user = IntegerField(db_column='user_id', null=True)
+
+    class Meta:
+        db_table = 'tpyrced_url_role_user'
+
 class TpyrcedUser(BaseModel):
     password = CharField(null=True)
     role = CharField(null=True)

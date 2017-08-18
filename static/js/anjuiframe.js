@@ -148,6 +148,9 @@ function opensale() {
     window.open("/sale/add/", "销售资料", "height=700, width=850, top=200, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
 }
 
+//文员修改录入数据
+//
+//
 function  get_cli_id(){
     var $chkBoxes = $('#tab_form').find('input:checked');   
     if ($chkBoxes.length == 0) {         
@@ -166,9 +169,9 @@ function openalter(){
     }
 }
 
-
-
-
+//竞价修改录入数据
+//
+//
 function  get_bli_id(){
     var $chkBoxes = $('#tab_bid_form').find('input:checked');
     if ($chkBoxes.length == 0) {
@@ -181,14 +184,17 @@ function  get_bli_id(){
 
 
 function openbidalter(){
-        var id_data = get_bli_id()
-  if (id_data){
-  window.open ("/biddingleft/modify/?b_id=" + id_data,"客户资料-修改", "height=700, width=850, top=200, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
+   var id_data = get_bli_id()
+   if (id_data){
+   window.open ("/biddingleft/modify/?b_id=" + id_data,"客户资料-修改", "height=700, width=850, top=200, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
     }
 }
 
 
 
+//财务修改录入数据
+//
+//
 function  get_fin_id(){
     var $chkBoxes = $('#tab_ff_form').find('input:checked');
     if ($chkBoxes.length == 0) {
@@ -202,16 +208,31 @@ function  get_fin_id(){
 
 
 function openfinalter(){
-        var id_data = get_fin_id()
-  if (id_data){
-  window.open ("/caiwu/modify/?fid=" + id_data,"财务表-修改", "height=450, width=850, top=350, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
+    var id_data = get_fin_id()
+    if (id_data){
+       window.open ("/caiwu/xiugai/?fid=" + id_data,"财务表-修改", "height=450, width=850, top=350, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
     }
 }
 
 
+//销售修改录入数据
+//
+//
+function  get_sale_id(){
+    var $chkBoxes = $('#tab_sl_form').find('input:checked');
+    if ($chkBoxes.length == 0) {
+      alert('请至少选择一个数据集');
+      return false;
+    }
+    var ids_id=  $($chkBoxes).attr('data-id') ;
+    return ids_id;
+}
 
 function opensalealter(){
-  window.open ("/sale/modify/","销售资料-修改", "height=450, width=850, top=350, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
+    var id_data = get_sale_id()
+    if (id_data){
+       window.open ("/sale/modify/?s_id=" + id_data,"销售表-修改", "height=450, width=850, top=350, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
+    }
 }
 
 
@@ -348,3 +369,40 @@ function delbid_data() {
 
 
 
+////销售数据删除
+//
+function  get_s_bid(){
+var $ids = [];
+    var $chkBoxes = $('#tab_sl_form').find('input:checked');
+    if ($chkBoxes.length == 0) {
+      alert('请至少选择一个数据集');
+      return false;
+    }
+
+  $($chkBoxes).each(function () {
+        $ids.push( $(this).attr('data-id') );
+    });
+
+var $ids_str = $ids.join(',');
+        return $ids_str;
+}
+
+
+function delsale_data() {
+        var id_data = get_s_bid()
+        if (id_data){
+        var msg = "确定要删除吗?";
+        if (confirm(msg) == true) {
+            $.post("/api/sale/delete/", {
+                pro_name: id_data,
+            },
+            function(data) {
+                alert(data);
+            });
+            location.href = '/iframe/';
+        } else {
+            return false;
+        }
+        }
+
+}

@@ -21,7 +21,7 @@ HANDLERS =[(r"/" ,				Index_Handler),
 	######财务URL路由
 	   (r"/caiwu/", 			caiwu_handler ),
 	   (r"/caiwu/add/", 	caiwu_add_handler ),
-	   (r"/caiwu/modify/", 	caiwu_modify_handler ),
+	   (r"/caiwu/xiugai/(.*)", 	caiwu_xiugai_handler ),
 	   (r"/api/caiwu/delete/", 	Caiwudelete_handler ),
 	   (r"/api/caiwuqianyue/add/", 	CaiWuAdd_handler ),
 	   (r"/api/caiwuticheng/add/", 	CaiWuAdd_handler ),

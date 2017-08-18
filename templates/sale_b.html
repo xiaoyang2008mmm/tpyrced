@@ -1,7 +1,7 @@
 
 <div id="saleinfo">
    <div class="cusinfoleft">
-     <span class="rightline" onclick=delete_data()>删除</span>
+     <span class="rightline" onclick=delsale_data()>删除</span>
      <span class="rightline" onclick=opensale()>增加</span>
      <span onclick=opensalealter()>修改</span>
    </div>
@@ -28,7 +28,7 @@
       </table>
    </div>
 
-<table id="tab_form" align="center">
+<table id="tab_sl_form" align="center">
 <thead>
 <tr>
    <td style="background:#00144c;"></td>
@@ -39,17 +39,21 @@
 </tr>
 </thead>
 <tbody style="background:#00144c;">
-<tr class="cus_tab" id="get_id">
+{%for i in shuju%}
+<tr class="cus_tab" id="get_sale_id">
 <td>
-<input type="checkbox">
+<input type="checkbox" data-id="{{i.id}}" >
 </td>
-<td>  xxxxxxxxxxxx </td>
-<td>  xxxxxxxxxxxx </td>
-<td>  xxxxxxxxxxxx </td>
-</tr
+<td>  re_area}} </td>
+<td>  re_team}} </td>
+<td>  re_group}} </td>
+<td>  re_peop}} </td>
+</tr>
+{%end%}
 </tbody>
 </table>
 <ul class="fy" id="number">
+     {% raw yem %}
 </ul>
 
 </div>
