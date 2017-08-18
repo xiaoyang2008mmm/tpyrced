@@ -13,8 +13,13 @@ class Index_Handler(BaseHandler):
 
 class Iframe_Handler(BaseHandler):
 
-    def get(self,page):                                              
-	SHUJU  = TpyrcedClerk.select()
+    def get(self,page,*args,**kwargs):                                              
+	try:
+	    index = int(self.request.arguments['index'][0])
+	except:
+	    index = 0
+	if index == 0 : SHUJU  = TpyrcedClerk.select()
+	if index == 1 : SHUJU  = TpyrcedSaleadd.select()
 
         fen_ye = fenye.fen_ye_lei(page,SHUJU,10,11,5,'/iframe/')       #执行分页对象
 
@@ -22,7 +27,7 @@ class Iframe_Handler(BaseHandler):
             zfchdqy = str(fen_ye.zong_ye_ma)                    #将总页码转换成字符串
             self.redirect("/iframe/" + zfchdqy)                  #跳转到总页码
         else:
-            self.render("iframe.html",dqy=fen_ye.dang_qian_ye,shuju=fen_ye.shu_ju_fan_wei(),yem=fen_ye.xian_shi_ye_ma())
+            self.render("iframe.html",dqy=fen_ye.dang_qian_ye,shuju=fen_ye.shu_ju_fan_wei(),yem=fen_ye.xian_shi_ye_ma(),index=index)
 
 
 

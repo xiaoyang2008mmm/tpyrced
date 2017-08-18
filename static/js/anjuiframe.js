@@ -20,8 +20,12 @@ $(function() {
     {
 
         var ind = $(this).index();
-        $('.customerframeset01').children('div').eq(ind).css('display', 'block').siblings('div').css('display', 'none');
-        $('.customerframeset02').children('div').eq(ind).css('display', 'block').siblings('div').css('display', 'none');
+	if ( ind == 0){
+		location.href = '/iframe/?index=0';
+ 	}	
+	if ( ind == 1){
+		location.href = '/iframe/?index=1';
+ 	}	
 
     });
     $('#employeeleft li').click(function()

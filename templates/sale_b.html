@@ -28,6 +28,7 @@
       </table>
    </div>
 
+{% if index == 1 %}
 <table id="tab_sl_form" align="center">
 <thead>
 <tr>
@@ -44,10 +45,10 @@
 <td>
 <input type="checkbox" data-id="{{i.id}}" >
 </td>
-<td>  re_area}} </td>
-<td>  re_team}} </td>
-<td>  re_group}} </td>
-<td>  re_peop}} </td>
+<td>  {{i.re_area}} </td>
+<td>  {{i.re_team}} </td>
+<td>  {{i.re_group}} </td>
+<td>  {{i.re_peop}} </td>
 </tr>
 {%end%}
 </tbody>
@@ -55,6 +56,7 @@
 <ul class="fy" id="number">
      {% raw yem %}
 </ul>
+{%end%}
 
 </div>
 
