@@ -68,11 +68,22 @@ class biddingleft_add_handler(BaseHandler):
 class biddingleft_modify_handler(BaseHandler):
 
     def get(self, *args, **kwargs):
+        b_id = int(self.request.arguments['b_id'][0])
+        #st2 = TpyrcedBidadd.get(TpyrcedBidadd.id == b_id)
+        #__dict = {"st2":st2}
         self.render("bidding_alter.html")
     def post(self, *args, **kwargs):
         request_dict = self.request.arguments
-	print request_dict
+        db_key  = request_dict['db_key'][0]
+        db_id  = int(request_dict['db_id'][0])
+        bid_val = request_dict['bid_val'][0]
 
+        dd ={db_key:bid_val}
+        try:
+            TpyrcedBidadd.update(**dd).where(TpyrcedBidadd.id == db_id).execute()
+            self.write("数据录入成功!!!!!!")
+        except:
+            self.write("数据写入失败,请联系管理员!!!!!")
 
 class saleadd_handler(BaseHandler):
 
@@ -110,21 +121,6 @@ class caiwu_modify_handler(BaseHandler):
         except:
             self.write("数据写入失败,请联系管理员!!!!!")
 
-class biddingleft_modify_handler(BaseHandler):
-
- 
-    def post(self, *args, **kwargs):
-        request_dict = self.request.arguments
-        db_key  = request_dict['db_key'][0]
-        db_id  = int(request_dict['db_id'][0])
-        bid_val = request_dict['bid_val'][0]
-
-        dd ={db_key:bid_val}
-        try:
-            TpyrcedClerk.update(**dd).where(TpyrcedClerk.id == db_id).execute()
-            self.write("数据录入成功!!!!!!")
-        except:
-            self.write("数据写入失败,请联系管理员!!!!!")
 
 class salemodify_handler(BaseHandler):
         

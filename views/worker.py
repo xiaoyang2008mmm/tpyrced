@@ -92,10 +92,21 @@ class systemleft_handler(BaseHandler):
 class caiwu_xiugai_handler(BaseHandler):
     def get(self, *args, **kwargs):
         f_id = int(self.request.arguments['f_id'][0])
-        #st2 = TpyrcedClerk.get(TpyrcedClerk.id == client_id)
+        #st2 = TpyrcedFinadd.get(TpyrcedFinadd.id == f_id)
         #__dict = {"st2":st2}
         self.render("finance_alter.html")
+    def post(self, *args, **kwargs):
+        request_dict = self.request.arguments
+        db_key  = request_dict['db_key'][0]
+        db_id  = int(request_dict['db_id'][0])
+        fin_val = request_dict['fin_val'][0]
 
+        dd ={db_key:fin_val}
+        try:
+            TpyrcedFinadd.update(**dd).where(TpyrcedFinadd.id == db_id).execute()
+            self.write("数据录入成功!!!!!!")
+        except:
+            self.write("数据写入失败,请联系管理员!!!!!")
 
 
 

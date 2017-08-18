@@ -17,10 +17,10 @@
           <td style="width:150px;">
             <select id='fin_select'>
                <option>请选择</option>
-               <option>排卡日期</option>
-               <option>认购日期</option>
-               <option>客户姓名</option>
-               <option>项目名称</option>
+               <option value="card_date">排卡日期</option>
+               <option value="sub_date">认购日期</option>
+               <option value="cus_name">客户姓名</option>
+               <option value="pro_name">项目名称</option>
             </select>
           </td>
           <td><input type="text" id='fin_input'/></td>
@@ -41,12 +41,12 @@
  $("#fin_save").click(function() {
       var fin_val=$('#fin_input').val();
       var db_key = $("#fin_select option:selected").attr("value");
-      var db_id = getUrlParam('fid');
+      var db_id = getUrlParam('f_id');
       console.log(db_key,db_id,fin_val);
       if (fin_val == "") {
             alert("请填写要修改的数据");
       } else {
-          $.post("/caiwu/modify/", {
+          $.post("/caiwu/xiugai/", {
 	          db_key: db_key,
             db_id: db_id,
             fin_val: fin_val

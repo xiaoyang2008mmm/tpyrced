@@ -210,7 +210,7 @@ function  get_fin_id(){
 function openfinalter(){
     var id_data = get_fin_id()
     if (id_data){
-       window.open ("/caiwu/xiugai/?fid=" + id_data,"财务表-修改", "height=450, width=850, top=350, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
+       window.open ("/caiwu/xiugai/?f_id=" + id_data,"财务表-修改", "height=450, width=850, top=350, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
     }
 }
 
