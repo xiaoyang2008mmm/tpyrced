@@ -20,7 +20,6 @@ class Iframe_Handler(BaseHandler):
 	except:
 	    index = 0
 	    page = 1
-	print index
 	if index == 0 : 
 	    SHUJU  = TpyrcedClerk.select()
 	if index == 1 :
