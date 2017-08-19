@@ -43,24 +43,23 @@ class BaseHandler(tornado.web.RequestHandler):
 	    if user in  d[r]:
 	         return r 
 
-	return 'admin'
+	return 'sys'
 
 
     def get_urllist(self,role):
 	rolelist = TpyrcedSysRole.select(TpyrcedSysRole.role)
-	rurl={}
+	filter_url={}
+	for r  in rolelist:
+	    role_id = TpyrcedSysRole.get(TpyrcedSysRole.role == r.role)
 
-        admin_path  = [   ('/iframe/','客户管理'),
-                          ('/saleleft/','销售情况查询'),
-                          ('/financeleft/','财务管理'),
-                          ('/biddingleft/','竞价管理'),
-                          ('/systemleft/','系统管理') ]
-	filter_url = {
-             'admin'  : admin_path,
-	     'system' : [('/systemleft/','系统管理')],
-	     'caiwu'  : [('/financeleft/','财务管理')],
-	     'sale'  : [('/saleleft/','销售情况查询')],
-	     'wenyuan' : [('/iframe/','客户管理'),('/employeeleft/','员工管理')]
-	}
+            st4 = TpyrcedUrlRole.select().where(TpyrcedUrlRole.role == role_id.id)
+            aa = TpyrcedUrl.select().where(TpyrcedUrl.id.in_([i.url for i in st4]))
+
+            msg_role = [(i.url, i.desc) for i in aa]
+
+	    filter_url[r.role] = msg_role
+
+
+
 
 	return filter_url[role]

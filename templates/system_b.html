@@ -8,7 +8,6 @@
 	{%end%}
    </select>
    <select multiple="multiple" size="10" id='add_role_user'>
-      <option>用户--></option>
    </select>
    <select class='system_power_se02' id="select_role">
 	{%for r in allrole%}
@@ -16,7 +15,6 @@
 	{%end%}
    </select>
    <select multiple="multiple" size="10" id="url_list01">
-      <option><--URL</option>
    </select>
    <select multiple="multiple" size="10" id="url_list">
 	{%for l in allurl%}
@@ -52,7 +50,7 @@ $('#url_list01').dblclick(function() {
     var msg = '是否删除URL？？'
     if (confirm(msg) == true) {
         var url = $("#url_list01  option:selected").html();
-        $.post("/delete/role/url", {
+        $.post("/delete/role/url/", {
             role_name: role_name,
             url: url
         },
@@ -73,14 +71,30 @@ $("#add_role_user01 option").dblclick(function() {
 });
 
 $('#add_role_user').dblclick(function() {
-    alert(this);
+    var role_name = $("#select_role option:selected").val();
+    var msg = '是否删除用户？？'
+    if (confirm(msg) == true) {
+        var user = $("#add_role_user  option:selected").html();
+        $.post("/delete/role/user/", {
+            role_name: role_name,
+            user: user 
+        },
+        function(data) {
+            alert(data);
+
+        });
+
+    }
+
+
 });
 
 $("#select_role").change(function() {
     $("#add_role_user").empty();
+    $("#url_list01").empty();
     var role = $("#select_role option:selected").val();
     if (!role) {
-        alert("请填写要修改的数据");
+        alert("请选择角色!!!");
     } else {
         $.post("/role/get_user/", {
             role: role
@@ -97,11 +111,78 @@ $("#select_role").change(function() {
                 alert('没有用户');
             }
 
+
+            var dd = data['msg_role'];
+            if ((dd.length) != 0) {
+                $.each(dd,
+                function(index, val) {
+                    $("#url_list01").append('<option>' + val + '</option>');
+                });
+
+            } else {
+                alert('没有url');
+            }
+
+
+
         })
     }
 
 });
 
 
+
+$('#username_keep').click(function() {
+
+    var role = $("#select_role option:selected").html();
+     var array = new Array();  
+     $("#add_role_user option").each(function(){  
+          var txt = $(this).html();   
+          if(txt!=''){  
+               array.push(txt);  
+          }  
+     })  
+
+     if(array.length != 0){
+        $.post("/add/role/user/", {
+            role_name: role,
+            user: String(array) 
+        },
+        function(data) {
+            alert(data);
+
+        });
+
+
+     };
+
+});
+
+$('#URL_keep').click(function() {
+
+    var role = $("#select_role option:selected").html();
+     var array = new Array();  
+     $("#url_list01 option").each(function(){  
+          var txt = $(this).html();   
+          if(txt!=''){  
+               array.push(txt);  
+          }  
+     })  
+
+     if(array.length != 0){
+        $.post("/add/role/url/", {
+            role_name: role,
+            url: String(array) 
+        },
+        function(data) {
+            alert(data);
+
+        });
+
+
+     };
+
+
+});
 
 </script>

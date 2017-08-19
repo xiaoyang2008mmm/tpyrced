@@ -45,6 +45,10 @@ HANDLERS =[(r"/" ,				Index_Handler),
            (r"/adduser/",               Adduser_Handler),
            (r"/addrole/",               Addrole_Handler),
            (r"/role/get_user/",         getuser_Handler),
+           (r"/delete/role/user/",      delroleuser_Handler),
+           (r"/delete/role/url/",       delroleurl_Handler),
+           (r"/add/role/user/",      addroleuser_Handler),
+           (r"/add/role/url/",       addroleurl_Handler),
 
 	######用工管理路由
 
