@@ -50,8 +50,9 @@ HANDLERS =[(r"/" ,				Index_Handler),
        (r"/employeeleft/",	employeeleft_handler),
 	######销售路由
        (r"/saleleft/",		saleleft_handler),
-       (r"/sale/add/",		saleadd_handler),
-       (r"/sale/modify/",		salemodify_handler),
+       (r"/sale/add/",		sale_add_handler),
+       (r"/sale/modify/",		sale_modify_handler),
+       (r"/api/sale/add/",       SaleAdd_handler ),
 	#######系统设置路由
        (r"/systemleft/"  ,	systemleft_handler),
 

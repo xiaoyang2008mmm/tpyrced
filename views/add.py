@@ -85,7 +85,7 @@ class biddingleft_modify_handler(BaseHandler):
         except:
             self.write("数据写入失败,请联系管理员!!!!!")
 
-class saleadd_handler(BaseHandler):
+class sale_add_handler(BaseHandler):
 
     def get(self, *args, **kwargs):
         self.render("sale_a.html")
@@ -101,7 +101,7 @@ class saleadd_handler(BaseHandler):
       	q =TpyrcedSaleadd.insert(save_time= save_time ,re_area = re_area,re_team = re_team,re_group = re_group,re_peop = re_peop )
         q.execute()
         self.write("数据写入成功!!")
-class salemodify_handler(BaseHandler):
+class sale_modify_handler(BaseHandler):
 
     def get(self, *args, **kwargs):
         self.render("sale_alter.html")
@@ -122,7 +122,7 @@ class caiwu_modify_handler(BaseHandler):
             self.write("数据写入失败,请联系管理员!!!!!")
 
 
-class salemodify_handler(BaseHandler):
+class sale_modify_handler(BaseHandler):
         
     def get(self, *args, **kwargs):
         self.render("sale_alter.html")
@@ -138,3 +138,10 @@ class salemodify_handler(BaseHandler):
             self.write("数据录入成功!!!!!!")
         except:
             self.write("数据写入失败,请联系管理员!!!!!")
+
+
+
+class SaleAdd_handler(BaseHandler):
+        
+    def post(self, *args, **kwargs):
+        request_dict = self.request.arguments
