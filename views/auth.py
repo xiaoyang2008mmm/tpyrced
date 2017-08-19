@@ -9,24 +9,38 @@ class Login_Handler(BaseHandler):
     def get(self):
         self.render('userlogin.html')
     def post(self):
-        name = self.get_argument("login_username").encode("utf-8")
-        password = self.get_argument("login_password").encode("utf-8")
-        get_user = TpyrcedUser.get(TpyrcedUser.user == name)
+	try:
+            name = self.get_argument("login_username").encode("utf-8")
+	except:
+            self.write({'status':'error','msg':'用户名错误!!!'})
+	try:
+             password = self.get_argument("login_password").encode("utf-8")
+	except:
+            self.write({'status':'error','msg':'密码错误!!!!'})
+		
+	try:
+            get_user = TpyrcedUser.get(TpyrcedUser.user == name)
+	except:
+            self.write({'status':'error','msg':'没有此用户!!!!'})
+	    return
 
         if  get_user:
-            get_pwd = TpyrcedUser.select(TpyrcedUser.password).where(TpyrcedUser.user == name)
+            get_pwd = (TpyrcedUser.get(TpyrcedUser.user == name)).password
+	    lens = len(get_pwd)
+	    lenx = lens - (lens % 4 if lens % 4 else 4)
+    	    result = base64.decodestring(get_pwd[:lenx])
 
-	    if password == get_pwd or password == base64.decodestring(get_pwd):
+	    if  password == result:
 
         	url_index = (self.privilege_check(name)[0])[0]
 
         	self.set_cookie("anju_user", name)
-        	self.write(url_index)
+        	self.write({'status':'ok','msg':url_index})
             else:
-                self.write("密码不对!!!")
-        else:
-            self.write("用户名不对!!!")
-    
+            	self.write({'status':'error','msg':'密码不对!!!!'})
+
+
+
 
 class Logout_Handler(BaseHandler):
     """退出"""

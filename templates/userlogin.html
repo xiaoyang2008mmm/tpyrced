@@ -24,10 +24,10 @@
                   <div class="password">
                      <span class="span1">
                           <img src="/static/img/username.png" >
-                          <input type="text" value="请输入您的用户名" id="username"></span>
+                          <input type="text" value="" id="username"></span>
                      <span>
                           <img src="/static/img/lock.png">
-                          <input type="password"  value="请输入密码" id="password"></span>
+                          <input type="password"  value="" id="password"></span>
                     <span class="span2">
                            <input  value="记住密码" type="checkbox" />
                            <span style="margin:-41px 30px;">记住密码</span>
@@ -46,6 +46,8 @@
 
     $('#login_btn').click(function()
     {
+	$("#username").empty();
+	$("#password").empty();
 
         var username = $("#username").val();
         var password = $("#password").val();
@@ -57,7 +59,12 @@
        if  (username == "" && password == "") { alert("请输入用户名或者密码!!!") } else{ 
         $.post("/login/", login_obj,
         function(data) {
-	    data ? location.href = data : alert(data)
+	    console.log(data);
+	    if((data['status']) == 'ok'){
+	    	 location.href = data['msg'] ;
+		}else{
+		alert(data['msg'])
+		}
 
         })
 	}
