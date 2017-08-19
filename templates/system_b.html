@@ -2,7 +2,7 @@
    <img src='/static/img/system_power.png'>
 </div>
 <div id='system_power'>
-   <select multiple="multiple" size="10">
+   <select multiple="multiple" size="10" id='add_role_user01'>
 	{%for u in alluser%}
       <option>{{u.user}}</option>
 	{%end%}
@@ -15,7 +15,7 @@
       <option>{{r.role}}</option>
 	{%end%}
    </select>
-   <select multiple="multiple" size="10">
+   <select multiple="multiple" size="10" id="url_list01">
       <option><--URL</option>
    </select>
    <select multiple="multiple" size="10" id="url_list">
@@ -23,6 +23,8 @@
       <option>{{l.url}}</option>
 	{%end%}
    </select>
+   <button id='username_keep' style='background:url(/static/img/closebtn.png);width:100px;height:40px;color:#fff;font-size:16px;position:relative;left:-100px;top:20px;'>用户保存</button>
+   <button id='URL_keep' style='background:url(/static/img/closebtn.png);width:100px;height:40px;color:#fff;font-size:16px;position:relative;left:0;top:20px;'>URL保存</button>
 </div>
 <style>
    #system_power{width:80%;height:500px;background:#e2ecf5;text-align:center;position:relative;left:10%;}
@@ -35,11 +37,44 @@
 
 
 <script>
-$("#url_list option:selected").dblclick(function(){
-    alert(this);
+
+
+$("#url_list option").dblclick(function() {
+    var role_name = $("#select_role option:selected").val();
+    var msg = '确定要新增URL到角色组' + role_name + '吗?'
+    if (confirm(msg) == true) {
+        $('#url_list01').append("<option value='Value'>" + $(this).val() + "</option>");
+    }
 });
 
+$('#url_list01').dblclick(function() {
+    var role_name = $("#select_role option:selected").val();
+    var msg = '是否删除URL？？'
+    if (confirm(msg) == true) {
+        var url = $("#url_list01  option:selected").html();
+        $.post("/delete/role/url", {
+            role_name: role_name,
+            url: url
+        },
+        function(data) {
+            alert(data);
 
+        });
+
+    }
+});
+
+$("#add_role_user01 option").dblclick(function() {
+    var role_name = $("#select_role option:selected").val();
+    var msg = '确定要新增用户到组' + role_name + '吗?'
+    if (confirm(msg) == true) {
+        $('#add_role_user').append("<option value='Value'>" + $(this).val() + "</option>");
+    }
+});
+
+$('#add_role_user').dblclick(function() {
+    alert(this);
+});
 
 $("#select_role").change(function() {
     $("#add_role_user").empty();
@@ -55,7 +90,7 @@ $("#select_role").change(function() {
             if ((ss.length) != 0) {
                 $.each(ss,
                 function(index, val) {
-		    $("#add_role_user").append('<option>' + val + '</option>');
+                    $("#add_role_user").append('<option>' + val + '</option>');
                 });
 
             } else {
@@ -66,5 +101,7 @@ $("#select_role").change(function() {
     }
 
 });
+
+
 
 </script>

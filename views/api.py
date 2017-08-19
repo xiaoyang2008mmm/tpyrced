@@ -56,7 +56,6 @@ class Caiwudelete_handler(BaseHandler):
     def post(self, *args, **kwargs):
 	request_dict = self.request.arguments
 	pro_name = request_dict['pro_name'][0]
-	print pro_name
 
 
 	if isinstance(pro_name,int):
@@ -80,7 +79,6 @@ class JingJiaAdd_handler(BaseHandler):
 
     def post(self, *args, **kwargs):
 	request_dict = self.request.arguments
-	print request_dict
 
 
 
@@ -89,7 +87,6 @@ class CaiWuAdd_handler(BaseHandler):
 
     def post(self, *args, **kwargs):
 	request_dict = self.request.arguments
-	print request_dict
 
 class saledelete_handler(BaseHandler):
     """删除销售录入的数据"""
@@ -97,7 +94,6 @@ class saledelete_handler(BaseHandler):
     def post(self, *args, **kwargs):
         request_dict = self.request.arguments
         sa_le = request_dict['pro_name'][0]
-        print sa_le
 
 
         if isinstance(sa_le,int):

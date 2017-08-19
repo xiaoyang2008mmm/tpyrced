@@ -9,6 +9,14 @@ class BaseModel(Model):
     class Meta:
         database = database
 
+class TpyrcedArea(BaseModel):
+    re_area = CharField(null=True)
+    re_team = CharField(null=True)
+    save_time = BigIntegerField(null=True)
+
+    class Meta:
+        db_table = 'tpyrced_area'
+
 class TpyrcedBidadd(BaseModel):
     area_cons = CharField(null=True)
     area_main = CharField(null=True)

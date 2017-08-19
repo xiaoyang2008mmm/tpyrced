@@ -21,10 +21,10 @@ $(function() {
 
         var ind = $(this).index();
 	if ( ind == 0){
-		location.href = '/iframe/?index=0';
+		location.href = '/iframe/?index=0&page=1';
  	}	
 	if ( ind == 1){
-		location.href = '/iframe/?index=1';
+		location.href = '/iframe/?index=1&page=1';
  	}	
 
     });

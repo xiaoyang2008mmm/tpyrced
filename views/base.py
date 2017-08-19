@@ -49,11 +49,8 @@ class BaseHandler(tornado.web.RequestHandler):
     def get_urllist(self,role):
 	rolelist = TpyrcedSysRole.select(TpyrcedSysRole.role)
 	rurl={}
-	for i in rolelist:
-	    print i
 
         admin_path  = [   ('/iframe/','客户管理'),
-                          ('/employeeleft/','员工管理'),
                           ('/saleleft/','销售情况查询'),
                           ('/financeleft/','财务管理'),
                           ('/biddingleft/','竞价管理'),

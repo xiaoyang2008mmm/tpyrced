@@ -54,7 +54,6 @@ class biddingleft_add_handler(BaseHandler):
     def post(self, *args, **kwargs):
         request_dict = self.request.arguments
        
-	print request_dict
         save_time  =request_dict['save_time'][0]
         area_main  = request_dict['area_main'][0]
         area_cons  = request_dict['area_cons'][0]
@@ -92,7 +91,6 @@ class sale_add_handler(BaseHandler):
     def post(self, *args, **kwargs):
         request_dict = self.request.arguments
 
-        print request_dict
         save_time  =request_dict['save_time'][0]
         re_area  = request_dict['re_area'][0]
         re_team  = request_dict['re_team'][0]
@@ -101,6 +99,8 @@ class sale_add_handler(BaseHandler):
 
         q =TpyrcedSaleadd.insert(save_time= save_time ,re_area = re_area,re_team = re_team,re_group = re_group,re_peop = re_peop )
         q.execute()
+        t =TpyrcedArea.insert(save_time= save_time ,re_area = re_area,re_team = re_team )
+        t.execute()
         self.write("数据写入成功!!")
 class sale_modify_handler(BaseHandler):
 
@@ -145,5 +145,4 @@ class SaleAdd_handler(BaseHandler):
         self.render("sale_a.html")
     def post(self, *args, **kwargs):
 	request_dict = self.request.arguments
-	print request_dict
       

@@ -46,7 +46,6 @@ class Adduser_Handler(BaseHandler):
 	base_passwd = base64.encodestring(password)
 
 	TpyrcedUser.create(user=name , password=base_passwd ,role = role)
-	print  name,base_passwd,role
 	self.write("用户添加完成！！")
 
 
