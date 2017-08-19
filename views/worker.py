@@ -85,7 +85,9 @@ class systemleft_handler(BaseHandler):
 
     def get(self, *args, **kwargs):
 	role = TpyrcedSysRole.select()
-	__dict = {'role':role}
+	url = TpyrcedUrl.select()
+	user = TpyrcedUser.select()
+	__dict = {'allrole':role, 'alluser':user, 'allurl':url}
         self.render("systemleft.html",**__dict)
 
 

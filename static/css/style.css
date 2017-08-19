@@ -33,7 +33,7 @@
 
 .nav{width:60%;height:70px;background:#fff;margin-bottom:10px;float:left;}
 
-.title{width:350px;height:70px;color:#00144c;font-size:40px;position:relative;left:10px;top:10px;display:inline-block;float:left;font-family:黑体;}
+.title{width:350px;height:70px;color:#00144c;font-size:40px;position:relative;left:10px;top:10px;display:inline-block;float:left;font-family:黑体;text-decoration:none;}
 
 .nav ul{list-style-type:none;}
 

@@ -7,7 +7,7 @@ system系统
 姓名<input type="text" id="add_user">
 密码<input type="password" id="add_passwd">
 角色<select id="sel_role">  
-{%for r in role%}
+{%for r in allrole%}
 	<option>{{r.role}}</option>
 {%end%}
 </select>

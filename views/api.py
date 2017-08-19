@@ -91,4 +91,21 @@ class CaiWuAdd_handler(BaseHandler):
 	request_dict = self.request.arguments
 	print request_dict
 
+class saledelete_handler(BaseHandler):
+    """删除销售录入的数据"""
 
+    def post(self, *args, **kwargs):
+        request_dict = self.request.arguments
+        sa_le = request_dict['pro_name'][0]
+        print sa_le
+
+
+        if isinstance(sa_le,int):
+                st = TpyrcedSaleadd.get(id = int(sa_le))
+                st.delete_instance()
+        else:
+            for cid in (sa_le).split(","):
+                st = TpyrcedSaleadd.get(id = int(cid))
+                st.delete_instance()
+
+        self.write("删除成功!!!")

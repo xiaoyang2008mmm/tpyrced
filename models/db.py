@@ -126,14 +126,13 @@ class TpyrcedUrl(BaseModel):
     class Meta:
         db_table = 'tpyrced_url'
 
-class TpyrcedUrlRoleUser(BaseModel):
+class TpyrcedUrlRole(BaseModel):
     role = IntegerField(db_column='role_id', null=True)
     save_time = BigIntegerField(null=True)
     url = IntegerField(db_column='url_id', null=True)
-    user = IntegerField(db_column='user_id', null=True)
 
     class Meta:
-        db_table = 'tpyrced_url_role_user'
+        db_table = 'tpyrced_url_role'
 
 class TpyrcedUser(BaseModel):
     password = CharField(null=True)

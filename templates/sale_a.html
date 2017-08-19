@@ -55,10 +55,10 @@
         sale_obj.re_team = re_team;
         sale_obj.re_group = re_group;
         sale_obj.re_peop = re_peop;
-
+        
         var error_msg = "区域  和 团队   两项为必填项目!!!"  ;
         (re_area == "" && re_team == "") ? alert(error_msg) : (
-        $.post("/api/sale/add/", sale_obj,
+        $.post("/sale/add/", sale_obj,
         function(data) {
             alert(data);
 

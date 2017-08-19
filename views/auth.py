@@ -60,3 +60,17 @@ class Addrole_Handler(BaseHandler):
         role = self.get_argument("role").encode("utf-8")
 	TpyrcedSysRole.create(role = role)
 	self.write("角色添加完成！！")
+
+
+
+
+class getuser_Handler(BaseHandler):
+    """根据角色得到该角色下的所有用户"""
+
+    def post(self):
+        role = self.get_argument("role").encode("utf-8")
+	userlist = TpyrcedUser.select().where(TpyrcedUser.role == role)
+	msg = []
+	for u in userlist:
+	    msg.append(u.user)
+	self.write({'status':'ok','msg': msg})

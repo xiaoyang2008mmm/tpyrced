@@ -44,6 +44,7 @@ HANDLERS =[(r"/" ,				Index_Handler),
            (r"/logout/",                Logout_Handler),
            (r"/adduser/",               Adduser_Handler),
            (r"/addrole/",               Addrole_Handler),
+           (r"/role/get_user/",         getuser_Handler),
 
 	######用工管理路由
 
@@ -53,6 +54,7 @@ HANDLERS =[(r"/" ,				Index_Handler),
        (r"/sale/add/",		sale_add_handler),
        (r"/sale/modify/",		sale_modify_handler),
        (r"/api/sale/add/",       SaleAdd_handler ),
+       (r"/api/sale/delete/",        saledelete_handler ),
 	#######系统设置路由
        (r"/systemleft/"  ,	systemleft_handler),
 

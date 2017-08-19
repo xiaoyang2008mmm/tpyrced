@@ -3,52 +3,25 @@
 </div>
 <div id='system_power'>
    <select multiple="multiple" size="10">
-      <option>全部用户--></option>
-      <option>zhongyi.chen</option>
-      <option>fukai.liu</option>
-      <option>wenyuan</option>
-      <option>caiwu</option>
-      <option>bidding</option>
-      <option>sale</option>
-      <option>system</option>
+	{%for u in alluser%}
+      <option>{{u.user}}</option>
+	{%end%}
    </select>
-   <select multiple="multiple" size="10">
+   <select multiple="multiple" size="10" id='add_role_user'>
       <option>用户--></option>
-      <option>zhongyi.chen</option>
-      <option>fukai.liu</option>
-      <option>wenyuan</option>
-      <option>caiwu</option>
-      <option>bidding</option>
-      <option>sale</option>
-      <option>system</option>
    </select>
-   <select class='system_power_se02'>
-      <option>角色</option>
-      <option>管理员</option>
-      <option>主管</option>
-      <option>文员</option>
-      <option>财务</option>
-      <option>竞价</option>
-      <option>销售</option>
-      <option>系统管理员</option>
+   <select class='system_power_se02' id="select_role">
+	{%for r in allrole%}
+      <option>{{r.role}}</option>
+	{%end%}
    </select>
    <select multiple="multiple" size="10">
       <option><--URL</option>
-      <option>/iframe/</option>
-      <option>/customerleft/</option>
-      <option>/financeleft/</option>
-      <option>/biddingleft/</option>
-      <option>/saleleft/</option>
-      <option>/systemleft/</option>
    </select>
-   <select multiple="multiple" size="10">
-      <option><--全部URL</option>
-      <option>/iframe/</option>
-      <option>/customerleft/</option>
-      <option>/financeleft/</option>
-      <option>/biddingleft/</option>
-      <option>/saleleft/</option>
-      <option>/systemleft/</option>
+   <select multiple="multiple" size="10" id="url_list">
+	{%for l in allurl%}
+      <option>{{l.url}}</option>
+	{%end%}
    </select>
 </div>
 <style>
@@ -57,3 +30,41 @@
    #system_power select option{font-size:16px;margin:10px;}
    #system_power .system_power_se02{width:150px;height:30px;position:relative;top:-120px;}
 </style>
+
+
+
+
+<script>
+$("#url_list option:selected").dblclick(function(){
+    alert(this);
+});
+
+
+
+$("#select_role").change(function() {
+    $("#add_role_user").empty();
+    var role = $("#select_role option:selected").val();
+    if (!role) {
+        alert("请填写要修改的数据");
+    } else {
+        $.post("/role/get_user/", {
+            role: role
+        },
+        function(data) {
+            var ss = data['msg'];
+            if ((ss.length) != 0) {
+                $.each(ss,
+                function(index, val) {
+		    $("#add_role_user").append('<option>' + val + '</option>');
+                });
+
+            } else {
+                alert('没有用户');
+            }
+
+        })
+    }
+
+});
+
+</script>

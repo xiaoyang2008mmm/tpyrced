@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*- 
 import tornado.web
+from models.db  import *
+
 
 class BaseHandler(tornado.web.RequestHandler):
     def prepare(self):
@@ -27,22 +29,29 @@ class BaseHandler(tornado.web.RequestHandler):
 
 
     def get_role(self,user):
-	checkout_role = {
-             'admin'  : ['zhongyi.chen','fukai.liu'],
-	     'system' : ['system'],
-	     'caiwu'  : ['caiwu'],
-	     'sale'  : ['sale'],
-	     'wenyuan' : ['wenyuan']
-	}
+	rolelist = TpyrcedSysRole.select(TpyrcedSysRole.role)
+	d={}
+	for i in rolelist:
+	    userlist = TpyrcedUser.select().where(TpyrcedUser.role == i.role)
+	    luser = []
+	    for s in userlist:
+	        luser.append(s.user)
+	    d[i.role]=luser
 
-	for r in checkout_role:
-	    if user in  checkout_role[r]:
+		
+	for r in d:
+	    if user in  d[r]:
 	         return r 
 
 	return 'admin'
 
 
     def get_urllist(self,role):
+	rolelist = TpyrcedSysRole.select(TpyrcedSysRole.role)
+	rurl={}
+	for i in rolelist:
+	    print i
+
         admin_path  = [   ('/iframe/','客户管理'),
                           ('/employeeleft/','员工管理'),
                           ('/saleleft/','销售情况查询'),

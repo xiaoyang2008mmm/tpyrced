@@ -186,15 +186,12 @@ function  get_bli_id(){
  return ids_id;
 }
 
-
 function openbidalter(){
    var id_data = get_bli_id()
    if (id_data){
    window.open ("/biddingleft/modify/?b_id=" + id_data,"客户资料-修改", "height=700, width=850, top=200, left=650, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")
     }
 }
-
-
 
 //财务修改录入数据
 //
@@ -208,8 +205,6 @@ function  get_fin_id(){
  var ids_id=  $($chkBoxes).attr('data-id') ;
  return ids_id;
 }
-
-
 
 function openfinalter(){
     var id_data = get_fin_id()
@@ -239,12 +234,9 @@ function opensalealter(){
     }
 }
 
-
 function export_excel(){
 $('#tab_form').tableExport({ type: 'excel', separator: ';', escape: 'false' });
 }
-
-
 
 // 弹出窗口  end
 //
@@ -252,7 +244,6 @@ $('#tab_form').tableExport({ type: 'excel', separator: ';', escape: 'false' });
 // 删除文员录入数据
 //
 //
-
 
 function  get_id(){
 var $ids = [];   
@@ -269,10 +260,6 @@ var $ids = [];
 var $ids_str = $ids.join(',');    
         return $ids_str;
 }
-
-
-
-
 
 function delete_data() {
 	var id_data = get_id()
@@ -292,9 +279,6 @@ function delete_data() {
         }
 
 }
-
-
-
 
 ////财务数据删除
 //
@@ -403,7 +387,7 @@ function delsale_data() {
             function(data) {
                 alert(data);
             });
-            location.href = '/iframe/';
+            location.href = '/iframe/?index=1';
         } else {
             return false;
         }

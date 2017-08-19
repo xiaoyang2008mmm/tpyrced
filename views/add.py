@@ -92,13 +92,14 @@ class sale_add_handler(BaseHandler):
     def post(self, *args, **kwargs):
         request_dict = self.request.arguments
 
-        save_tim  =request_dict['save_time'][0]
+        print request_dict
+        save_time  =request_dict['save_time'][0]
         re_area  = request_dict['re_area'][0]
         re_team  = request_dict['re_team'][0]
         re_group  =request_dict['re_group'][0]
         re_peop  =request_dict['re_peop'][0]
 
-      	q =TpyrcedSaleadd.insert(save_time= save_time ,re_area = re_area,re_team = re_team,re_group = re_group,re_peop = re_peop )
+        q =TpyrcedSaleadd.insert(save_time= save_time ,re_area = re_area,re_team = re_team,re_group = re_group,re_peop = re_peop )
         q.execute()
         self.write("数据写入成功!!")
 class sale_modify_handler(BaseHandler):
@@ -134,14 +135,15 @@ class sale_modify_handler(BaseHandler):
 
         dd ={db_key:sale_val} 
         try:
-            TpyrcedClerk.update(**dd).where(TpyrcedClerk.id == db_id).execute()
+            TpyrcedSaleadd.update(**dd).where(TpyrcedSaleadd.id == db_id).execute()
             self.write("数据录入成功!!!!!!")
         except:
             self.write("数据写入失败,请联系管理员!!!!!")
-
-
-
 class SaleAdd_handler(BaseHandler):
-        
+
+    def get(self, *args, **kwargs):
+        self.render("sale_a.html")
     def post(self, *args, **kwargs):
-        request_dict = self.request.arguments
+	request_dict = self.request.arguments
+	print request_dict
+      
