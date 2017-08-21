@@ -37,9 +37,9 @@
 
 .nav ul{list-style-type:none;}
 
-.nav ul li{display:block;float:left;width:150px;height:65px;text-align:center;font-size:1.5rem;line-height:65px;}
+.nav ul li{float:left;text-align:center;font-size:1.5rem;}
 
-.nav ul li a{text-decoration:none;color:#000;cursor:pointer;font-family:黑体;}
+.nav ul li a{display:block;text-decoration:none;color:#000;cursor:pointer;font-family:黑体;width:150px;height:65px;line-height:65px;}
 
 /*系统主框架样式结束*/
 

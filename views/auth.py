@@ -20,6 +20,7 @@ class Login_Handler(BaseHandler):
 		
 	try:
             get_user = TpyrcedUser.get(TpyrcedUser.user == name)
+	    print name
 	except:
             self.write({'status':'error','msg':'没有此用户!!!!'})
 	    return

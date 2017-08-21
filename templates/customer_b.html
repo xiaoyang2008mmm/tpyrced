@@ -16,12 +16,12 @@
       <table align="center" cellspacing="0" cellpadding="0">
          <tr>
             <td>客户姓名</td>
-            <td><input type="text"></td>
+            <td><input type="text" id='cname'></td>
             <td>客户电话</td>
-            <td><input type="text"></td>
+            <td><input type="text" id='ctel'></td>
             <td>电话来源</td>
             <td>
-                <select>
+                <select id=c_telfrom>
                     <option selected value="请选择">请选择</option>
                     <option value="进线01">进线01</option>
                     <option value="进线02">进线02</option>
@@ -31,7 +31,7 @@
             </td>
             <td>电话所属区域</td>
             <td>
-               <select>
+               <select id='c_tel_area'>
                     <option selected value="请选择">请选择</option>
                     <option value="唐山">唐山</option>
                     <option value="秦皇岛">秦皇岛</option>
@@ -39,7 +39,7 @@
                     <option value="廊坊">廊坊</option>
                 </select>
             </td>
-            <td style="background:transparent;"><button type="button" value="查询">查询</button></td>
+            <td style="background:transparent;"><button type="button" value="查询" id='c_button'>查询</button></td>
          </tr>
       </table>
    </div>
@@ -84,3 +84,36 @@
    #number li a{text-decoration: none;}
 </style>
 
+
+
+
+
+<script>
+
+$("#c_button").click(function(){
+	var cname=$("#cname").val();
+	var ctel=$("#ctel").val();
+	var c_telfrom = $('#c_telfrom  option:selected').val();
+	var c_tel_area = $('#c_tel_area  option:selected').val();
+
+	var data= {};
+	data.cname = cname;
+	data.ctel = ctel;
+	data.c_telfrom = c_telfrom ;
+	data.c_tel_area = c_tel_area;
+
+
+
+        $.get("/iframe/", data,
+        function(data) {
+            alert(data);
+
+        })
+
+
+
+
+});
+
+
+</script>
