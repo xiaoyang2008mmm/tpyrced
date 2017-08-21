@@ -18,11 +18,18 @@ class BaseHandler(tornado.web.RequestHandler):
 	urllist = self.get_urllist(self.get_role(user))
 	return   urllist
 
+
+    def get_teamarea(self):
+
+	return [i.re_area for i in TpyrcedArea.select()]
+
+
     def get_template_namespace(self):
         namespace = {}
         namespace = super(BaseHandler,self).get_template_namespace()
         uimethods={
-            "privilege_check": self.privilege_check
+            "privilege_check": self.privilege_check,
+	    "team_area": self.get_teamarea
         }
         namespace.update(uimethods)
         return namespace
@@ -42,7 +49,6 @@ class BaseHandler(tornado.web.RequestHandler):
 	for r in d:
 	    if user in  d[r]:
 	         return r 
-
 	return 'sys'
 
 
@@ -58,8 +64,5 @@ class BaseHandler(tornado.web.RequestHandler):
             msg_role = [(i.url, i.desc) for i in aa]
 
 	    filter_url[r.role] = msg_role
-
-
-
-
 	return filter_url[role]
+

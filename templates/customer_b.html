@@ -33,10 +33,9 @@
             <td>
                <select id='c_tel_area'>
                     <option selected value="请选择">请选择</option>
-                    <option value="唐山">唐山</option>
-                    <option value="秦皇岛">秦皇岛</option>
-                    <option value="葫芦岛">葫芦岛</option>
-                    <option value="廊坊">廊坊</option>
+		{%for i in team_area()%}
+                    <option value="{{i}}">{{i}}</option>
+		{%end%}
                 </select>
             </td>
             <td style="background:transparent;"><button type="button" value="查询" id='c_button'>查询</button></td>
