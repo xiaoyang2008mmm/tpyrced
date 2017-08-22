@@ -16,7 +16,11 @@
         <table align="center" cellspacing="0" cellpadding="0" id="table">
           <tr>
             <td>区域</td>
-            <td><input type="text"></td>
+            <td><select style='width:200px;'>
+              <option selected value="请选择">请选择</option>
+              {%for i in team_area()%}
+                <option value="{{i}}"/>{{i}}</option>
+              {%end%}</td>
             <td>各区域消费情况</td>
             <td><input type="text"></td>
             <td>日期时间</td>

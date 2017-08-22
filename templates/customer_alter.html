@@ -71,9 +71,9 @@
              </select></span>
              <span style="display:none;" data-support='cus_select'> <select>
                  <option>请选择所属区域</option>
-                 <option>请选择所属区域111111</option>
-                 <option>请选择所属区域222222</option>
-                 <option>请选择所属区域333333</option>
+                 {%for i in team_area()%}
+                  <option value="{{i}}"/>{{i}}</option>
+                 {%end%}
              </select></span>
              <span style="display:none;"> <input type="text"/></span>
              <span style="display:none;"> <input type="text"/></span>

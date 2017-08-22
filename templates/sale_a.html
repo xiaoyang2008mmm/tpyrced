@@ -5,7 +5,7 @@
  #saleform form{width:800px;height:350px;background:#e2ecf5;}
  #saleform table{position:relative;left:20%;text-align:center;width:450px;height:30px;margin:25px;border-collapse:separate; border-spacing:0px 20px}
  #saleform table td{border:#a0a0a0 solid 1px;height:30px;background:#fff;border-spacing: 10px;width:50%;}
- #saleform form input[type="text"]{width:220px;height:30px;}
+ #saleform form input[type="text"],#saleform form select{width:220px;height:30px;}
  #saleform button{width:60px;height:30px;color:#fff;font-size:16px}
 
 /*框架右侧——sale_a.html  end*/
@@ -17,7 +17,15 @@
     <table id="table"  cellpadding="0" cellspacing="0">
        <tr>
           <td>区域</td>
-          <td><input type="text" id='re_area'/></td>         
+          <td>
+              <select id="re_area">
+              <option selected value="请选择">请选择</option>
+              {%for i in team_area()%}
+                <option value="{{i}}"/>{{i}}</option>
+              {%end%}
+              </select>
+          </td>
+          </td>         
        </tr>
        <tr>
           <td>团队</td>

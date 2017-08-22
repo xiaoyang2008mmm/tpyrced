@@ -22,7 +22,7 @@
                <option value="bid_elec">日期时间</option>
             </select>
           </td>
-          <td><input type="text" id='bid_input' placeholder="请在这里输入用户名"/></td>
+          <td><input type="text" id='bid_input'/></td>
         </tr>
       </table>
     <button type="button" value="保存" style="background:url(/static/img/closebtn.png);"   id="bid_save">保存</button>
@@ -58,13 +58,4 @@
       }
  })
 
- $("#bid_input").focus(function(){
-            $(this).attr('placeholder',"");
-    });
-
-    $("#bid_input").blur(function(){
-        if($(this).val()==""){
-         $(this).attr('placeholder',);
-        }
-    });
 </script>

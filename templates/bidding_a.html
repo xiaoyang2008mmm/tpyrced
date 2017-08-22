@@ -5,7 +5,7 @@
  #biddingform form{width:800px;height:300px;background:#e2ecf5;}
  #biddingform table{position:relative;left:20%;text-align:center;width:450px;height:30px;margin:25px;border-collapse:separate; border-spacing:0px 20px}
  #biddingform table td{border:#a0a0a0 solid 1px;height:30px;background:#fff;border-spacing: 10px;width:50%;}
- #biddingform form input[type="text"]{width:220px;height:30px;}
+ #biddingform form input[type="text"],#biddingform form select{width:220px;height:30px;}
  #biddingform button{width:60px;height:30px;color:#fff;font-size:16px}
 
 /*框架右侧——bidding_a.html  end*/
@@ -17,7 +17,13 @@
     <table id="table"  cellpadding="0" cellspacing="0">
        <tr>
           <td>区域</td>
-          <td><input type="text" id='area_main'/></td>         
+          <td>
+              <select id='area_main'>
+              <option selected value="请选择">请选择</option>
+              {%for i in team_area()%}
+                <option value="{{i}}"/>{{i}}</option>
+              {%end%}
+          </td>         
        </tr>
        <tr>
           <td>各区域消费情况</td>

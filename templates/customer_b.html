@@ -22,7 +22,7 @@
             <td>电话来源</td>
             <td>
                 <select id=c_telfrom>
-                    <option selected value="请选择">请选择</option>
+                    <option selected value=""></option>
                     <option value="进线01">进线01</option>
                     <option value="进线02">进线02</option>
                     <option value="套电01">套电01</option>
@@ -32,7 +32,7 @@
             <td>电话所属区域</td>
             <td>
                <select id='c_tel_area'>
-                    <option selected value="请选择">请选择</option>
+                    <option selected value=""></option>
 		{%for i in team_area()%}
                     <option value="{{i}}">{{i}}</option>
 		{%end%}
@@ -61,11 +61,11 @@
 <td>
 <input type="checkbox" data-id="{{i.id}}" >
 </td>
-<td>  {{i.client_tel}} </td>
 <td>  {{i.client_name}} </td>
-<td>  {{i.is_send}} </td>
+<td>  {{i.client_tel}} </td>
 <td>  {{i.is_valid}} </td>
-<td>  {{i.key_words}} </td>
+<td>  {{i.is_send}} </td>
+<td>  {{i.tl_area}} </td>
 </tr>
 {%end%}
 </tbody>

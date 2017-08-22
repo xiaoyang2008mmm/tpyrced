@@ -20,10 +20,15 @@ class Iframe_Handler(BaseHandler):
 	except:
 	    index = 0
 	    page = 1
+
+
+
 	if index == 0 : 
-	    SHUJU  = TpyrcedClerk.select()
+	    SHUJU  = TpyrcedClerk.select().order_by(TpyrcedClerk.id.desc())
+
 	if index == 1 :
-	    SHUJU  = TpyrcedSaleadd.select()
+	    SHUJU  = TpyrcedSaleadd.select().order_by(TpyrcedSaleadd.id.desc())
+
         fen_ye = fenye.fen_ye_lei(page,SHUJU,10,11,5,'/iframe/?index=%s&page='%(str(index)))       #执行分页对象
 
 

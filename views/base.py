@@ -21,7 +21,9 @@ class BaseHandler(tornado.web.RequestHandler):
 
     def get_teamarea(self):
 
-	return [i.re_area for i in TpyrcedArea.select()]
+	l1 = [i.re_area for i in TpyrcedArea.select()]
+	l2 = sorted(set(l1),key=l1.index) 
+	return l2
 
 
     def get_template_namespace(self):

@@ -11,9 +11,12 @@
        </tr>
        <tr>
           <td class="a">区域</td>
-          <td colspan="3"><input type="checkbox"/>全部<input type="checkbox"/>唐山<input type="checkbox"/>秦皇岛<input type="checkbox"/>葫芦岛<input type="checkbox"/>廊坊
-          <input type="checkbox"/>霸州<input type="checkbox"/>固安<br><input type="checkbox"/>保定<input type="checkbox"/>威海<input type="checkbox"/>烟台
-          <input type="checkbox"/>南京<input type="checkbox"/>上海<input type="checkbox"/>湖州<input type="checkbox"/>无锡</td>                
+          <td colspan="3">
+          <input type="checkbox"/>全部
+          {%for i in team_area()%}
+            <input type="checkbox" value="{{i}}"/>{{i}}
+          {%end%}
+          </td>                
        </tr>
        <tr>
           <td class="a">团队</td>

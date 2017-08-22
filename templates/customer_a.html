@@ -82,10 +82,9 @@
           <td>
             <select id="tl_area">
               <option selected value="请选择">请选择</option>
-              <option value="唐山">唐山</option>
-              <option value="秦皇岛">秦皇岛</option>
-              <option value="葫芦岛">葫芦岛</option>
-              <option value="廊坊">廊坊</option></select>
+              {%for i in team_area()%}
+                <option value="{{i}}"/>{{i}}</option>
+              {%end%}
           </td>
         </tr>
       </table>
