@@ -77,20 +77,20 @@ $("#s_button").click(function(){
   var s_re_area=$("#s_re_area  option:selected").val();
   var s_re_team=$("#s_re_team").val();
   var s_re_group = $('#s_re_group').val();
-  var s_re_peop = $('#c_tel_area').val();
+  var s_re_peop = $('#s_re_peop').val();
 
   var data= {};
   data.s_re_area = s_re_area;
   data.s_re_team = s_re_team;
   data.s_re_group = s_re_group ;
   data.s_re_peop = s_re_peop;
+  console.log(s_re_peop);
   if (s_re_area || s_re_team || s_re_group || s_re_peop){
         $.get("/iframe/", data,
-        function(data) {
+        function(ret) {
             url = window.location.href;
-      url=url.replace(/page=\d+/g,'page=1');
+      	    url=url.replace(/page=\d+/g,'page=1');
 
-      alert(url);
       if (url.indexOf("?") >0){
            location.href = url + '&s_re_area=' + s_re_area + '&s_re_team=' + s_re_team +'&s_re_group=' + s_re_group +'&s_re_peop=' + s_re_peop ;
       }else{

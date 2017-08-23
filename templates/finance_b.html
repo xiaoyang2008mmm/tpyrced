@@ -80,14 +80,8 @@ $("#f_button").click(function(){
   if (f_card_date || f_sub_date || f_cus_name || f_pro_name){
         $.get("/financeleft/", data,
         function(data) {
-            url = window.location.href;
-      url=url.replace(/page=\d+/g,'page=1');
 
-      alert(url);
-      if (url.indexOf("?") >0){
-           location.href = url + '&f_card_date=' + f_card_date + '&f_sub_date=' + f_sub_date +'&f_cus_name=' + f_cus_name +'&f_pro_name=' + f_pro_name ;
-      }else{
-           location.href = url + '?f_card_date=' + f_card_date + '&f_sub_date=' + f_sub_date +'&f_cus_name=' + f_cus_name +'&f_pro_name=' + f_pro_name ;
+           location.href = '/financeleft/?' + '&f_card_date=' + f_card_date + '&f_sub_date=' + f_sub_date +'&f_cus_name=' + f_cus_name +'&f_pro_name=' + f_pro_name ;
     
       }
 

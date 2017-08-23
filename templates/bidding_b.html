@@ -77,16 +77,8 @@ $("#b_button").click(function(){
   if (b_area_main || b_area_cons || b_bid_elec){
         $.get("/biddingleft/", data,
         function(data) {
-            url = window.location.href;
-      url=url.replace(/page=\d+/g,'page=1');
-
-      alert(url);
-      if (url.indexOf("?") >0){
-           location.href = url + '&b_area_main=' + b_area_main + '&b_area_cons=' + b_area_cons +'&b_bid_elec=' + b_bid_elec ;
-      }else{
-           location.href = url + '?b_area_main=' + b_area_main + '&b_area_cons=' + b_area_cons +'&b_bid_elec=' + b_bid_elec ;
+           location.href = '/biddingleft/?' + '&b_area_main=' + b_area_main + '&b_area_cons=' + b_area_cons +'&b_bid_elec=' + b_bid_elec ;
     
-      }
 
         })
   }else{alert("请输入查询条件!!");}
