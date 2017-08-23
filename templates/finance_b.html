@@ -16,14 +16,14 @@
      <table align="center" cellspacing="0" cellpadding="0" id="table">
          <tr>
             <td>排卡日期</td>
-            <td><input type="text"></td>
+            <td><input type="text" id='f_card_date'></td>
             <td>认购日期</td>
-            <td><input type="text"></td>
+            <td><input type="text" id='f_sub_date'></td>
             <td>客户姓名</td>
-            <td><input type="text"></td>
+            <td><input type="text" id='f_cus_name'></td>
             <td>项目名称</td>
-            <td><input type="text"></td>
-            <td style="background:transparent;"><button type="button" value="查询">查询</button></td>
+            <td><input type="text" id='f_pro_name'></td>
+            <td style="background:transparent;"><button type="button" value="查询" id='f_button'>查询</button></td>
          </tr>
       </table>
    </div>
@@ -65,3 +65,35 @@
    #number li a{text-decoration: none;}
 </style>
 
+<script>
+$("#f_button").click(function(){
+  var f_card_date=$("#f_card_date").val();
+  var f_sub_date=$("#f_sub_date").val();
+  var f_cus_name =$('#f_cus_name').val();
+  var f_pro_name =$('#f_pro_name').val();
+
+  var data= {};
+  data.f_card_date = f_card_date;
+  data.f_sub_date = f_sub_date;
+  data.f_cus_name = f_cus_name;
+  data.f_pro_name = f_pro_name;
+  if (f_card_date || f_sub_date || f_cus_name || f_pro_name){
+        $.get("/biddingleft/", data,
+        function(data) {
+            url = window.location.href;
+      url=url.replace(/page=\d+/g,'page=1');
+
+      alert(url);
+      if (url.indexOf("?") >0){
+           location.href = url + '&f_card_date=' + f_card_date + '&f_sub_date=' + f_sub_date +'&f_cus_name=' + f_cus_name +'&f_pro_name=' + f_pro_name ;
+      }else{
+           location.href = url + '?f_card_date=' + f_card_date + '&f_sub_date=' + f_sub_date +'&f_cus_name=' + f_cus_name +'&f_pro_name=' + f_pro_name ;
+    
+      }
+
+        })
+  }else{alert("请输入查询条件!!");}
+
+});
+
+</script>

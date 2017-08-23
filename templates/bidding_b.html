@@ -16,16 +16,16 @@
         <table align="center" cellspacing="0" cellpadding="0" id="table">
           <tr>
             <td>区域</td>
-            <td><select style='width:200px;'>
+            <td><select style='width:200px;' id='b_area_main'>
               <option selected value="请选择">请选择</option>
               {%for i in team_area()%}
                 <option value="{{i}}"/>{{i}}</option>
               {%end%}</td>
             <td>各区域消费情况</td>
-            <td><input type="text"></td>
+            <td><input type="text" id='b_area_cons'></td>
             <td>日期时间</td>
-            <td><input type="date" value=new Date()></td>
-            <td style="background:transparent;"><button type="button" value="查询">查询</button></td>
+            <td><input type="date" value=new Date() id='b_bid_elec'></td>
+            <td style="background:transparent;"><button type="button" value="查询" id='b_button'>查询</button></td>
           </tr>
        </table>
      </div>
@@ -64,3 +64,33 @@
    #number li a{text-decoration: none;}
 </style>
 
+<script>
+$("#b_button").click(function(){
+  var b_area_main=$("#b_area_main  option:selected").val();
+  var b_area_cons=$("#b_area_cons").val();
+  var b_bid_elec =$('#b_bid_elec').val();
+
+  var data= {};
+  data.b_area_main = b_area_main;
+  data.b_area_cons = b_area_cons;
+  data.b_bid_elec = b_bid_elec;
+  if (b_area_main || b_area_cons || b_bid_elec){
+        $.get("/biddingleft/", data,
+        function(data) {
+            url = window.location.href;
+      url=url.replace(/page=\d+/g,'page=1');
+
+      alert(url);
+      if (url.indexOf("?") >0){
+           location.href = url + '&b_area_main=' + b_area_main + '&b_area_cons=' + b_area_cons +'&b_bid_elec=' + b_bid_elec ;
+      }else{
+           location.href = url + '?b_area_main=' + b_area_main + '&b_area_cons=' + b_area_cons +'&b_bid_elec=' + b_bid_elec ;
+    
+      }
+
+        })
+  }else{alert("请输入查询条件!!");}
+
+});
+
+</script>
