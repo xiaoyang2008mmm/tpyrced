@@ -103,11 +103,22 @@ $("#c_button").click(function(){
 
 
 
+	if (cname || ctel || c_telfrom || c_tel_area){
         $.get("/iframe/", data,
         function(data) {
-            alert(data);
+            url = window.location.href;
+	    url=url.replace(/page=\d+/g,'page=1');
+
+	    alert(url);
+	    if (url.indexOf("?") >0){
+	         location.href = url + '&cname=' + cname + '&ctel=' + ctel +'&c_telfrom=' + c_telfrom +'&c_tel_area=' + c_tel_area   ;
+	    }else{
+	         location.href = url + '?cname=' + cname + '&ctel=' + ctel +'&c_telfrom=' + c_telfrom +'&c_tel_area=' + c_tel_area   ;
+		
+	    }
 
         })
+	}else{alert("请输入查询条件!!");}
 
 
 

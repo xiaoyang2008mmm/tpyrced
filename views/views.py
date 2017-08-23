@@ -24,7 +24,31 @@ class Iframe_Handler(BaseHandler):
 
 
 	if index == 0 : 
-	    SHUJU  = TpyrcedClerk.select().order_by(TpyrcedClerk.id.desc())
+	    req = self.request.arguments
+	    print  req
+	    data={}
+	    if req.has_key('cname'):
+		client_name = req['cname'][0]
+		if client_name : data['client_name'] = client_name 
+
+	    if req.has_key('ctel'):
+		client_tel = req['ctel'][0]
+		if client_tel : data['client_tel'] = client_tel 
+
+	    if req.has_key('c_telfrom'):
+		tel_where = req['c_telfrom'][0]
+		if tel_where : data['tel_where'] = tel_where 
+
+	    if req.has_key('c_tel_area'):
+		tl_area = req['c_tel_area'][0]
+		if tl_area : data['tl_area'] = tl_area
+
+	    if data:
+	        SHUJU  = TpyrcedClerk.select().filter(**data).order_by(TpyrcedClerk.id.desc())
+		for i in SHUJU:
+		    print i.client_name
+	    else:
+	        SHUJU  = TpyrcedClerk.select().order_by(TpyrcedClerk.id.desc())
 
 	if index == 1 :
 	    SHUJU  = TpyrcedSaleadd.select().order_by(TpyrcedSaleadd.id.desc())
