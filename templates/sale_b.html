@@ -17,7 +17,7 @@
          <tr>
             <td>区域</td>
             <td>
-              <select style='width:180px;'>
+              <select style='width:180px;' id='s_re_area'>
               <option selected value="请选择">请选择</option>
               {%for i in team_area()%}
                 <option value="{{i}}"/>{{i}}</option>
@@ -25,12 +25,12 @@
               </select>
             </td>
             <td>团队</td>
-            <td><input type="text"></td>
+            <td><input type="text" id='s_re_team'></td>
             <td>组</td>
-            <td><input type="text"></td>
+            <td><input type="text" id='s_re_group'></td>
             <td>个人</td>
-            <td><input type="text"></td>
-            <td style="background:transparent;"><button type="button" value="查询">查询</button></td>
+            <td><input type="text" id='s_re_peop'></td>
+            <td style="background:transparent;"><button type="button" value="查询" id='s_button'>查询</button></td>
          </tr>
       </table>
    </div>
@@ -72,4 +72,35 @@
    #number li{float:left;margin-left:10px;border:1px #000 solid;width:50px;height:25px;line-height: 25px;}
    #number li a{text-decoration: none;}
 </style>
+<script>
+$("#s_button").click(function(){
+  var s_re_area=$("#s_re_area  option:selected").val();
+  var s_re_team=$("#s_re_team").val();
+  var s_re_group = $('#s_re_group').val();
+  var s_re_peop = $('#c_tel_area').val();
 
+  var data= {};
+  data.s_re_area = s_re_area;
+  data.s_re_team = s_re_team;
+  data.s_re_group = s_re_group ;
+  data.s_re_peop = s_re_peop;
+  if (s_re_area || s_re_team || s_re_group || s_re_peop){
+        $.get("/iframe/", data,
+        function(data) {
+            url = window.location.href;
+      url=url.replace(/page=\d+/g,'page=1');
+
+      alert(url);
+      if (url.indexOf("?") >0){
+           location.href = url + '&s_re_area=' + s_re_area + '&s_re_team=' + s_re_team +'&s_re_group=' + s_re_group +'&s_re_peop=' + s_re_peop ;
+      }else{
+           location.href = url + '?s_re_area=' + s_re_area + '&s_re_team=' + s_re_team +'&s_re_group=' + s_re_group +'&s_re_peop=' + s_re_peop   ;
+    
+      }
+
+        })
+  }else{alert("请输入查询条件!!");}
+
+});
+
+</script>

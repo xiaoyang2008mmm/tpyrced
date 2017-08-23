@@ -25,7 +25,6 @@ class Iframe_Handler(BaseHandler):
 
 	if index == 0 : 
 	    req = self.request.arguments
-	    print  req
 	    data={}
 	    if req.has_key('cname'):
 		client_name = req['cname'][0]
@@ -43,16 +42,39 @@ class Iframe_Handler(BaseHandler):
 		tl_area = req['c_tel_area'][0]
 		if tl_area : data['tl_area'] = tl_area
 
-	    if data:
+            if data:
 	        SHUJU  = TpyrcedClerk.select().filter(**data).order_by(TpyrcedClerk.id.desc())
 		for i in SHUJU:
-		    print i.client_name
+		     i.client_name
 	    else:
 	        SHUJU  = TpyrcedClerk.select().order_by(TpyrcedClerk.id.desc())
-
+	
 	if index == 1 :
-	    SHUJU  = TpyrcedSaleadd.select().order_by(TpyrcedSaleadd.id.desc())
+            req = self.request.arguments
+	    data={}           
+            if req.has_key('s_re_area'):
+                re_area = req['s_re_area'][0]
+                if re_area : data['re_area'] = re_area
 
+            if req.has_key('s_re_team'):
+                re_team = req['s_re_team'][0]
+                if re_team : data['re_team'] = re_team
+
+            if req.has_key('s_re_group'):
+                re_group = req['s_re_group'][0]
+                if re_group : data['re_group'] = re_group
+
+            if req.has_key('s_re_peop'):
+                re_peop = req['s_re_peop'][0]
+                if re_peop : data['re_peop'] = re_peop
+
+            if data:
+                SHUJU  = TpyrcedSaleadd.select().filter(**data).order_by(TpyrcedSaleadd.id.desc())
+                for i in SHUJU:
+                     i.re_team
+            else:
+                SHUJU  = TpyrcedSaleadd.select().order_by(TpyrcedSaleadd.id.desc())
+            	    
         fen_ye = fenye.fen_ye_lei(page,SHUJU,10,11,5,'/iframe/?index=%s&page='%(str(index)))       #执行分页对象
 
 

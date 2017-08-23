@@ -66,7 +66,6 @@ class financeleft_handler(BaseHandler):
 
         if index == 0 :
             req = self.request.arguments
-            print  req
             data={}
             if req.has_key('f_card_date'):
                 card_date = req['f_card_date'][0]
@@ -87,7 +86,7 @@ class financeleft_handler(BaseHandler):
             if data:
                 SHUJU  = TpyrcedFinadd.select().filter(**data).order_by(TpyrcedFinadd.id.desc())
                 for i in SHUJU:
-                    print i.card_date
+                     i.card_date
             else:
                 SHUJU  = TpyrcedFinadd.select().order_by(TpyrcedFinadd.id.desc())
 
@@ -119,7 +118,6 @@ class biddingleft_handler(BaseHandler):
 
         if index == 0 :
             req = self.request.arguments
-            print  req
             data={}
             if req.has_key('b_area_main'):
                 area_main = req['b_area_main'][0]
@@ -136,7 +134,7 @@ class biddingleft_handler(BaseHandler):
             if data:
                 SHUJU  = TpyrcedBidadd.select().filter(**data).order_by(TpyrcedBidadd.id.desc())
                 for i in SHUJU:
-                    print i.area_main
+                     i.area_main
             else:
                 SHUJU  = TpyrcedBidadd.select().order_by(TpyrcedBidadd.id.desc())
                    

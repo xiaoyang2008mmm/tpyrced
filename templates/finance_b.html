@@ -78,7 +78,7 @@ $("#f_button").click(function(){
   data.f_cus_name = f_cus_name;
   data.f_pro_name = f_pro_name;
   if (f_card_date || f_sub_date || f_cus_name || f_pro_name){
-        $.get("/biddingleft/", data,
+        $.get("/financeleft/", data,
         function(data) {
             url = window.location.href;
       url=url.replace(/page=\d+/g,'page=1');
