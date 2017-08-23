@@ -54,44 +54,31 @@ class saleleft_handler(BaseHandler):
 
 class financeleft_handler(BaseHandler):
 
-    def get(self,*args,**kwargs):
-        try:
-            index = int(self.request.arguments['index'][0])
-            page = int(self.request.arguments['page'][0])
-        except:
-            index = 0
-            page = 1
+    def get(self,page):
 
+        req = self.request.arguments
+        data={}
+        if req.has_key('f_card_date'):
+            card_date = req['f_card_date'][0]
+            if card_date : data['card_date'] = card_date
 
+        if req.has_key('f_sub_date'):
+            sub_date = req['f_sub_date'][0]
+            if sub_date : data['sub_date'] = sub_date
 
-        if index == 0 :
-            req = self.request.arguments
-            data={}
-            if req.has_key('f_card_date'):
-                card_date = req['f_card_date'][0]
-                if card_date : data['card_date'] = card_date
+        if req.has_key('f_cus_name'):
+            cus_name = req['f_cus_name'][0]
+            if cus_name : data['cus_name'] = cus_name
 
-            if req.has_key('f_sub_date'):
-                sub_date = req['f_sub_date'][0]
-                if sub_date : data['sub_date'] = sub_date
+        if req.has_key('f_pro_name'):
+            pro_name = req['f_pro_name'][0]
+            if pro_name : data['pro_name'] = pro_name
 
-            if req.has_key('f_cus_name'):
-                cus_name = req['f_cus_name'][0]
-                if cus_name : data['cus_name'] = cus_name
+        if data:
+            SHUJU  = TpyrcedFinadd.select().filter(**data).order_by(TpyrcedFinadd.id.desc())
+        else:
+            SHUJU  = TpyrcedFinadd.select().order_by(TpyrcedFinadd.id.desc())
 
-            if req.has_key('f_pro_name'):
-                pro_name = req['f_pro_name'][0]
-                if pro_name : data['pro_name'] = pro_name
-
-            if data:
-                SHUJU  = TpyrcedFinadd.select().filter(**data).order_by(TpyrcedFinadd.id.desc())
-                for i in SHUJU:
-                     i.card_date
-            else:
-                SHUJU  = TpyrcedFinadd.select().order_by(TpyrcedFinadd.id.desc())
-
-        if index == 1 :
-            SHUJU  = TpyrcedSaleadd.select().order_by(TpyrcedSaleadd.id.desc())
 
         fen_ye = fenye.fen_ye_lei(page,SHUJU,10,11,5,'/financeleft/')       #执行分页对象
 
@@ -106,40 +93,26 @@ class financeleft_handler(BaseHandler):
 
 class biddingleft_handler(BaseHandler):
 
-    def get(self,*args,**kwargs):
-        try:
-            index = int(self.request.arguments['index'][0])
-            page = int(self.request.arguments['page'][0])
-        except:
-            index = 0
-            page = 1
+    def get(self,page):
+        req = self.request.arguments
+        data={}
+        if req.has_key('b_area_main'):
+            area_main = req['b_area_main'][0]
+            if area_main : data['area_main'] = area_main
 
+        if req.has_key('b_area_cons'):
+            area_cons = req['b_area_cons'][0]
+            if area_cons : data['area_cons'] = area_cons
 
+        if req.has_key('b_bid_elec'):
+            bid_elec = req['b_bid_elec'][0]
+            if bid_elec : data['bid_elec'] = b_bid_elec
 
-        if index == 0 :
-            req = self.request.arguments
-            data={}
-            if req.has_key('b_area_main'):
-                area_main = req['b_area_main'][0]
-                if area_main : data['area_main'] = area_main
-
-            if req.has_key('b_area_cons'):
-                area_cons = req['b_area_cons'][0]
-                if area_cons : data['area_cons'] = area_cons
-
-            if req.has_key('b_bid_elec'):
-                bid_elec = req['b_bid_elec'][0]
-                if bid_elec : data['bid_elec'] = b_bid_elec
-
-            if data:
-                SHUJU  = TpyrcedBidadd.select().filter(**data).order_by(TpyrcedBidadd.id.desc())
-                for i in SHUJU:
-                     i.area_main
-            else:
-                SHUJU  = TpyrcedBidadd.select().order_by(TpyrcedBidadd.id.desc())
+        if data:
+            SHUJU  = TpyrcedBidadd.select().filter(**data).order_by(TpyrcedBidadd.id.desc())
+        else:
+            SHUJU  = TpyrcedBidadd.select().order_by(TpyrcedBidadd.id.desc())
                    
-        if index == 1 :
-            SHUJU  = TpyrcedSaleadd.select().order_by(TpyrcedSaleadd.id.desc())
                     
         fen_ye = fenye.fen_ye_lei(page,SHUJU,10,11,5,'/biddingleft/')       #执行分页对象
 
