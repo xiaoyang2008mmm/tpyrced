@@ -33,7 +33,10 @@
 <table id="tab_bid_form" align="center">
 <thead>
 <tr>
-   <td style="background:#00144c;"></td>
+   <td style="background:#00144c;">
+      <span onclick='bid_all()' style='padding:5px 10px;cursor:pointer;'>全选</span>
+      <span onclick='bid_noall()' style='padding:5px 10px;cursor:pointer;'>全不选</span>
+   </td>
    <td style="background:#00144c;">区域</td>
    <td style="background:#00144c;">各区域消费情况</td>
    <td style="background:#00144c;">日期时间</td>
@@ -41,7 +44,7 @@
 </thead>
 <tbody style="background:#00144c;">
 {%for i in shuju%}
-<tr class="cus_tab" id="get_bid">
+<tr class="cus_tab" id="get_b_bid">
 <td>
 <input type="checkbox" data-id="{{i.id}}" >
 </td>

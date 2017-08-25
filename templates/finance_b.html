@@ -31,7 +31,10 @@
 <table id="tab_ff_form" align="center">
 <thead>
 <tr>
-   <td style="background:#00144c;"></td>
+   <td style="background:#00144c;">
+      <span onclick='fin_all()' style='padding:5px 10px;cursor:pointer;'>全选</span>
+      <span onclick='fin_noall()' style='padding:5px 10px;cursor:pointer;'>全不选</span>
+   </td>
    <td style="background:#00144c;">排卡日期</td>
    <td style="background:#00144c;">认购日期</td>
    <td style="background:#00144c;">客户姓名</td>
@@ -40,7 +43,7 @@
 </thead>
 <tbody style="background:#00144c;">
 {%for i in shuju%}
-<tr class="cus_tab" id="get_f_id">
+<tr class="cus_tab" id="get_ff_id">
 <td>
 <input type="checkbox" data-id="{{i.id}}" >
 </td>

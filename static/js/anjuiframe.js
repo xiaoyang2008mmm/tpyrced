@@ -245,6 +245,13 @@ $('#tab_form').tableExport({ type: 'excel', separator: ';', escape: 'false' });
 //
 //
 
+function cus_all(){
+    $("#get_c_id input[type='checkbox']").attr('checked', true)
+}
+function cus_noall(){
+    $("#get_c_id input[type='checkbox']").attr('checked', false)
+}
+
 function  get_id(){
 var $ids = [];   
     var $chkBoxes = $('#tab_form').find('input:checked');   
@@ -282,6 +289,13 @@ function delete_data() {
 
 ////财务数据删除
 //
+
+function fin_all(){
+    $("#get_ff_id input[type='checkbox']").attr('checked', true)
+}
+function fin_noall(){
+    $("#get_ff_id input[type='checkbox']").attr('checked', false)
+}
 function  get_f_id(){
 var $ids = [];
     var $chkBoxes = $('#tab_ff_form').find('input:checked');
@@ -319,6 +333,13 @@ function d_finance_data() {
 }
 ////竞价数据删除
 //
+
+function bid_all(){
+    $("#get_b_bid input[type='checkbox']").attr('checked', true)
+}
+function bid_noall(){
+    $("#get_b_bid input[type='checkbox']").attr('checked', false)
+}
 function  get_bid(){
 var $ids = [];
     var $chkBoxes = $('#tab_bid_form').find('input:checked');
@@ -359,6 +380,13 @@ function delbid_data() {
 
 ////销售数据删除
 //
+
+function sale_all(){
+    $("#get_s_id input[type='checkbox']").attr('checked', true)
+}
+function sale_noall(){
+    $("#get_s_id input[type='checkbox']").attr('checked', false)
+}
 function  get_s_bid(){
 var $ids = [];
     var $chkBoxes = $('#tab_sl_form').find('input:checked');
@@ -387,7 +415,7 @@ function delsale_data() {
             function(data) {
                 alert(data);
             });
-            location.href = '/iframe/?index=1';
+            location.href = '/iframe/?index=1&page=1';
         } else {
             return false;
         }

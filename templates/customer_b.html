@@ -47,7 +47,10 @@
 <table id="tab_form" align="center">
 <thead>
 <tr>
-   <td style="background:#00144c;"></td>
+   <td style="background:#00144c;">
+   <span onclick='cus_all()' style='padding:5px 10px;cursor:pointer;'>全选</span>
+   <span onclick='cus_noall()' style='padding:5px 10px;cursor:pointer;'>全不选</span>
+   </td>
    <td style="background:#00144c;">客户姓名</td>
    <td style="background:#00144c;">客户电话</td>
    <td style="background:#00144c;">是否有效</td>
@@ -57,7 +60,7 @@
 </thead>
 <tbody style="background:#00144c;">
 {%for i in shuju%}
-<tr class="cus_tab" id="get_id">
+<tr class="cus_tab" id="get_c_id">
 <td>
 <input type="checkbox" data-id="{{i.id}}" >
 </td>
@@ -82,10 +85,6 @@
    #number li{float:left;margin-left:10px;border:1px #000 solid;width:50px;height:25px;line-height: 25px;}
    #number li a{text-decoration: none;}
 </style>
-
-
-
-
 
 <script>
 
@@ -130,10 +129,6 @@ $("#c_button").click(function(){
         })
 	}else{alert("请输入查询条件!!");}
 
-
-
-
 });
-
 
 </script>

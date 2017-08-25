@@ -39,7 +39,10 @@
 <table id="tab_sl_form" align="center">
 <thead>
 <tr>
-   <td style="background:#00144c;"></td>
+   <td style="background:#00144c;">
+      <span onclick='sale_all()' style='padding:5px 10px;cursor:pointer;'>全选</span>
+      <span onclick='sale_noall()' style='padding:5px 10px;cursor:pointer;'>全不选</span>
+   </td>
    <td style="background:#00144c;">区域</td>
    <td style="background:#00144c;">团队</td>
    <td style="background:#00144c;">组</td>
@@ -48,7 +51,7 @@
 </thead>
 <tbody style="background:#00144c;">
 {%for i in shuju%}
-<tr class="cus_tab" id="get_sale_id">
+<tr class="cus_tab" id="get_s_id">
 <td>
 <input type="checkbox" data-id="{{i.id}}" >
 </td>
