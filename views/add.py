@@ -102,10 +102,6 @@ class sale_add_handler(BaseHandler):
         t =TpyrcedArea.insert(save_time= save_time ,re_area = re_area,re_team = re_team )
         t.execute()
         self.write("数据写入成功!!")
-class sale_modify_handler(BaseHandler):
-
-    def get(self, *args, **kwargs):
-        self.render("sale_alter.html")
 
 class caiwu_modify_handler(BaseHandler):
 
@@ -146,3 +142,12 @@ class SaleAdd_handler(BaseHandler):
     def post(self, *args, **kwargs):
 	request_dict = self.request.arguments
       
+class ApiGetSaleData_handler(BaseHandler):
+
+    def post(self, *args, **kwargs):
+        request_dict = self.request.arguments
+        db_key  = request_dict['db_key'][0] 
+        db_id  = int(request_dict['db_id'][0])
+	st2 = TpyrcedSaleadd.get(TpyrcedSaleadd.id == db_id )
+	ss=(st2.__dict__)['_data']
+	self.write(ss[db_key])

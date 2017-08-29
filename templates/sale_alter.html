@@ -58,4 +58,35 @@
         })
       }
  })
+ 
+
+$('#sale_select option').click(function(){
+   var ind=$('option:selected', '#sale_select').index();
+   $('#sale_input').attr('placeholder',function(){
+     var de_val=$('#sale_select option:checked').val();
+     return de_val;
+   });
+ })
+
+
+
+
+$('#sale_select').change(function(){
+      var db_id = getUrlParam('s_id');
+      var db_key = $("#sale_select option:selected").attr("value");
+
+      if (!db_key) {
+            alert("请填写要修改的数据");
+      } else {
+          $.post("/api/get/sale/data/", {
+            db_key: db_key,
+            db_id: db_id,
+          },
+          function(data) {
+	   $('#sale_input').val(data);
+          console.log(data);
+        })
+      }
+
+ })
 </script>

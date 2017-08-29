@@ -59,6 +59,8 @@ HANDLERS =[(r"/" ,				Index_Handler),
        (r"/sale/modify/",		sale_modify_handler),
        (r"/api/sale/add/",       SaleAdd_handler ),
        (r"/api/sale/delete/",        saledelete_handler ),
+       (r"/api/get/sale/data/",        ApiGetSaleData_handler ),
+	
 	#######系统设置路由
        (r"/systemleft/"  ,	systemleft_handler),
 
