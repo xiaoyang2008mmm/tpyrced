@@ -151,3 +151,56 @@ class ApiGetSaleData_handler(BaseHandler):
 	st2 = TpyrcedSaleadd.get(TpyrcedSaleadd.id == db_id )
 	ss=(st2.__dict__)['_data']
 	self.write(ss[db_key])
+
+class ApiGetCustomerData_handler(BaseHandler):
+
+    def post(self, *args, **kwargs):
+        request_dict = self.request.arguments
+        db_key  = request_dict['db_key'][0]
+        db_id  = int(request_dict['db_id'][0])
+        st2 = TpyrcedClerk.get(TpyrcedClerk.id == db_id )
+        ss=(st2.__dict__)['_data']
+        self.write(ss[db_key])
+
+class ApiGetCaiwuData_handler(BaseHandler):
+
+    def post(self, *args, **kwargs):
+        request_dict = self.request.arguments
+        db_key  = request_dict['db_key'][0]
+        db_id  = int(request_dict['db_id'][0])
+        st2 = TpyrcedFinadd.get(TpyrcedFinadd.id == db_id )
+        ss=(st2.__dict__)['_data']
+        self.write(ss[db_key])
+
+class ApiGetBiddingData_handler(BaseHandler):
+
+    def post(self, *args, **kwargs):
+        request_dict = self.request.arguments
+        db_key  = request_dict['db_key'][0]
+        db_id  = int(request_dict['db_id'][0])
+        st2 = TpyrcedBidadd.get(TpyrcedBidadd.id == db_id )
+        ss=(st2.__dict__)['_data']
+        self.write(ss[db_key])
+
+class Salequery_handler(BaseHandler):
+
+    def post(self, *args, **kwargs):
+        request_dict = self.request.body
+	print request_dict
+	#前端传过来的数据的示例
+	#{"sale_date":"2017-08-04","sale_peop":"去外地无群","sale_area":["唐山","滁州","秦皇岛"],"sale_team":["团2","团4"],"sale_group":["组2","组4"]}
+        sale_date  = request_dict['sale_date'][0]
+        sale_peop  = request_dict['sale_peop'][0]
+        sale_area = request_dict['sale_area'][0]
+        sale_team = request_dict['sale_team'][0]
+        sale_group = request_dict['sale_group'][0]
+
+        try:
+            q =TpyrcedSaleadd.select(sale_date = sale_date,sale_peop = sale_peop,sale_area = sale_area,sale_team = sale_team,sale_group= sale_group)
+            q.execute()
+            self.write("数据查成功!!")
+        except:
+
+            self.write("请联系管理员!!!")
+
+ 

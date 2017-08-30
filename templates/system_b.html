@@ -2,41 +2,52 @@
    <img src='/static/img/system_power.png'>
 </div>
 <div id='system_power'>
-   <select multiple="multiple" size="10" id='add_role_user01'>
-	{%for u in alluser%}
-      <option>{{u.user}}</option>
-	{%end%}
-   </select>
-   <select multiple="multiple" size="10" id='add_role_user'>
-   </select>
-   <select class='system_power_se02' id="select_role">
-	{%for r in allrole%}
-      <option>{{r.role}}</option>
-	{%end%}
-   </select>
-   <select multiple="multiple" size="10" id="url_list01">
-   </select>
-   <select multiple="multiple" size="10" id="url_list">
-	{%for l in allurl%}
-      <option>{{l.url}}</option>
-	{%end%}
-   </select>
-   <button id='username_keep' style='background:url(/static/img/closebtn.png);width:100px;height:40px;color:#fff;font-size:16px;position:relative;left:-100px;top:20px;'>用户保存</button>
-   <button id='URL_keep' style='background:url(/static/img/closebtn.png);width:100px;height:40px;color:#fff;font-size:16px;position:relative;left:0;top:20px;'>URL保存</button>
+  <!-- 用户 -->
+    <div id='user_name'>
+      <p style='font-size:22px;font-weight:bold;color:#3888d1;margin-left:-40px;'>用户选择</p>
+      <select multiple="multiple" size="10" id='add_role_user01'>
+	     {%for u in alluser%}
+          <option>{{u.user}}</option>
+	     {%end%}
+      </select>
+      <select multiple="multiple" size="10" id='add_role_user'></select>
+      <button id='username_keep' style='background:url(/static/img/savebtn.png);width:100px;height:40px;color:#fff;font-size:16px;position:relative;right:45%;top:20px;'>用户保存</button>
+    </div>
+   <!-- 角色 -->
+    <div  id='role_name'>
+      <p style='font-size:22px;font-weight:bold;color:#3888d1;margin-bottom:100px;'>角色选择</p>
+      <select class='system_power_se02' id="select_role">
+	      {%for r in allrole%}
+          <option>{{r.role}}</option>
+	      {%end%}
+      </select>
+    </div>
+
+   <!-- URL -->
+    <div id='url_name'>
+        <p style='font-size:22px;font-weight:bold;color:#3888d1;margin-left:-40px;'>URL选择</p>
+        <select multiple="multiple" size="10" id="url_list01"></select>
+        <select multiple="multiple" size="10" id="url_list">
+        	{%for l in allurl%}
+           <option>{{l.url}}</option>
+        	{%end%}
+        </select>
+       <button id='URL_keep' style='background:url(/static/img/savebtn.png);width:100px;height:40px;color:#fff;font-size:16px;position:relative;right:45%;top:20px;'>URL保存</button>
+    </div>
 </div>
 <style>
    #system_power{width:80%;height:500px;background:#e2ecf5;text-align:center;position:relative;left:10%;}
    #system_power select{margin:30px 10px;}
    #system_power select option{font-size:16px;margin:10px;}
-   #system_power .system_power_se02{width:150px;height:30px;position:relative;top:-120px;}
+   #system_power #user_name,#system_power #url_name{width:38%;height:350px;}
+   #system_power #user_name{float:left;}
+   #system_power #role_name{float:left;width:20%;height:350px;}
+   #system_power #role_name select{width:200px;height:30px;}
+   #system_power #url_name{float:right;}
+   #add_role_user,#url_list01{width:136px;height:203px;}
 </style>
 
-
-
-
 <script>
-
-
 $("#url_list option").dblclick(function() {
     var role_name = $("#select_role option:selected").val();
     var msg = '确定要新增URL到角色组' + role_name + '吗?'
@@ -122,15 +133,10 @@ $("#select_role").change(function() {
             } else {
                 alert('没有url');
             }
-
-
-
         })
     }
 
 });
-
-
 
 $('#username_keep').click(function() {
 

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*- 
 import tornado.web
 from models.db  import *
+import time
 
 
 class BaseHandler(tornado.web.RequestHandler):
@@ -68,3 +69,9 @@ class BaseHandler(tornado.web.RequestHandler):
 	    filter_url[r.role] = msg_role
 	return filter_url[role]
 
+
+    def timestamp_datetime(self,value):
+        format = '%Y-%m-%d %H:%M:%S'
+        value = time.localtime(value / 1000)
+        dt = time.strftime(format, value)
+        return dt

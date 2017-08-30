@@ -51,6 +51,7 @@
    <span onclick='cus_all()' style='padding:5px 10px;cursor:pointer;'>全选</span>
    <span onclick='cus_noall()' style='padding:5px 10px;cursor:pointer;'>全不选</span>
    </td>
+   <td style="background:#00144c;">录入时间</td>
    <td style="background:#00144c;">客户姓名</td>
    <td style="background:#00144c;">客户电话</td>
    <td style="background:#00144c;">是否有效</td>
@@ -64,6 +65,7 @@
 <td>
 <input type="checkbox" data-id="{{i.id}}" >
 </td>
+<td>  {{ timestamp_datetime(i.save_time)}}    </td>
 <td>  {{i.client_name}} </td>
 <td>  {{i.client_tel}} </td>
 <td>  {{i.is_valid}} </td>

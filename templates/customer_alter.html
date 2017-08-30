@@ -29,8 +29,8 @@
           <td style="width:150px;">
             <select id="getselect02">
                <option>请选择</option>
-               <option value="client_tel">客户姓名</option>
-               <option value="client_name">客户电话</option>
+               <option value="client_name">客户姓名</option>
+               <option value="client_tel">客户电话</option>
                <option value="is_send">发给销售人员</option>
                <option value="is_valid">是否有效</option>
                <option value="key_words">关键词</option>
@@ -58,16 +58,16 @@
              <span style="display:none;"> <input type="text"/></span>
              <span style="display:none;" data-support='cus_select'> <select>
                  <option>是否有效</option>
-                 <option>是否有效1111</option>
-                 <option>是否有效2222</option>
-                 <option>是否有效3333</option>
+                 <option>有效</option>
+                 <option>无效</option>
              </select></span>
              <span style="display:none;"> <input type="text"/></span>
              <span style="display:none;" data-support='cus_select'> <select>
                  <option>电话来源</option>
-                 <option>电话来源1111</option>
-                 <option>电话来2源22222</option>
-                 <option>电话来源33333</option>
+                 <option>进线01</option>
+                 <option>进线02</option>
+                 <option>套电01</option>
+                 <option>套电02</option>
              </select></span>
              <span style="display:none;" data-support='cus_select'> <select>
                  <option>请选择所属区域</option>
@@ -128,4 +128,23 @@
     	})
     	}
     });
+
+    $('#getselect02').change(function(){
+      var db_id = getUrlParam('client_id');
+      var db_key = $("#getselect02 option:selected").attr("value");
+
+      if (!db_key) {
+            alert("请填写要修改的数据");
+      } else {
+          $.post("/api/get/customer/data/", {
+            db_key: db_key,
+            db_id: db_id,
+          },
+          function(data) {
+     $('#getselect input').val(data);
+          console.log(data);
+        })
+      }
+
+ })
 </script>

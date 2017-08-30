@@ -1,29 +1,34 @@
-
-
+<div style='width:100%;height:100px;text-align:center;margin-top:30px;'>
+   <img src='/static/img/system_user.png'>
+</div>
 <div id="form">
-
-system系统
-
-姓名<input type="text" id="add_user">
-密码<input type="password" id="add_passwd">
-角色<select id="sel_role">  
-{%for r in allrole%}
-	<option>{{r.role}}</option>
-{%end%}
-</select>
-
-<input type="button" id="add_btn"  value="提交" />
-
-</br>
-</br>
-</br>
-角色<input type="text" id="add_role">    <input type="button" id="role_btn"  value="提交" />
-
-
-
-
-
-
+<!-- 账号管理左侧 -->
+<div id='form_user'>
+    <p style='font-size:22px;font-weight:bold;color:#3888d1;'>账号添加</p>
+    <p><font>角色：</font><select id="sel_role"> 
+    {%for r in allrole%}
+       <option>{{r.role}}</option>
+    {%end%}
+    </select></p>
+    <p><font>姓名：</font><input type="text" id="add_user"></p>
+    <p><font>密码：</font><input type="password" id="add_passwd"></p>
+    <p>
+        <input type="button" id="add_btn" style="background:url(/static/img/closebtn.png);width:60px;color:#fff;height:30px;font-size:16px;line-height:16px;" value="提交" />
+    </p>
+</div>
+<!-- 账号管理右侧 -->
+<div id='form_sub'>
+    <p style='font-size:22px;font-weight:bold;color:#3888d1;'>角色添加</p>
+    <font>角色：</font><input type="text" id="add_role">  <input type="button" id="role_btn" style="background:url(/static/img/closebtn.png);width:60px;color:#fff;height:30px;font-size:16px;line-height:16px;" value="提交" />
+</div>
+</div>
+<style>
+   #form{width:80%;height:500px;text-align:center;position:relative;left:10%;margin-top:100px;}
+   #form font{font-size:18px;}
+   #form input,#form select{width:200px;height:30px;}
+   #form #form_user{width:45%;height:300px;float:left;background:#e2ecf5;margin-right:10px;}
+   #form #form_sub{width:45%;height:300px;float:right;background:#e2ecf5;}
+</style>
 <script>
 $('#add_btn').click(function() {
     var user = $("#add_user").val();

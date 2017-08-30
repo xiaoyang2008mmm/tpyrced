@@ -82,7 +82,7 @@ class Iframe_Handler(BaseHandler):
             zfchdqy = str(fen_ye.zong_ye_ma)                    #将总页码转换成字符串
             self.redirect("/iframe/?index=%s"%str(index) + zfchdqy)                  #跳转到总页码
         else:
-            self.render("iframe.html",dqy=fen_ye.dang_qian_ye,shuju=fen_ye.shu_ju_fan_wei(),yem=fen_ye.xian_shi_ye_ma(),index=index)
+            self.render("iframe.html",dqy=fen_ye.dang_qian_ye,shuju=fen_ye.shu_ju_fan_wei(),yem=fen_ye.xian_shi_ye_ma(),index=index, timestamp_datetime = self.timestamp_datetime)
 
 
 

@@ -18,6 +18,7 @@ HANDLERS =[(r"/" ,				Index_Handler),
 	   (r"/wenyuan/", 		wenyuan_handler ),
 	   (r"/wenyuan/modify/",	wenyuan_modify_handler ),
 	   (r"/customer_alter/(.*)", 	customer_alter_handler ),
+           (r"/api/get/customer/data/",        ApiGetCustomerData_handler ),
 	######财务URL路由
 	   (r"/caiwu/", 			caiwu_handler ),
 	   (r"/caiwu/add/", 	caiwu_add_handler ),
@@ -26,6 +27,7 @@ HANDLERS =[(r"/" ,				Index_Handler),
 	   (r"/api/caiwuqianyue/add/", 	CaiWuAdd_handler ),
 	   (r"/api/caiwuticheng/add/", 	CaiWuAdd_handler ),
            (r"/financeleft/(?P<page>\d*)",		financeleft_handler),
+           (r"/api/get/caiwu/data/",        ApiGetCaiwuData_handler ),
 	######竞价URL路由
 
 	   (r"/api/biddingleft/delete/", 	biddingleftdelete_handler ),
@@ -34,6 +36,7 @@ HANDLERS =[(r"/" ,				Index_Handler),
            (r"/biddingleft/(?P<page>\d*)",		biddingleft_handler),
            (r"/biddingleft/add/",		biddingleft_add_handler),
            (r"/biddingleft/modify/",	biddingleft_modify_handler),
+           (r"/api/get/bidding/data/",        ApiGetBiddingData_handler ),
 
 
 	######临时测试路由
@@ -60,6 +63,7 @@ HANDLERS =[(r"/" ,				Index_Handler),
        (r"/api/sale/add/",       SaleAdd_handler ),
        (r"/api/sale/delete/",        saledelete_handler ),
        (r"/api/get/sale/data/",        ApiGetSaleData_handler ),
+       (r"/api/sale/query/",        Salequery_handler ),
 	
 	#######系统设置路由
        (r"/systemleft/"  ,	systemleft_handler),

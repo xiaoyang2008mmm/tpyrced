@@ -5,33 +5,39 @@
     <table id="table"  cellpadding="0" cellspacing="0">
        <tr>
           <td class="a">日期</td>
-          <td><input type="date" style="width:310px;height:30px;" value=new Date()/></td>         
+          <td><input type="date" style="width:310px;height:30px;" value=new Date() id='sale_date'/></td>         
           <td class="a">个人</td>
-          <td><input type="text" style="width:310px;height:30px;"/></td>         
+          <td><input type="text" style="width:310px;height:30px;"  id='sale_peop'/></td>         
        </tr>
        <tr>
           <td class="a">区域</td>
-          <td colspan="3">
-          <input type="checkbox"/>全部
-          {%for i in team_area()%}
-            <input type="checkbox" value="{{i}}"/>{{i}}
-          {%end%}
+          <td colspan="3" id='sale_area'>
+              <input type="checkbox"/>全部
+              {%for i in team_area()%}
+                <input type="checkbox" value="{{i}}"/>{{i}}
+              {%end%}
           </td>                
        </tr>
        <tr>
           <td class="a">团队</td>
-          <td colspan="3"><input type="checkbox"/>全部<input type="checkbox"/>团1<input type="checkbox"/>团2<input type="checkbox"/>团3<input type="checkbox"/>团4
-          <input type="checkbox"/>团5<input type="checkbox"/>团6<input type="checkbox"/>团7<input type="checkbox"/>团8<input type="checkbox"/>团9
-          <input type="checkbox"/>团10</td>                 
+          <td colspan="3" id='sale_team'>
+              <input type="checkbox" value='全部'/>全部<input type="checkbox" value='团1'/>团1
+              <input type="checkbox" value='团2'/>团2<input type="checkbox" value='团3'/>团3<input type="checkbox" value='团4'/>团4
+              <input type="checkbox" value='团5'/>团5<input type="checkbox" value='团6'/>团6<input type="checkbox" value='团7'/>团7
+              <input type="checkbox" value='团8'/>团8<input type="checkbox" value='团9'/>团9<input type="checkbox" value='团10'/>团10
+          </td>                 
        </tr>
        <tr>
           <td class="a">组</td>
-          <td colspan="3"><input type="checkbox"/>全部<input type="checkbox"/>组1<input type="checkbox"/>组2<input type="checkbox"/>组3<input type="checkbox"/>组4
-          <input type="checkbox"/>组5<input type="checkbox"/>组6<input type="checkbox"/>组7<input type="checkbox"/>组8<input type="checkbox"/>组9
-          <input type="checkbox"/>组10</td>                
+          <td colspan="3" id='sale_group'>
+              <input type="checkbox" value='全部'/>全部<input type="checkbox" value='组1'/>组1<input type="checkbox" value='组2'/>组2
+              <input type="checkbox" value='组3'/>组3<input type="checkbox" value='组4'/>组4<input type="checkbox" value='组5'/>组5
+              <input type="checkbox" value='组6'/>组6<input type="checkbox" value='组7'/>组7<input type="checkbox" value='组8'/>组8
+              <input type="checkbox" value='组9'/>组9<input type="checkbox" value='组10'/>组10
+          </td>                
        </tr>
     </table>
-    <button type="button" value="查询" style="background:url(/static/img/closebtn.png);">查询</button>
+    <button type="button" value="查询" style="background:url(/static/img/closebtn.png);" id='sale_query'>查询</button>
     </form>
     <hr />
     <table>
@@ -40,13 +46,50 @@
         <td>消费</td>
         <td>量</td>
         <td>套电成本</td>
-        <td>销售认识</td>
+        <td>销售人数</td>
         <td>到访</td>
         <td>认购</td>
         <td>到访率<br>(到访/量)</td>
         <td>认购率<br>(认购/量)</td>
-        <td>认购率<br>(认购/认购)</td>
+<!--         <td>认购率<br>(认购/认购)</td> -->
       </tr>
     </table>
 </div>
 
+<!-- 销售情况查询 -->
+
+<script>
+$("#sale_query").click(function(){
+  var sale_date = $('#sale_date').val();
+  var sale_peop = $('#sale_peop').val();
+  var sale_area =[]; 
+    $('#sale_area input:checked').each(function(){    
+     sale_area.push($(this).val());    
+    }); 
+  var sale_team =[]; 
+    $('#sale_team input:checked').each(function(){    
+     sale_team.push($(this).val());    
+    }); 
+  var sale_group =[]; 
+    $('#sale_group input:checked').each(function(){    
+     sale_group.push($(this).val());    
+    }); 
+
+  console.log(sale_date,sale_peop,sale_area,sale_team,sale_group);
+
+  var sdata= {};
+  sdata.sale_date = sale_date;
+  sdata.sale_peop = sale_peop;
+  sdata.sale_area = sale_area;
+  sdata.sale_team = sale_team;
+  sdata.sale_group = sale_group ;
+
+
+  $.post("/api/sale/query/", JSON.stringify(sdata),
+    function(data) {
+        alert(data);
+    }
+  )
+  
+})
+</script>

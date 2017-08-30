@@ -60,17 +60,6 @@
  })
  
 
-$('#sale_select option').click(function(){
-   var ind=$('option:selected', '#sale_select').index();
-   $('#sale_input').attr('placeholder',function(){
-     var de_val=$('#sale_select option:checked').val();
-     return de_val;
-   });
- })
-
-
-
-
 $('#sale_select').change(function(){
       var db_id = getUrlParam('s_id');
       var db_key = $("#sale_select option:selected").attr("value");

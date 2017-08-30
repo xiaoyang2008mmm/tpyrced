@@ -58,4 +58,23 @@
       }
  })
 
+$('#bid_select').change(function(){
+      var db_id = getUrlParam('b_id');
+      var db_key = $("#bid_select option:selected").attr("value");
+
+      if (!db_key) {
+            alert("请填写要修改的数据");
+      } else {
+          $.post("/api/get/bidding/data/", {
+            db_key: db_key,
+            db_id: db_id,
+          },
+          function(data) {
+     $('#bid_input').val(data);
+          console.log(data);
+        })
+      }
+
+ })
+
 </script>

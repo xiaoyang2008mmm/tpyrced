@@ -56,4 +56,23 @@
           })
       }
  })
+
+ $('#fin_select').change(function(){
+      var db_id = getUrlParam('f_id');
+      var db_key = $("#fin_select option:selected").attr("value");
+
+      if (!db_key) {
+            alert("请填写要修改的数据");
+      } else {
+          $.post("/api/get/caiwu/data/", {
+            db_key: db_key,
+            db_id: db_id,
+          },
+          function(data) {
+     $('#fin_input').val(data);
+          console.log(data);
+        })
+      }
+
+ })
 </script>
