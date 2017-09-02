@@ -186,6 +186,7 @@ class Salequery_handler(BaseHandler):
 
     def post(self, *args, **kwargs):
         request_dict = eval(self.request.body)
+        '''查询全部'''
 	if not (request_dict['sale_peop'] or request_dict['sale_area'] or  request_dict['sale_team'] or request_dict['sale_group']):
             ret = []
             all_area = self.get_teamarea()
@@ -200,8 +201,58 @@ class Salequery_handler(BaseHandler):
                     for group in group_list:
                         s = [area, team, group]
 			ret.append(s)
-                        #print ret
+	
+            ###消费
+            area_group = {}    
+            for area in all_area:
+                area_telnum = TpyrcedClerk.select(TpyrcedClerk.client_tel).where(TpyrcedClerk.tl_area == area).count()
+                area_count = TpyrcedBidadd.select(TpyrcedBidadd.area_cons).where(TpyrcedBidadd.area_main == area)
+		s = [i.area_cons for i in area_count] 
+	  	try:
+		    d = ((s[0]).encode("utf8"))
+                    area_xiaofei = float(d)
+                    area_avrg=area_xiaofei / area_telnum
+                    area_group[area] = area_avrg
+		except:
+		    print "没有区域成本"
+		    pass
+
+
+            team_group = {}
+	    sale_list = {}
+            for group in group_list:
+                gg = TpyrcedSaleadd.select(TpyrcedSaleadd.re_peop).where(TpyrcedSaleadd.re_group == group).count()
+		sale_list[group] = gg
 		
+                group_peop = TpyrcedSaleadd.select(TpyrcedSaleadd.re_peop).where(TpyrcedSaleadd.re_group == group)
+                tel_count = 0
+                for p in group_peop:
+                    peop_telnum = TpyrcedClerk.select(TpyrcedClerk.client_tel).where(TpyrcedClerk.is_send == p.re_peop).count()              
+                    tel_count += peop_telnum
+                team_group[group] = tel_count
+            
+
+            for r in ret:
+                s = r
+                a, g = s[0], s[2]
+		try:
+                    group_count = team_group[g] * area_group[a] 
+		    index = ret.index(r)
+		    r.append(group_count)
+		    r.append(team_group[g])
+		    r.append(area_group[a])
+		    r.append(sale_list[g])
+		    ret[index] = r
+		    
+		except:
+		    print "竞价没有数据"
+		    r.append('消费列没有数据!!!')
+		    r.append(group_count)
+		    r.append("套电成本数据不全!!")
+		    r.append(sale_list[g])
+		    ret[index] = r
+
+	
 	    msg = {'status':'ok','data':ret}	
 	    self.write(msg)
                         

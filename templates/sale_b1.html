@@ -90,7 +90,7 @@ $("#sale_query").click(function(){
 
   if (sale_date=='' && sale_peop=='' && sale_area=='' && sale_team=='' && sale_group==''){
     alert("查询条件为空!!请选择查询条件!!");
-  }else if(sale_date==''){
+  }else if(str==''){
     alert("日期为必选!!请重新选择查询条件!!");
   }else{
     $.post("/api/sale/query/", JSON.stringify(sdata),

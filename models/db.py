@@ -20,7 +20,7 @@ class TpyrcedArea(BaseModel):
 class TpyrcedBidadd(BaseModel):
     area_cons = CharField(null=True)
     area_main = CharField(null=True)
-    bid_elec = CharField(null=True)
+    bid_elec = BigIntegerField(null=True)
     save_time = BigIntegerField(null=True)
 
     class Meta:
