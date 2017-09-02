@@ -71,7 +71,7 @@ class BaseHandler(tornado.web.RequestHandler):
 
 
     def timestamp_datetime(self,value):
-        format = '%Y-%m-%d %H:%M:%S'
-        value = time.localtime(value / 1000)
+        format = '%Y-%m-%d'
+        value = time.localtime(value)
         dt = time.strftime(format, value)
         return dt

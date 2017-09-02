@@ -185,10 +185,30 @@ class ApiGetBiddingData_handler(BaseHandler):
 class Salequery_handler(BaseHandler):
 
     def post(self, *args, **kwargs):
-        request_dict = self.request.body
-	print request_dict
-	#前端传过来的数据的示例
-	#{"sale_date":"2017-08-04","sale_peop":"去外地无群","sale_area":["唐山","滁州","秦皇岛"],"sale_team":["团2","团4"],"sale_group":["组2","组4"]}
+        request_dict = eval(self.request.body)
+	if not (request_dict['sale_peop'] or request_dict['sale_area'] or  request_dict['sale_team'] or request_dict['sale_group']):
+            ret = []
+            all_area = self.get_teamarea()
+            data = TpyrcedSaleadd.select(TpyrcedSaleadd.re_team, TpyrcedSaleadd.re_group)
+            l1 = [i.re_team for i in data]
+            team_list = sorted(set(l1),key=l1.index)
+
+            l3 = [i.re_group for i in data]
+            group_list = sorted(set(l3),key=l3.index)
+            for area in all_area:
+                for team in team_list:
+                    for group in group_list:
+                        s = [area, team, group]
+			ret.append(s)
+                        #print ret
+		
+	    msg = {'status':'ok','data':ret}	
+	    self.write(msg)
+                        
+                
+
+
+        '''
         sale_date  = request_dict['sale_date'][0]
         sale_peop  = request_dict['sale_peop'][0]
         sale_area = request_dict['sale_area'][0]
@@ -198,9 +218,9 @@ class Salequery_handler(BaseHandler):
         try:
             q =TpyrcedSaleadd.select(sale_date = sale_date,sale_peop = sale_peop,sale_area = sale_area,sale_team = sale_team,sale_group= sale_group)
             q.execute()
-            self.write("数据查成功!!")
+            self.write("数据查询成功!!")
         except:
 
             self.write("请联系管理员!!!")
-
+        '''
  

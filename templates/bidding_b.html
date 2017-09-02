@@ -50,7 +50,7 @@
 </td>
 <td>  {{i.area_main}} </td>
 <td>  {{i.area_cons}} </td>
-<td>  {{i.bid_elec}} </td>
+<td>  {{timestamp_datetime(int(i.bid_elec.encode("utf-8")))}} </td>
 </tr>
 {%end%}
 </tbody>

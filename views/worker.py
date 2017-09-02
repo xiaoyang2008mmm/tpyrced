@@ -50,7 +50,17 @@ class employeeleft_handler(BaseHandler):
 class saleleft_handler(BaseHandler):
 
     def get(self, *args, **kwargs):
-        self.render("saleleft.html")
+        data = TpyrcedSaleadd.select(TpyrcedSaleadd.re_team, TpyrcedSaleadd.re_group)
+        l1 = [i.re_team for i in data]
+        l2 = sorted(set(l1),key=l1.index)
+
+        l3 = [i.re_group for i in data]
+        l4 = sorted(set(l3),key=l3.index)
+        __dict = {"team":l2,  "group":l4}
+        
+        self.render("saleleft.html", **__dict)
+        
+
 
 class financeleft_handler(BaseHandler):
 
@@ -121,7 +131,7 @@ class biddingleft_handler(BaseHandler):
             zfchdqy = str(fen_ye.zong_ye_ma)                    #将总页码转换成字符串
             self.redirect("/biddingleft/" + zfchdqy)                  #跳转到总页码
         else:
-            self.render("biddingleft.html",dqy=fen_ye.dang_qian_ye,shuju=fen_ye.shu_ju_fan_wei(),yem=fen_ye.xian_shi_ye_ma())
+            self.render("biddingleft.html",dqy=fen_ye.dang_qian_ye,shuju=fen_ye.shu_ju_fan_wei(),yem=fen_ye.xian_shi_ye_ma(),timestamp_datetime = self.timestamp_datetime)
 class systemleft_handler(BaseHandler):
 
     def get(self, *args, **kwargs):

@@ -43,11 +43,16 @@
 <script>
 
     $("#bidding_save").click(function() {
+        
+        //转化固定时间为Unix时间
+        var str = $('#bid_elec').val();
+        var uftime = Date.parse(str)/1000;
+
         /////竞价添加
         var save_time = (Date.parse(new Date())) / 1000;
         var area_main = $('#area_main').val();
         var area_cons = $('#area_cons').val();;
-        var bid_elec = $('#bid_elec').val();
+        var bid_elec = uftime;
 
         var bidding_obj = {};
 
@@ -66,6 +71,5 @@
         )
         });
 
-    
 </script>
 
