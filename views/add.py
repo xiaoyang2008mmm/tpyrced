@@ -214,24 +214,33 @@ class Salequery_handler(BaseHandler):
                     area_avrg=area_xiaofei / area_telnum
                     area_group[area] = area_avrg
 		except:
-		    print "没有区域成本"
+		    #print "没有区域成本"
 		    pass
 
 
             team_group = {}
 	    sale_list = {}
+	    invite_count_group = {}
             for group in group_list:
                 gg = TpyrcedSaleadd.select(TpyrcedSaleadd.re_peop).where(TpyrcedSaleadd.re_group == group).count()
 		sale_list[group] = gg
 		
                 group_peop = TpyrcedSaleadd.select(TpyrcedSaleadd.re_peop).where(TpyrcedSaleadd.re_group == group)
                 tel_count = 0
+                ini_count = 0
+		invite_count = 0
                 for p in group_peop:
                     peop_telnum = TpyrcedClerk.select(TpyrcedClerk.client_tel).where(TpyrcedClerk.is_send == p.re_peop).count()              
-                    tel_count += peop_telnum
-                team_group[group] = tel_count
             
+                    peop_invite = TpyrcedClerk.select(TpyrcedClerk.invite).where(TpyrcedClerk.is_send == p.re_peop).count()
+                     
+                         
+                    invite_count += peop_invite
+                    tel_count += peop_telnum 
 
+                team_group[group] = tel_count
+		invite_count_group[group] = invite_count 
+            
             for r in ret:
                 s = r
                 a, g = s[0], s[2]
@@ -242,14 +251,16 @@ class Salequery_handler(BaseHandler):
 		    r.append(team_group[g])
 		    r.append(area_group[a])
 		    r.append(sale_list[g])
+		    r.append(invite_count_group[g])
 		    ret[index] = r
 		    
 		except:
-		    print "竞价没有数据"
+		    #print "竞价没有数据"
 		    r.append('消费列没有数据!!!')
 		    r.append(group_count)
 		    r.append("套电成本数据不全!!")
 		    r.append(sale_list[g])
+		    r.append("没有约访!")
 		    ret[index] = r
 
 	
