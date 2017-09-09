@@ -195,162 +195,164 @@ class Salequery_handler(BaseHandler):
              self.write(msg)
              return
         '''查询全部'''
-        ret = []
-        all_area = self.get_teamarea()
-        data = TpyrcedSaleadd.select(TpyrcedSaleadd.re_team, TpyrcedSaleadd.re_group)
-        l1 = [i.re_team for i in data]
-        team_list = sorted(set(l1),key=l1.index)
+	if  request_dict['sale_peop'][0] and request_dict['sale_area'][0] and  request_dict['sale_team'][0] and request_dict['sale_group'][0] == 'all':
+            print request_dict['sale_group']
+            ret = []
+            all_area = self.get_teamarea()
+            data = TpyrcedSaleadd.select(TpyrcedSaleadd.re_team, TpyrcedSaleadd.re_group)
+            l1 = [i.re_team for i in data]
+            team_list = sorted(set(l1),key=l1.index)
 
-        l3 = [i.re_group for i in data]
-        group_list = sorted(set(l3),key=l3.index)
-        for area in all_area:
-            for team in team_list:
-                for group in group_list:
-                    s = [area, team, group]
-                    ##过滤不存在的区域、团队、组关系
-                    a_count = TpyrcedSaleadd.select().where(TpyrcedSaleadd.re_area == area,TpyrcedSaleadd.re_team == team,TpyrcedSaleadd.re_group == group).count()
-                    if a_count:
-    		        ret.append(s)
-    
-        ###消费
-        area_group = {}    
-        for area in all_area:
-            area_telnum = TpyrcedClerk.select(TpyrcedClerk.client_tel).where(TpyrcedClerk.tl_area == area).count()
-            ar_count = TpyrcedBidadd.select().where(TpyrcedBidadd.bid_elec == bid_date,TpyrcedBidadd.area_main == area).count()
-            if ar_count > 0:
-                area_count = TpyrcedBidadd.select(TpyrcedBidadd.area_cons).where(TpyrcedBidadd.area_main == area)
-    	        s = [i.area_cons for i in area_count] 
-        	try:
-    	            d = ((s[0]).encode("utf8"))
-                    area_xiaofei = float(d)
-                    area_avrg=area_xiaofei / area_telnum
-                    area_group[area] = area_avrg
-    	        except:
-    	            #print "没有区域成本"
-    	             pass
+            l3 = [i.re_group for i in data]
+            group_list = sorted(set(l3),key=l3.index)
+            for area in all_area:
+                for team in team_list:
+                    for group in group_list:
+                        s = [area, team, group]
+                        ##过滤不存在的区域、团队、组关系
+                        a_count = TpyrcedSaleadd.select().where(TpyrcedSaleadd.re_area == area,TpyrcedSaleadd.re_team == team,TpyrcedSaleadd.re_group == group).count()
+                        if a_count:
+			    ret.append(s)
+	
+            ###消费
+            area_group = {}    
+            for area in all_area:
+                area_telnum = TpyrcedClerk.select(TpyrcedClerk.client_tel).where(TpyrcedClerk.tl_area == area).count()
+                ar_count = TpyrcedBidadd.select().where(TpyrcedBidadd.bid_elec == bid_date,TpyrcedBidadd.area_main == area).count()
+                if ar_count > 0:
+                    area_count = TpyrcedBidadd.select(TpyrcedBidadd.area_cons).where(TpyrcedBidadd.area_main == area)
+		    s = [i.area_cons for i in area_count] 
+	    	    try:
+		        d = ((s[0]).encode("utf8"))
+                        area_xiaofei = float(d)
+                        area_avrg=area_xiaofei / area_telnum
+                        area_group[area] = area_avrg
+		    except:
+		        #print "没有区域成本"
+		        pass
 
-        team_group = {}
-        sale_list = {}
-        invite_count_group = {}
-        subscribe_count_group = {}
-        for group in group_list:
-            gg = TpyrcedSaleadd.select(TpyrcedSaleadd.re_peop).where(TpyrcedSaleadd.re_group == group).count()
-    	    sale_list[group] = gg
-    	
-            group_peop = TpyrcedSaleadd.select(TpyrcedSaleadd.re_peop).where(TpyrcedSaleadd.re_group == group)
-            tel_count = 0
-            ini_count = 0
-    	    invite_count = 0
-            subscribe_count = 0 
-            for p in group_peop:
-                peop_telnum = TpyrcedClerk.select(TpyrcedClerk.client_tel).where(TpyrcedClerk.is_send == p.re_peop).count()              
-        
-                p_invite = TpyrcedClerk.select(TpyrcedClerk.invite).where(TpyrcedClerk.is_send == p.re_peop)
-                
-                peop_invite = []
-                for i in p_invite:
-                    try:
-                        peop_invite.append(int((i.invite).encode("utf8")))
-                    except:
-                        pass
+            team_group = {}
+	    sale_list = {}
+	    invite_count_group = {}
+            subscribe_count_group = {}
+            for group in group_list:
+                gg = TpyrcedSaleadd.select(TpyrcedSaleadd.re_peop).where(TpyrcedSaleadd.re_group == group).count()
+		sale_list[group] = gg
+		
+                group_peop = TpyrcedSaleadd.select(TpyrcedSaleadd.re_peop).where(TpyrcedSaleadd.re_group == group)
+                tel_count = 0
+                ini_count = 0
+		invite_count = 0
+                subscribe_count = 0 
+                for p in group_peop:
+                    peop_telnum = TpyrcedClerk.select(TpyrcedClerk.client_tel).where(TpyrcedClerk.is_send == p.re_peop).count()              
+            
+                    p_invite = TpyrcedClerk.select(TpyrcedClerk.invite).where(TpyrcedClerk.is_send == p.re_peop)
+                    
+                    peop_invite = []
+                    for i in p_invite:
+                        try:
+                            peop_invite.append(int((i.invite).encode("utf8")))
+                        except:
+                            pass
 
-                if any(peop_invite):                      
-                    peop_invite = sum(peop_invite)
+                    if any(peop_invite):                      
+                        peop_invite = sum(peop_invite)
 
-                else:
-                    peop_invite = 0                   
-                p_subscribe = TpyrcedClerk.select(TpyrcedClerk.subscribe).where(TpyrcedClerk.is_send == p.re_peop)                         
-                
-                peop_subscribe = []
-                for i in p_subscribe:
-                    try:
-                        peop_subscribe.append(int((i.subscribe).encode("utf8")))
-                    except:
-                        pass
-
-                if any(peop_subscribe):
-                    peop_subscribe = sum(peop_subscribe)
-
-                else:
-                    peop_subscribe = 0
-
-                invite_count += peop_invite
-                subscribe_count += peop_subscribe
-                tel_count += peop_telnum 
-
-            team_group[group] = tel_count
-    	    invite_count_group[group] = invite_count 
-            subscribe_count_group[group] = subscribe_count
-
-        for r in ret:
-            s = r
-            a, g = s[0], s[2]
-            if  area_group.has_key(a):
-    	        try:
-                    group_count = team_group[g] * area_group[a]
-                    if team_group[g] == 0:
-                        invite_rate = 0
-                        subscribe_rate = 0
                     else:
-                        invite_rate = ('%.2f%%' % (invite_count_group[g] * 100 / (team_group[g])))
-                        subscribe_rate = ('%.2f%%' % (subscribe_count_group[g] * 100 / (team_group[g])))
-    	            index = ret.index(r)
-    	            r.append(group_count)
-    	            r.append(team_group[g])
-    	            r.append(area_group[a])
-    	            r.append(sale_list[g])
-    	            r.append(invite_count_group[g])
-                    r.append(subscribe_count_group[g])
-                    r.append(invite_rate)
-                    r.append(subscribe_rate)
-    	            ret[index] = r
-    	    
-    	        except:
-    	            #print "竞价没有数据"
-    	            r.append('消费列没有数据!!!')
-    	            r.append(group_count)
-    	            r.append("套电成本数据不全!!")
-    	            r.append(sale_list[g])
-    	            r.append("没有约访!")
-                    r.append("没有认购!")
-                    r.append('约访率为0!')
-                    r.append('认购率为0!')
-    	            ret[index] = r
-        table_data = []
-        for m in ret:
-            if len(m) == 11:
-                table_data.append(m)
+                        peop_invite = 0                   
+                    p_subscribe = TpyrcedClerk.select(TpyrcedClerk.subscribe).where(TpyrcedClerk.is_send == p.re_peop)                         
+                    
+                    peop_subscribe = []
+                    for i in p_subscribe:
+                        try:
+                            peop_subscribe.append(int((i.subscribe).encode("utf8")))
+                        except:
+                            pass
 
-        ##过滤区域
-        area_filter = request_dict['sale_area']
-        select_area = []
-        if area_filter[0] != "all":
-            for j in area_filter:               
-                for n in table_data:
-                    if (j.encode("utf8")) in n:
-                        select_area.append(n) 
-            table_data = select_area   
-        
-        ##过滤团队
-        team_filter = request_dict['sale_team']
-        select_team = []
-        if team_filter[0] != "all":
-            for j in team_filter:               
-                for n in table_data:
-                    if (j.encode("utf8")) in n:
-                        select_team.append(n)  
-            table_data = select_team
-        ##过滤组
-        group_filter = request_dict['sale_group']
-        select_group = []
-        if group_filter[0] != "all":
-            for j in group_filter:               
-                for n in table_data:
-                    if (j.encode("utf8")) in n:
-                        select_group.append(n)
-            table_data = select_group
+                    if any(peop_subscribe):
+                        peop_subscribe = sum(peop_subscribe)
 
-        msg = {'status':'ok','data':table_data}	
-        self.write(msg)
-         
+                    else:
+                        peop_subscribe = 0
+
+                    invite_count += peop_invite
+                    subscribe_count += peop_subscribe
+                    tel_count += peop_telnum 
+
+                team_group[group] = tel_count
+		invite_count_group[group] = invite_count 
+                subscribe_count_group[group] = subscribe_count
+
+            for r in ret:
+                s = r
+                a, g = s[0], s[2]
+                if  area_group.has_key(a):
+		    try:
+                        group_count = team_group[g] * area_group[a]
+                        if team_group[g] == 0:
+                            invite_rate = 0
+                            subscribe_rate = 0
+                        else:
+                            invite_rate = ('%.2f%%' % (invite_count_group[g] * 100 / (team_group[g])))
+                            subscribe_rate = ('%.2f%%' % (subscribe_count_group[g] * 100 / (team_group[g])))
+		        index = ret.index(r)
+		        r.append(group_count)
+		        r.append(team_group[g])
+		        r.append(area_group[a])
+		        r.append(sale_list[g])
+		        r.append(invite_count_group[g])
+                        r.append(subscribe_count_group[g])
+                        r.append(invite_rate)
+                        r.append(subscribe_rate)
+		        ret[index] = r
+		    
+		    except:
+		        #print "竞价没有数据"
+		        r.append('消费列没有数据!!!')
+		        r.append(group_count)
+		        r.append("套电成本数据不全!!")
+		        r.append(sale_list[g])
+		        r.append("没有约访!")
+                        r.append("没有认购!")
+                        r.append('约访率为0!')
+                        r.append('认购率为0!')
+		        ret[index] = r
+            table_data = []
+            for m in ret:
+                if len(m) == 11:
+                    table_data.append(m)
+
+	    ##过滤区域
+            area_filter = request_dict['sale_area']
+            select_area = []
+            if area_filter[0] != "all":
+                for j in area_filter:               
+                    for n in table_data:
+                        if (j.encode("utf8")) in n:
+                            select_area.append(n) 
+                table_data = select_area   
+            
+            ##过滤团队
+            team_filter = request_dict['sale_team']
+            select_team = []
+            if team_filter[0] != "all":
+                for j in team_filter:               
+                    for n in table_data:
+                        if (j.encode("utf8")) in n:
+                            select_team.append(n)  
+                table_data = select_team
+            ##过滤组
+            group_filter = request_dict['sale_group']
+            select_group = []
+            if group_filter[0] != "all":
+                for j in group_filter:               
+                    for n in table_data:
+                        if (j.encode("utf8")) in n:
+                            select_group.append(n)
+                table_data = select_group
+
+	    msg = {'status':'ok','data':table_data}	
+	    self.write(msg)
+             
 
