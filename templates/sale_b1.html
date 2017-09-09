@@ -107,7 +107,8 @@ $("#sale_query").click(function(){
   }else{
     $.post("/api/sale/query/", JSON.stringify(sdata),
       function(datas) {
-        
+        console.log(datas);
+        if(datas['status']=='ok'){
         var demo=datas['data'];      
 
         $('#example').dataTable( {
@@ -117,7 +118,10 @@ $("#sale_query").click(function(){
             "regex": true
           }         
     } );           	
+      }else{
+        alert('当前日期没有竞价数据！！！');
       }
+    }
     )
   }
 

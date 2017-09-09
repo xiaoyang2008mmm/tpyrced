@@ -186,6 +186,14 @@ class Salequery_handler(BaseHandler):
 
     def post(self, *args, **kwargs):
         request_dict = eval(self.request.body)
+        bid_date = request_dict['sale_date']
+        print bid_date
+        bid_count = TpyrcedBidadd.select(TpyrcedBidadd.area_cons).where(TpyrcedBidadd.bid_elec==bid_date).count()
+        print bid_count
+        if not bid_count:
+             msg = {'status':'fail'}
+             self.write(msg)
+             return
         '''查询全部'''
 	if not (request_dict['sale_peop'] or request_dict['sale_area'] or  request_dict['sale_team'] or request_dict['sale_group']):
             ret = []
@@ -312,65 +320,3 @@ class Salequery_handler(BaseHandler):
 	    self.write(msg)
              
 
-        def get(self,page):               
-	    req = self.request.arguments   
-            data={}
-            if req.has_key('group_count'):
-                group_count = req['group_count'][0]
-                if group_count : data['group_count'] = group_count
-            if req.has_key('team_group[g]'):
-                team_group[g] = req['team_group[g]'][0]
-                if team_group[g] : data['team_group[g]'] = team_group[g]
-            if req.has_key('area_group[a]'):
-                area_group[a] = req['area_group[a]'][0]
-                if area_group[a] : data['area_group[a]'] = area_group[a]
-            if req.has_key('sale_list[g]'):
-                sale_list[g] = req['sale_list[g]'][0]
-                if sale_list[g] : data['sale_list[g]'] = sale_list[g]
-            if req.has_key('invite_count_group[g]'):
-                invite_count_group[g] = req['invite_count_group[g]'][0]
-                if invite_count_group[g] : data['invite_count_group[g]'] = invite_count_group[g]
-            if req.has_key('subscribe_count_group[g]'):
-                subscribe_count_group[g] = req['subscribe_count_group[g]'][0]
-                if subscribe_count_group[g] : data['subscribe_count_group[g]'] = subscribe_count_group[g]
-            if req.has_key('invite_rate'):
-                invite_rate = req['invite_rate'][0]
-                if invite_rate : data['invite_rate'] = invite_rate
-            if req.has_key('subscribe_rate'):
-                subscribe_rate = req['subscribe_rate'][0]
-                if subscribe_rate : data['subscribe_rate'] = subscribe_rate
-
-            if data:
-                SHUJU  = TpyrcedSaleadd.select().filter(**data).order_by(TpyrcedSaleadd.id.desc())
-                for i in SHUJU:
-                     i.re_area
-            else:
-                SHUJU  = TpyrcedSaleadd.select().order_by(TpyrcedSaleadd.id.desc())
-
-            fen_ye = fenye.fen_ye_lei(page,SHUJU,10,11,5,'/saleleft/')       #执行分页对象
-
-
-            if fen_ye.dang_qian_ye > fen_ye.zong_ye_ma:             #判断分页对象里的当前页码如果大于总页码
-                zfchdqy = str(fen_ye.zong_ye_ma)                    #将总页码转换成字符串
-                self.redirect("/saleleft/" + zfchdqy)                  #跳转到总页码
-            else:
-                self.render("saleleft.html",dqy=fen_ye.dang_qian_ye,shuju=fen_ye.shu_ju_fan_wei(),yem=fen_ye.xian_shi_ye_ma())
-
-
-
-        '''
-        sale_date  = request_dict['sale_date'][0]
-        sale_peop  = request_dict['sale_peop'][0]
-        sale_area = request_dict['sale_area'][0]
-        sale_team = request_dict['sale_team'][0]
-        sale_group = request_dict['sale_group'][0]
-
-        try:
-            q =TpyrcedSaleadd.select(sale_date = sale_date,sale_peop = sale_peop,sale_area = sale_area,sale_team = sale_team,sale_group= sale_group)
-            q.execute()
-            self.write("数据查询成功!!")
-        except:
-
-            self.write("请联系管理员!!!")
-        '''
- 
