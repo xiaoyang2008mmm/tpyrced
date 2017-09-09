@@ -127,7 +127,7 @@
 /*框架右侧——customer_b.html bidding_b.html finance_b.html end*/
 
 /*框架右侧——sale_b1.html start*/
- #saleform {width:78%;height:auto;text-align:center;position:relative;left:10%;background:#e2ecf5;}
+ #saleform {width:78%;height:820px;overflow:scroll;text-align:center;position:relative;left:10%;background:#e2ecf5;}
  #saleform form{width:100%;height:auto;}
  #saleform table{position:relative;left:13%;text-align:center;width:70%;height:30px;margin:25px;border-collapse:separate; border-spacing:0px 10px}
  #saleform table td{border:#a0a0a0 solid 1px;height:30px;background:#fff;border-spacing: 10px;}

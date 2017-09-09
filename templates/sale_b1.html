@@ -1,4 +1,3 @@
-
 <div id="saleform">
   <img src="/static/img/sale01.png">
   <form>
@@ -40,9 +39,12 @@
     <button type="button" value="查询" style="background:url(/static/img/closebtn.png);" id='sale_query'>查询</button>
     </form>
     <hr />
-    <table>
+    <table id='example'>
+      <thead>
       <tr>
-        <td style="background:#e5e5e5;">区域-团队-组</td>
+        <td style="background:#e5e5e5;">区域</td>
+        <td style="background:#e5e5e5;">团队</td>
+        <td style="background:#e5e5e5;">组</td>
         <td>消费</td>
         <td>量</td>
         <td>套电成本</td>
@@ -51,10 +53,20 @@
         <td>认购</td>
         <td>到访率<br>(到访/量)</td>
         <td>认购率<br>(认购/量)</td>
-<!--         <td>认购率<br>(认购/认购)</td> -->
-      </tr>
+      </tr></thead>
+      <tbody>
+      </tbody>
+
     </table>
 </div>
+
+<!-- 销售情况查询——表格插件datatables -->
+<link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
+
+<script class="jsbin" src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+
+
+<!-- 销售情况查询——表格插件datatables -->
 
 <!-- 销售情况查询 -->
 
@@ -94,10 +106,20 @@ $("#sale_query").click(function(){
     alert("日期为必选!!请重新选择查询条件!!");
   }else{
     $.post("/api/sale/query/", JSON.stringify(sdata),
-      function(data) {
-        console.log(data);
+      function(datas) {
+        
+        var demo=datas['data'];      
+
+        $('#example').dataTable( {
+           data:demo,
+           "search": {
+            //开启正则支持
+            "regex": true
+          }         
+    } );           	
       }
     )
   }
+
 })
 </script>

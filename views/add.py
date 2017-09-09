@@ -221,6 +221,7 @@ class Salequery_handler(BaseHandler):
             team_group = {}
 	    sale_list = {}
 	    invite_count_group = {}
+            subscribe_count_group = {}
             for group in group_list:
                 gg = TpyrcedSaleadd.select(TpyrcedSaleadd.re_peop).where(TpyrcedSaleadd.re_group == group).count()
 		sale_list[group] = gg
@@ -229,29 +230,69 @@ class Salequery_handler(BaseHandler):
                 tel_count = 0
                 ini_count = 0
 		invite_count = 0
+                subscribe_count = 0 
                 for p in group_peop:
                     peop_telnum = TpyrcedClerk.select(TpyrcedClerk.client_tel).where(TpyrcedClerk.is_send == p.re_peop).count()              
             
-                    peop_invite = TpyrcedClerk.select(TpyrcedClerk.invite).where(TpyrcedClerk.is_send == p.re_peop).count()
-                     
-                         
+                    p_invite = TpyrcedClerk.select(TpyrcedClerk.invite).where(TpyrcedClerk.is_send == p.re_peop)
+                    
+                    peop_invite = []
+                    for i in p_invite:
+                        try:
+                            peop_invite.append(int((i.invite).encode("utf8")))
+                        except:
+                            pass
+
+                    if any(peop_invite):                      
+                        print peop_invite
+                        peop_invite = sum(peop_invite)
+
+                    else:
+                        peop_invite = 0                   
+                    p_subscribe = TpyrcedClerk.select(TpyrcedClerk.subscribe).where(TpyrcedClerk.is_send == p.re_peop)                         
+                    
+                    peop_subscribe = []
+                    for i in p_subscribe:
+                        try:
+                            peop_subscribe.append(int((i.subscribe).encode("utf8")))
+                        except:
+                            pass
+
+                    if any(peop_subscribe):
+                        print peop_subscribe
+                        peop_subscribe = sum(peop_subscribe)
+
+                    else:
+                        peop_subscribe = 0
+
                     invite_count += peop_invite
+                    subscribe_count += peop_subscribe
                     tel_count += peop_telnum 
 
                 team_group[group] = tel_count
 		invite_count_group[group] = invite_count 
+                subscribe_count_group[group] = subscribe_count
             
             for r in ret:
                 s = r
                 a, g = s[0], s[2]
 		try:
-                    group_count = team_group[g] * area_group[a] 
+                    group_count = team_group[g] * area_group[a]
+                    if team_group[g] == 0:
+                        invite_rate = 0
+                        subscribe_rate = 0
+                    else:
+                        invite_rate = ('%.2f%%' % (invite_count_group[g] * 100 / (team_group[g])))
+                        subscribe_rate = ('%.2f%%' % (subscribe_count_group[g] * 100 / (team_group[g])))
 		    index = ret.index(r)
 		    r.append(group_count)
 		    r.append(team_group[g])
 		    r.append(area_group[a])
 		    r.append(sale_list[g])
 		    r.append(invite_count_group[g])
+                    r.append(subscribe_count_group[g])
+                    r.append(invite_rate)
+                    r.append(subscribe_rate)
 		    ret[index] = r
 		    
 		except:
@@ -261,13 +302,60 @@ class Salequery_handler(BaseHandler):
 		    r.append("套电成本数据不全!!")
 		    r.append(sale_list[g])
 		    r.append("没有约访!")
+                    r.append("没有认购!")
+                    r.append('约访率为0!')
+                    r.append('认购率为0!')
 		    ret[index] = r
 
 	
 	    msg = {'status':'ok','data':ret}	
 	    self.write(msg)
-                        
-                
+             
+
+        def get(self,page):               
+	    req = self.request.arguments   
+            data={}
+            if req.has_key('group_count'):
+                group_count = req['group_count'][0]
+                if group_count : data['group_count'] = group_count
+            if req.has_key('team_group[g]'):
+                team_group[g] = req['team_group[g]'][0]
+                if team_group[g] : data['team_group[g]'] = team_group[g]
+            if req.has_key('area_group[a]'):
+                area_group[a] = req['area_group[a]'][0]
+                if area_group[a] : data['area_group[a]'] = area_group[a]
+            if req.has_key('sale_list[g]'):
+                sale_list[g] = req['sale_list[g]'][0]
+                if sale_list[g] : data['sale_list[g]'] = sale_list[g]
+            if req.has_key('invite_count_group[g]'):
+                invite_count_group[g] = req['invite_count_group[g]'][0]
+                if invite_count_group[g] : data['invite_count_group[g]'] = invite_count_group[g]
+            if req.has_key('subscribe_count_group[g]'):
+                subscribe_count_group[g] = req['subscribe_count_group[g]'][0]
+                if subscribe_count_group[g] : data['subscribe_count_group[g]'] = subscribe_count_group[g]
+            if req.has_key('invite_rate'):
+                invite_rate = req['invite_rate'][0]
+                if invite_rate : data['invite_rate'] = invite_rate
+            if req.has_key('subscribe_rate'):
+                subscribe_rate = req['subscribe_rate'][0]
+                if subscribe_rate : data['subscribe_rate'] = subscribe_rate
+
+            if data:
+                SHUJU  = TpyrcedSaleadd.select().filter(**data).order_by(TpyrcedSaleadd.id.desc())
+                for i in SHUJU:
+                     i.re_area
+            else:
+                SHUJU  = TpyrcedSaleadd.select().order_by(TpyrcedSaleadd.id.desc())
+
+            fen_ye = fenye.fen_ye_lei(page,SHUJU,10,11,5,'/saleleft/')       #执行分页对象
+
+
+            if fen_ye.dang_qian_ye > fen_ye.zong_ye_ma:             #判断分页对象里的当前页码如果大于总页码
+                zfchdqy = str(fen_ye.zong_ye_ma)                    #将总页码转换成字符串
+                self.redirect("/saleleft/" + zfchdqy)                  #跳转到总页码
+            else:
+                self.render("saleleft.html",dqy=fen_ye.dang_qian_ye,shuju=fen_ye.shu_ju_fan_wei(),yem=fen_ye.xian_shi_ye_ma())
+
 
 
         '''
