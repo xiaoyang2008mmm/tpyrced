@@ -187,7 +187,6 @@ class Salequery_handler(BaseHandler):
 
     def post(self, *args, **kwargs):
         request_dict = eval(self.request.body)
-        print request_dict
         bid_date = request_dict['sale_date']
         bid_count = TpyrcedBidadd.select(TpyrcedBidadd.area_cons).where(TpyrcedBidadd.bid_elec==bid_date).count()
         if not bid_count:
@@ -330,6 +329,22 @@ class Salequery_handler(BaseHandler):
                     if (j.encode("utf8")) in n:
                         select_area.append(n) 
             table_data = select_area   
+
+            d={}
+            for i in table_data:
+                key=i[0]
+                if d.has_key(key):
+                     v = d[key]
+                     for l in range(0,len(v)):
+                         v[l] = v[l] + i[l+3]
+                else:
+                     d[key] = i[-8:]
+
+            for k,v in d.items():
+                v.insert(0,k+'合计')
+                v.insert(1,"-")
+                v.insert(2,"-")
+                table_data.append(v)
         
         ##过滤团队
         team_filter = request_dict['sale_team']
@@ -340,6 +355,9 @@ class Salequery_handler(BaseHandler):
                     if (j.encode("utf8")) in n:
                         select_team.append(n)  
             table_data = select_team
+
+
+
         ##过滤组
         group_filter = request_dict['sale_group']
         select_group = []
@@ -351,6 +369,7 @@ class Salequery_handler(BaseHandler):
             table_data = select_group
 
         msg = {'status':'ok','data':table_data}	
+
         self.write(msg)
          
 

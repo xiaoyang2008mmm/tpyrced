@@ -94,7 +94,6 @@ $("#sale_query").click(function(){
      sale_group.push($(this).val());    
     }); 
 
-  console.log(sale_date,sale_peop,sale_area,sale_team,sale_group);
 
   var sdata= {};
   sdata.sale_date = sale_date;
@@ -106,6 +105,15 @@ $("#sale_query").click(function(){
   if (str=='' || sale_area=='' || sale_team=='' || sale_group==''){
     alert("区域、团队、组、日期为必选!!!");
   }else{
+
+
+     if ($('#example').hasClass('dataTable')) {
+          dttable = $('#example').dataTable();
+          dttable.fnClearTable(); 
+          dttable.fnDestroy(); 
+   }
+
+
     $.post("/api/sale/query/", JSON.stringify(sdata),
       function(datas) {
         console.log(datas);
@@ -114,6 +122,7 @@ $("#sale_query").click(function(){
 
         $('#example').dataTable( {
            data:demo,
+	    "bRetrieve": true,
            "search": {
             //开启正则支持
             "regex": true
